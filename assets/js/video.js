@@ -99,12 +99,12 @@
     v.tabIndex = -1;
     v.poster = posterSrc(id);
 
-    // Reduced motion: poster only, never load or play the clip.
-    if (REDUCE) { v.preload = "none"; return v; }
-
-    // Eager, declarative-style source — this is the part that makes real Safari
-    // autoplay. Six tiny muted loops are cheap; loading them up front beats
-    // fighting WebKit over a late, scripted start.
+    // Autoplay UNCONDITIONALLY (JJ: "just autoplay like that"). We intentionally do
+    // NOT gate on prefers-reduced-motion: macOS "Reduce Motion" sets that query, and
+    // gating here was silently turning the clips into still posters for anyone with
+    // that accessibility setting on. These muted decorative loops are the core of the
+    // design and must play for everyone. Eager, declarative-style src is the part that
+    // makes real Safari autoplay; six tiny clips are cheap to load up front.
     v.preload = "auto";
     v.src = clipSrc(id);
 
