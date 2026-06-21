@@ -67,61 +67,80 @@
     KICK_EVENTS.forEach(function (ev) { window.addEventListener(ev, kickHandler, KICK_OPTS); });
   }
 
+  // preview(): a muted looping clip per tile. ROOT-CAUSE FIX (Codex, real desktop
+  // Safari): the old code called play() while the <video> was still DETACHED and
+  // used a <source> child, then the IntersectionObserver PAUSED the below-the-fold
+  // tile right after insertion — so it fell back to a scripted play() that real
+  // Safari refuses (which is why an above-the-fold hero autoplays but these tiles
+  // did not). Now: a DIRECT src, attached + loaded only once the tile is observed
+  // in view, play() ONLY when the element is CONNECTED, and we NEVER pause
+  // off-screen (six tiny muted loops are cheaper than fighting WebKit's resumed play).
   function preview(id, opts) {
     opts = opts || {};
     var v = document.createElement("video");
     v.className = opts.className || "mwv";
-    // muted + inline are required for autoplay across browsers (esp. iOS Safari)
-    v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true;
-    v.setAttribute("muted", ""); v.setAttribute("playsinline", ""); v.setAttribute("webkit-playsinline", "");
-    v.poster = posterSrc(id);
+
+    v.muted = true;
+    v.defaultMuted = true;
+    v.loop = true;
+    v.playsInline = true;
+    v.autoplay = true;
+    v.preload = REDUCE ? "none" : "metadata";
+
+    v.setAttribute("muted", "");
+    v.setAttribute("playsinline", "");
+    v.setAttribute("webkit-playsinline", "");
+    v.setAttribute("autoplay", "");
     v.setAttribute("aria-hidden", "true");   // the tile's link/button is the real control
     v.tabIndex = -1;
-    var s = document.createElement("source");
-    s.src = clipSrc(id); s.type = "video/mp4";
-    v.appendChild(s);
+    v.poster = posterSrc(id);
 
-    // Reduced motion: never autoplay; the poster frame stands in for the loop.
-    if (REDUCE) { v.preload = "none"; return v; }
+    // Reduced motion: poster only, no playback.
+    if (REDUCE) return v;
 
-    // Declarative autoplay (with muted + inline) is the most reliable trigger.
-    // Browsers honor the attribute more permissively than a scripted play()
-    // alone. preload "auto" keeps the short clip buffered so it can start the
-    // instant it is seen.
-    v.autoplay = true; v.setAttribute("autoplay", "");
-    v.preload = "auto";
+    var src = clipSrc(id);
+    var armed = false;
+    var inView = false;
 
-    var inView = true;   // assume visible until the observer says otherwise
-    var tryPlay = function () {
-      if (!inView) return;
-      var p = v.play();
-      if (p && p.catch) p.catch(function () {});   // blocked: poster holds; the kick / hover will start it later
-    };
+    function ensureLoaded() {
+      if (armed) return;
+      armed = true;
+      v.src = src;             // Safari-reliable: a direct src, not a detached <source>
+      v.preload = "auto";
+      try { v.load(); } catch (e) {}
+    }
+
+    function playConnected() {
+      if (!v.isConnected) return;   // never play while detached (that wasted the autoplay before)
+      ensureLoaded();
+      var p;
+      try { p = v.play(); } catch (e) { return; }
+      if (p && p.catch) p.catch(function () {});
+    }
 
     if ("IntersectionObserver" in window) {
-      // Start a touch before it scrolls in; pause once well off-screen (CPU/battery).
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
+          if (e.target !== v) return;
           inView = e.isIntersecting;
-          if (inView) tryPlay();
-          else { try { v.pause(); } catch (e2) {} }
+          if (inView) playConnected();
+          // Deliberately do NOT pause off-screen — real Safari is the target bug,
+          // and resuming a scripted play() it once paused is exactly what fails.
         });
-      }, { threshold: 0.01, rootMargin: "200px 0px" });
+      }, { threshold: 0.01, rootMargin: "300px 0px" });
       io.observe(v);
+    } else {
+      window.setTimeout(playConnected, 0);   // old-browser fallback (after the caller inserts the node)
+      inView = true;
     }
 
-    // Hover-to-play: entering a tile plays its clip. Works in Chrome AND default
-    // Safari (a hover is a user gesture), so a clip starts the moment it's eyed
-    // even when load-time autoplay was refused. Listen on the video itself; the
-    // pointer is inside the tile so the clip is by definition in view.
+    // Hover-to-play (desktop): a hover is a user gesture, so the clip starts the
+    // moment it is eyed even if load-time autoplay was refused.
     if (window.matchMedia && window.matchMedia("(hover: hover)").matches) {
-      v.addEventListener("pointerenter", function () {
-        if (v.paused || v.ended) tryPlay();
-      });
+      v.addEventListener("pointerenter", playConnected);
     }
 
-    tryPlay();                                     // best-effort immediate start (works wherever autoplay is allowed)
-    registerPreview(v, function () { return inView; });  // persistent retry on every interaction until it plays
+    registerPreview(v, function () { return inView; });  // persistent kick retries any paused in-view tile
     return v;
   }
 
