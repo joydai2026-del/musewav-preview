@@ -421,6 +421,7 @@ html[data-theme="light"] .ss-book-quote a:hover{ color:var(--gold-deep); text-de
   -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
   display:grid; place-items:center; z-index:2;
   transition:background-color .4s var(--ease), border-color .4s var(--ease), transform .5s var(--ease), opacity .4s var(--ease);
+  opacity:0; pointer-events:none;   /* hidden at rest in EVERY hover-state; revealed on hover below */
 }
 .ss-grid__play svg{ width:18px; height:18px; margin-left:3px; fill:var(--bone); }
 @media (hover:hover){
@@ -433,7 +434,7 @@ html[data-theme="light"] .ss-book-quote a:hover{ color:var(--gold-deep); text-de
 }
 /* Touch: no hover, keep a subtle tap target so the video stays openable. */
 @media (hover:none){
-  .ss-grid__play{ opacity:.82; }
+  .ss-grid__play{ opacity:0; }
 }
 
 .ss-grid__caption{ display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin-top:1.1rem; }

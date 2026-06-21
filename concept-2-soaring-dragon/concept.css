@@ -459,6 +459,7 @@
   background:var(--grad-candy);color:#0a0a0f;
   box-shadow:0 12px 40px rgba(255,79,163,.5);
   transition:transform .4s var(--ease),filter .4s,opacity .35s var(--ease);
+  opacity:0;pointer-events:none;   /* hidden at rest in EVERY hover-state; revealed on hover below */
 }
 .c2-panel__play svg{width:26px;height:26px;margin-left:4px}
 .c2-panel__play:hover{transform:translate(-50%,-50%) scale(1.08);filter:brightness(1.1)}
@@ -471,7 +472,7 @@
 }
 /* Touch: no hover, keep a subtle tap target so the video stays openable. */
 @media (hover:none){
-  .c2-panel__play{opacity:.82}
+  .c2-panel__play{opacity:0}
 }
 /* explicit "Watch on YouTube" chip — original link stays reachable (click → youtube.com) */
 .c2-panel__yt{

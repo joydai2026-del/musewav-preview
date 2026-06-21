@@ -33,6 +33,7 @@
   function allPlaying() {
     for (var i = 0; i < PREVIEWS.length; i++) {
       var v = PREVIEWS[i].v;
+      if (!v.isConnected) continue;               // ignore detached previews — they must never block disarm
       if (v.paused || v.ended) return false;
     }
     return PREVIEWS.length > 0;
@@ -40,6 +41,7 @@
   function fireKick() {
     PREVIEWS.forEach(function (p) {
       var v = p.v;
+      if (!v.isConnected) return;                 // skip detached previews — don't waste a play() or keep the kick armed
       if (!v.paused && !v.ended) return;          // already running -> skip (cheap)
       if (p.seen && !p.seen()) return;            // off-screen -> leave paused (CPU/battery)
       try {
@@ -67,14 +69,16 @@
     KICK_EVENTS.forEach(function (ev) { window.addEventListener(ev, kickHandler, KICK_OPTS); });
   }
 
-  // preview(): a muted looping clip per tile. ROOT-CAUSE FIX (Codex, real desktop
-  // Safari): the old code called play() while the <video> was still DETACHED and
-  // used a <source> child, then the IntersectionObserver PAUSED the below-the-fold
-  // tile right after insertion — so it fell back to a scripted play() that real
-  // Safari refuses (which is why an above-the-fold hero autoplays but these tiles
-  // did not). Now: a DIRECT src, attached + loaded only once the tile is observed
-  // in view, play() ONLY when the element is CONNECTED, and we NEVER pause
-  // off-screen (six tiny muted loops are cheaper than fighting WebKit's resumed play).
+  // preview(): a muted looping clip per tile. Matches the ONE autoplay pattern we
+  // know works in JJ's real desktop Safari (ownlyagent.com): a plain muted, inline,
+  // looping <video> with the `autoplay` attribute AND its `src` present EAGERLY —
+  // not lazy-injected on scroll, not dependent on a scripted play() inside an
+  // IntersectionObserver. Real Safari fires `autoplay` for such an element as soon
+  // as it has data and is in the DOM; the canplay/loadeddata kick and the
+  // user-gesture kick are only backstops. The earlier approaches failed because one
+  // PAUSED below-the-fold tiles (forcing a scripted resume WebKit refuses) and the
+  // next only attached the src lazily (so the autoplay attribute had nothing to
+  // play until a scripted call that, again, WebKit refused).
   function preview(id, opts) {
     opts = opts || {};
     var v = document.createElement("video");
@@ -85,62 +89,44 @@
     v.loop = true;
     v.playsInline = true;
     v.autoplay = true;
-    v.preload = REDUCE ? "none" : "metadata";
 
     v.setAttribute("muted", "");
     v.setAttribute("playsinline", "");
     v.setAttribute("webkit-playsinline", "");
     v.setAttribute("autoplay", "");
-    v.setAttribute("aria-hidden", "true");   // the tile's link/button is the real control
+    v.setAttribute("loop", "");
+    v.setAttribute("aria-hidden", "true");   // the tile's title/link is the real control
     v.tabIndex = -1;
     v.poster = posterSrc(id);
 
-    // Reduced motion: poster only, no playback.
-    if (REDUCE) return v;
+    // Reduced motion: poster only, never load or play the clip.
+    if (REDUCE) { v.preload = "none"; return v; }
 
-    var src = clipSrc(id);
-    var armed = false;
-    var inView = false;
+    // Eager, declarative-style source — this is the part that makes real Safari
+    // autoplay. Six tiny muted loops are cheap; loading them up front beats
+    // fighting WebKit over a late, scripted start.
+    v.preload = "auto";
+    v.src = clipSrc(id);
 
-    function ensureLoaded() {
-      if (armed) return;
-      armed = true;
-      v.src = src;             // Safari-reliable: a direct src, not a detached <source>
-      v.preload = "auto";
-      try { v.load(); } catch (e) {}
-    }
-
-    function playConnected() {
-      if (!v.isConnected) return;   // never play while detached (that wasted the autoplay before)
-      ensureLoaded();
+    // Best-effort play() once there is data. The autoplay attribute already covers
+    // Safari; this also covers engines that don't honor autoplay on a JS-created
+    // element. Guarded on isConnected so an attempt is never burned while detached.
+    var kick = function () {
+      if (!v.isConnected) return;
       var p;
       try { p = v.play(); } catch (e) { return; }
       if (p && p.catch) p.catch(function () {});
-    }
-
-    if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.target !== v) return;
-          inView = e.isIntersecting;
-          if (inView) playConnected();
-          // Deliberately do NOT pause off-screen — real Safari is the target bug,
-          // and resuming a scripted play() it once paused is exactly what fails.
-        });
-      }, { threshold: 0.01, rootMargin: "300px 0px" });
-      io.observe(v);
-    } else {
-      window.setTimeout(playConnected, 0);   // old-browser fallback (after the caller inserts the node)
-      inView = true;
-    }
-
-    // Hover-to-play (desktop): a hover is a user gesture, so the clip starts the
-    // moment it is eyed even if load-time autoplay was refused.
+    };
+    v.addEventListener("loadeddata", kick);
+    v.addEventListener("canplay", kick);
     if (window.matchMedia && window.matchMedia("(hover: hover)").matches) {
-      v.addEventListener("pointerenter", playConnected);
+      v.addEventListener("pointerenter", kick);   // hover is a user gesture
     }
 
-    registerPreview(v, function () { return inView; });  // persistent kick retries any paused in-view tile
+    // Backstop: the persistent kick retries on the first real user interaction for
+    // any clip a browser still refused to start on load. Always "seen" — we no
+    // longer pause off-screen, so every registered clip should be playing.
+    registerPreview(v, function () { return true; });
     return v;
   }
 
