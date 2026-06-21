@@ -1,0 +1,60 @@
+/* ============================================================================
+   MUSE WAV — shared video layer styles (preview base + lightbox).
+   Per-concept tile sizing stays in each concept.css; this is only the bits
+   that are identical everywhere. Uses brand tokens from tokens.css.
+   ============================================================================ */
+
+/* preview <video> fallback bg before the first frame paints */
+video.mwv { background: var(--ink-2); }
+
+/* ---- lightbox ------------------------------------------------------------ */
+html.mwv-lock { overflow: hidden; }
+
+.mwv-lb {
+  position: fixed; inset: 0; z-index: 1000;
+  display: none; align-items: center; justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+}
+.mwv-lb.is-open { display: flex; }
+
+.mwv-lb__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(8, 6, 7, .9);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.mwv-lb__stage { position: relative; z-index: 1; width: min(1120px, 92vw); }
+
+.mwv-lb__frame {
+  position: relative; width: 100%; aspect-ratio: 16 / 9;
+  background: #000; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 40px 120px -30px rgba(0, 0, 0, .9);
+}
+.mwv-lb__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+.mwv-lb__cap {
+  margin-top: .9rem; text-align: center;
+  font-family: var(--mono); font-size: .72rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--bone-dim);
+}
+
+.mwv-lb__close {
+  position: absolute; top: -3.4rem; right: 0;
+  width: 2.7rem; height: 2.7rem; border-radius: 50%;
+  display: grid; place-items: center; font-size: 1.05rem; line-height: 1;
+  color: var(--bone); background: rgba(244, 239, 233, .1);
+  border: 1px solid var(--line);
+  transition: background .3s var(--ease), transform .3s var(--ease);
+}
+.mwv-lb__close:hover { background: var(--crimson); transform: scale(1.06); }
+@media (max-width: 640px) { .mwv-lb__close { top: -3.1rem; } }
+
+.mwv-lb.is-open .mwv-lb__stage { animation: mwvIn .42s var(--ease); }
+@keyframes mwvIn {
+  from { opacity: 0; transform: translateY(14px) scale(.98); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mwv-lb__backdrop { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .mwv-lb.is-open .mwv-lb__stage { animation: none; }
+}

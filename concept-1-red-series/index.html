@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MUSE WAV · Record Label</title>
+  <meta name="description" content="MUSE WAV · NYC record label, recording studio &amp; club. The RED Series: high-quality music video production, custom beats, artist development, tours." />
+  <meta property="og:title" content="MUSE WAV · Record Label" />
+  <meta property="og:description" content="NYC record label, recording studio &amp; club. The RED Series." />
+  <link rel="icon" href="../assets/brand/favicon-256.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/video.css" />
+  <link rel="stylesheet" href="concept.css" />
+</head>
+<body>
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="mw-preloader" aria-hidden="true">
+    <img class="mw-preloader__mark" src="../assets/brand/dragon-crimson.png" alt="" />
+  </div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="top">
+    <a class="nav__brand" href="#top" aria-label="MUSE WAV · home">
+      <img src="../assets/brand/dragon-white.png" alt="" class="nav__dragon" />
+      <img src="../assets/brand/wordmark-white.png" alt="MUSE WAV" class="nav__wordmark" />
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <!-- MUSEWAV.nav injected -->
+    </nav>
+    <a class="nav__cta btn" href="#contact" data-magnetic>Get a quote</a>
+    <button class="nav__burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <!-- mobile menu overlay -->
+  <div class="navmenu" id="navmenu" aria-hidden="true">
+    <nav class="navmenu__links" aria-label="Mobile"></nav>
+    <a class="navmenu__cta btn" href="#contact">Get a quote</a>
+  </div>
+
+  <main>
+
+    <!-- ============ 1. HERO (ink) ============ -->
+    <section class="hero section--ink" id="hero" aria-labelledby="hero-title">
+      <div class="hero__inner container">
+        <p class="kicker kicker--crimson hero__kicker" data-reveal>Record Label · Recording Studio · New York City</p>
+        <h1 class="hero__title display-xl reveal" id="hero-title">
+          <span class="hero__line">Muse</span>
+          <span class="hero__line hero__line--wav">Wav<img class="hero__dragon" src="../assets/brand/dragon-crimson.png" alt="" /></span>
+        </h1>
+        <canvas class="hero__wave" aria-hidden="true"></canvas>
+        <div class="hero__foot">
+          <p class="hero__motto" data-reveal>A form beyond form. Soaring dragon shaping the heaven and earth, a silent symphony.</p>
+          <a class="hero__scroll kicker" href="#studio-booking" aria-label="Scroll to the studio">
+            <span>Scroll</span>
+            <span class="hero__scrollline" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MOD-1 · STUDIO + BOOKING (bone) — TOP per JJ ============ -->
+    <section class="book section--bone" id="studio-booking" aria-labelledby="book-title">
+      <div class="container">
+        <div class="book__head">
+          <div>
+            <p class="kicker kicker--crimson" data-reveal>The Studio · Book a session</p>
+            <h2 class="book__title display-l skewable" id="book-title">Record in the heart of NYC</h2>
+          </div>
+          <span class="tag tag--preview" data-reveal>Preview</span>
+        </div>
+
+        <!-- the booking instrument: calendar LEFT, studio choice RIGHT -->
+        <div class="book__widget" aria-label="Studio booking">
+
+          <!-- LEFT: calendar -->
+          <div class="bk-cal">
+            <p class="kicker bk-col__label">1 · Pick a date</p>
+            <div class="bk-cal__bar">
+              <button class="bk-cal__nav" type="button" data-cal-prev aria-label="Previous month">&#x2039;</button>
+              <p class="bk-cal__month" data-cal-month aria-live="polite">Month</p>
+              <button class="bk-cal__nav" type="button" data-cal-next aria-label="Next month">&#x203A;</button>
+            </div>
+            <div class="bk-cal__dow" aria-hidden="true"></div>
+            <div class="bk-cal__grid" role="grid" data-cal-grid></div>
+            <p class="bk-cal__hint kicker">Open days are marked. Pick one to see times.</p>
+          </div>
+
+          <!-- RIGHT: studio choice (selectable) -> times -> package -> summary -->
+          <div class="bk-side">
+            <div class="bk-side__block">
+              <p class="kicker bk-col__label">2 · Choose a studio</p>
+              <div class="bk-rooms" role="radiogroup" aria-label="Choose a studio">
+                <!-- selectable studio cards injected (placeholder rooms) -->
+              </div>
+            </div>
+
+            <div class="bk-side__block" data-bk-slots-block hidden>
+              <p class="kicker bk-col__label">3 · Pick a time <span class="bk-side__day" data-bk-day></span></p>
+              <div class="bk-slots" role="group" aria-label="Available time slots"></div>
+            </div>
+
+            <div class="bk-side__block" data-bk-pkg-block hidden>
+              <p class="kicker bk-col__label">4 · Choose a package</p>
+              <div class="bk-pkg" role="radiogroup" aria-label="Session package"></div>
+            </div>
+
+            <div class="bk-summary" data-bk-summary hidden aria-live="polite">
+              <p class="kicker bk-summary__label">Your session <span class="tag tag--preview tag--sm">Preview</span></p>
+              <dl class="bk-summary__rows"></dl>
+              <div class="bk-summary__actions">
+                <button class="btn bk-summary__book" type="button" data-bk-book>Request this session <span class="bk-summary__note">(Preview)</span></button>
+                <a class="btn btn--ghost-ink bk-summary__quote" href="mailto:info@musewav.com?subject=Custom%20studio%20quote%20%C2%B7%20MUSE%20WAV">Request a custom quote</a>
+              </div>
+              <p class="bk-summary__fine" data-bk-confirm hidden></p>
+            </div>
+
+            <div class="bk-empty" data-bk-empty>
+              <p class="bk-empty__big">Pick a studio &amp; a day</p>
+              <p class="bk-empty__sub">Sample availability shown for preview. Rates are placeholders. No payment is taken.</p>
+              <a class="linklike bk-empty__quote" href="mailto:info@musewav.com?subject=Custom%20studio%20quote%20%C2%B7%20MUSE%20WAV">Request a custom quote</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE (crimson) ============ -->
+    <section class="band band--crimson" aria-label="What we do">
+      <div class="marquee" data-marquee>
+        <div class="marquee__track">
+          <!-- MUSEWAV services injected as marquee items -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. MANIFESTO (ink) ============ -->
+    <section class="manifesto section--ink" id="manifesto" aria-labelledby="manifesto-title">
+      <div class="container">
+        <p class="kicker kicker--crimson manifesto__kicker" data-reveal>The Mission · RED Series</p>
+        <h2 class="manifesto__motto display-l reveal" id="manifesto-title">
+          A form beyond form. A silent symphony.
+        </h2>
+        <p class="manifesto__body" data-reveal>
+          The MUSE WAV RED Series is committed to promoting the best artists and their works
+          through high-quality music video production and social media platform operations.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ 3. SERVICES (bone) ============ -->
+    <section class="services section--bone" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="services__head">
+          <h2 class="services__title display-l skewable" id="services-title">What we do</h2>
+          <p class="kicker services__kicker">Full-service · 24/7</p>
+        </div>
+        <ol class="services__list" aria-label="Services">
+          <!-- MUSEWAV.services injected as numbered rows -->
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 4. WORK / VIDEOS (ink) · mod-5 ============ -->
+    <section class="work section--ink" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <div class="work__head">
+          <h2 class="work__title display-l skewable" id="work-title">Selected work</h2>
+          <p class="kicker work__credit">By Sir Wolfsbane &amp; Jjeramii</p>
+        </div>
+        <div class="work__grid">
+          <!-- MUSEWAV.videos injected as editorial grid cells -->
+        </div>
+        <a class="work__more btn btn--ghost" href="https://www.youtube.com/@MUSEWAV_INC" target="_blank" rel="noopener" data-magnetic>
+          More on YouTube
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ 5. COMMUNITY (crimson) ============ -->
+    <section class="community band--crimson" id="community" aria-labelledby="community-title">
+      <div class="container">
+        <p class="kicker community__kicker" data-reveal>The Community</p>
+        <h2 class="community__title display-l reveal" id="community-title">
+          Meet the talented from all over the world.
+        </h2>
+        <p class="community__body" data-reveal>
+          MUSE WAV Community is the way to meet up the music talented from all over the world,
+          sharing resources to make everyone in the community get a better deal.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ MOD-2 · LOGIN + AI RELEASE WINDOW (ink) ============ -->
+    <section class="release section--ink" id="release" aria-labelledby="release-title">
+      <div class="container">
+        <div class="release__head">
+          <div>
+            <p class="kicker kicker--crimson" data-reveal>Artist Portal · Release Window</p>
+            <h2 class="release__title display-l skewable" id="release-title">Submit a release</h2>
+          </div>
+          <span class="tag tag--preview" data-reveal>Preview</span>
+        </div>
+        <p class="release__lede" data-reveal>
+          Sign in to the MUSE WAV artist window. Submit metadata, art and audio, set your splits,
+          and review. Our system drives the rest to the approval gate.
+        </p>
+
+        <div class="release__panel">
+          <!-- LOGIN screen -->
+          <form class="rl-login" data-rl-login novalidate>
+            <p class="kicker rl-login__label">Sign in</p>
+            <label class="field">
+              <span class="field__label">Artist email</span>
+              <input class="field__input" type="email" name="email" autocomplete="off" placeholder="you@artist.com" required />
+              <span class="field__hint" data-hint></span>
+            </label>
+            <label class="field">
+              <span class="field__label">Password</span>
+              <input class="field__input" type="password" name="password" autocomplete="off" placeholder="••••••••" required minlength="6" />
+              <span class="field__hint" data-hint></span>
+            </label>
+            <button class="btn rl-login__go" type="submit">Sign in <span class="tag tag--sm tag--preview">Preview</span></button>
+            <p class="rl-login__alt">No account yet? <button type="button" class="linklike" data-rl-demo>Continue with a demo artist</button></p>
+          </form>
+
+          <!-- RELEASE WIZARD (revealed after login) -->
+          <div class="rl-wizard" data-rl-wizard hidden>
+            <ol class="rl-steps" aria-label="Release steps">
+              <li class="rl-steps__item is-active" data-step-dot="0"><span>01</span> Metadata</li>
+              <li class="rl-steps__item" data-step-dot="1"><span>02</span> Art &amp; audio</li>
+              <li class="rl-steps__item" data-step-dot="2"><span>03</span> Splits</li>
+              <li class="rl-steps__item" data-step-dot="3"><span>04</span> Review</li>
+            </ol>
+
+            <form class="rl-form" data-rl-form novalidate>
+              <!-- STEP 1 metadata -->
+              <fieldset class="rl-panel is-active" data-step-panel="0">
+                <div class="rl-grid">
+                  <label class="field">
+                    <span class="field__label">Track title</span>
+                    <input class="field__input" name="title" placeholder="e.g. Crimson Hour" required />
+                    <span class="field__hint" data-hint></span>
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Primary artist</span>
+                    <input class="field__input" name="artist" placeholder="Performer name" required />
+                    <span class="field__hint" data-hint></span>
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Genre</span>
+                    <select class="field__input" name="genre" required>
+                      <option value="">Select</option>
+                      <option>Hip-Hop / Rap</option>
+                      <option>R&amp;B / Soul</option>
+                      <option>Pop</option>
+                      <option>Electronic</option>
+                      <option>Mandopop</option>
+                    </select>
+                    <span class="field__hint" data-hint></span>
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Release date</span>
+                    <input class="field__input" name="date" type="date" required />
+                    <span class="field__hint" data-hint></span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <!-- STEP 2 art + audio -->
+              <fieldset class="rl-panel" data-step-panel="1">
+                <div class="rl-grid rl-grid--upload">
+                  <div class="upload" data-upload="cover">
+                    <p class="upload__kind kicker">Cover art</p>
+                    <label class="upload__drop">
+                      <input type="file" accept="image/*" data-upload-input hidden />
+                      <span class="upload__icon" aria-hidden="true">&#x2191;</span>
+                      <span class="upload__cta">Choose an image</span>
+                      <span class="upload__meta">3000×3000 px · JPG/PNG</span>
+                    </label>
+                    <p class="upload__name" data-upload-name></p>
+                  </div>
+                  <div class="upload" data-upload="audio">
+                    <p class="upload__kind kicker">Master audio</p>
+                    <label class="upload__drop">
+                      <input type="file" accept="audio/*" data-upload-input hidden />
+                      <span class="upload__icon" aria-hidden="true">&#x2191;</span>
+                      <span class="upload__cta">Choose a file</span>
+                      <span class="upload__meta">WAV preferred · up to 20 MB</span>
+                    </label>
+                    <p class="upload__name" data-upload-name></p>
+                  </div>
+                </div>
+                <p class="rl-note kicker">Files are not uploaded in this preview.</p>
+              </fieldset>
+
+              <!-- STEP 3 splits -->
+              <fieldset class="rl-panel" data-step-panel="2">
+                <p class="rl-split__head kicker">Songwriter / producer splits (total must equal 100%)</p>
+                <div class="rl-splits" data-rl-splits>
+                  <!-- split rows injected -->
+                </div>
+                <div class="rl-split__foot">
+                  <button class="linklike" type="button" data-split-add>+ Add a collaborator</button>
+                  <p class="rl-split__total">Total <span data-split-total>0</span>%</p>
+                </div>
+                <span class="field__hint" data-split-hint></span>
+              </fieldset>
+
+              <!-- STEP 4 review -->
+              <fieldset class="rl-panel" data-step-panel="3">
+                <p class="kicker rl-review__label">Review &amp; submit</p>
+                <dl class="rl-review" data-rl-review></dl>
+                <p class="rl-note kicker">On submit, MUSE WAV drives your release to the human approval gate. Nothing is published automatically.</p>
+              </fieldset>
+
+              <!-- wizard controls -->
+              <div class="rl-nav">
+                <button class="btn btn--ghost rl-nav__back" type="button" data-step-back hidden>Back</button>
+                <button class="btn rl-nav__next" type="button" data-step-next>Next</button>
+                <button class="btn rl-nav__submit" type="submit" data-step-submit hidden>Submit release <span class="tag tag--sm tag--preview">Preview</span></button>
+              </div>
+              <p class="rl-done" data-rl-done hidden></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MOD-4 · ROSTER + EXTERNAL-ARTIST APPLY (bone) ============ -->
+    <section class="roster section--bone" id="roster" aria-labelledby="roster-title">
+      <div class="container">
+        <div class="roster__head">
+          <div>
+            <p class="kicker kicker--crimson" data-reveal>The Roster · Apply to be represented</p>
+            <h2 class="roster__title display-l skewable" id="roster-title">Artists on MUSE WAV</h2>
+          </div>
+          <span class="tag tag--preview" data-reveal>Sample roster · placeholder</span>
+        </div>
+
+        <div class="roster__grid" aria-label="Artist roster">
+          <!-- placeholder roster cards injected -->
+        </div>
+
+        <div class="apply" id="apply">
+          <div class="apply__intro">
+            <p class="kicker kicker--crimson">Apply</p>
+            <h3 class="apply__title display-l">Want MUSE WAV behind your sound?</h3>
+            <p class="apply__lede">Pick a representation package and tell us about your music. Our A&amp;R team reviews every application.</p>
+          </div>
+
+          <!-- package tier selector -->
+          <div class="tiers" role="radiogroup" aria-label="Representation packages">
+            <!-- placeholder tiers injected -->
+          </div>
+
+          <!-- apply form -->
+          <form class="apply__form" data-apply-form novalidate>
+            <div class="rl-grid">
+              <label class="field">
+                <span class="field__label">Artist / stage name</span>
+                <input class="field__input" name="stage" placeholder="Your name" required />
+                <span class="field__hint" data-hint></span>
+              </label>
+              <label class="field">
+                <span class="field__label">Email</span>
+                <input class="field__input" name="email" type="email" placeholder="you@email.com" required />
+                <span class="field__hint" data-hint></span>
+              </label>
+              <label class="field field--wide">
+                <span class="field__label">Link to your music</span>
+                <input class="field__input" name="link" type="url" placeholder="https://" required />
+                <span class="field__hint" data-hint></span>
+              </label>
+              <label class="field field--wide">
+                <span class="field__label">Tell us about your sound</span>
+                <textarea class="field__input field__input--area" name="pitch" rows="3" placeholder="A few lines on your music and goals" required></textarea>
+                <span class="field__hint" data-hint></span>
+              </label>
+            </div>
+            <div class="apply__foot">
+              <p class="apply__chosen" data-apply-chosen>No package selected</p>
+              <button class="btn apply__pay" type="submit" data-apply-pay>Apply &amp; pay <span class="tag tag--sm tag--preview">Preview</span></button>
+            </div>
+            <p class="apply__done" data-apply-done hidden></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STUDIO INFO (ink) ============ -->
+    <section class="studio section--ink" id="studio" aria-labelledby="studio-title">
+      <div class="container studio__inner">
+        <div class="studio__left">
+          <p class="kicker kicker--crimson" data-reveal>The Studio · 纽约</p>
+          <h2 class="studio__title display-l skewable" id="studio-title">24/7 in the heart of NYC</h2>
+        </div>
+        <div class="studio__right" data-reveal data-reveal-group>
+          <div class="studio__row">
+            <span class="kicker studio__label">Address</span>
+            <address class="studio__addr"></address>
+          </div>
+          <div class="studio__row">
+            <span class="kicker studio__label">Hours</span>
+            <p class="studio__hours"></p>
+          </div>
+          <img class="studio__wave" src="../assets/brand/soundwave-crimson.png" alt="" data-parallax="0.1" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA / CONTACT (bone) ============ -->
+    <section class="cta section--bone" id="contact" aria-labelledby="cta-title">
+      <div class="container">
+        <p class="kicker kicker--crimson cta__kicker" data-reveal>Start a project</p>
+        <h2 class="cta__title display-xl reveal" id="cta-title">
+          Get your custom project quote here
+        </h2>
+        <div class="cta__actions" data-reveal data-reveal-group>
+          <a class="cta__mail btn" href="mailto:info@musewav.com" data-magnetic>info@musewav.com</a>
+          <a class="cta__phone btn btn--ghost btn--ghost-ink" href="tel:+12012401114" data-magnetic>+1 (201) 240-1114</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER (ink) ============ -->
+  <footer class="footer section--ink" aria-labelledby="footer-title">
+    <div class="container">
+      <div class="footer__top">
+        <a class="footer__brand" href="#top" aria-label="MUSE WAV · back to top">
+          <img src="brand-lockup-crimson.png" alt="MUSE WAV" />
+        </a>
+        <nav class="footer__socials" aria-label="Social media">
+          <!-- MUSEWAV.socials injected -->
+        </nav>
+      </div>
+      <h2 class="footer__big display-l" id="footer-title">MUSE WAV</h2>
+      <div class="footer__bottom">
+        <address class="footer__addr"></address>
+        <p class="footer__copy"></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ LIBS (UMD globals) → shared content → shared motion → concept ============ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
+  <script src="../assets/js/content.js"></script>
+  <script src="../assets/js/motion.js"></script>
+  <script src="../assets/js/video.js"></script>
+  <script src="concept.js"></script>
+</body>
+</html>

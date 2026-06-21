@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MUSE WAV · Record Label &amp; Studio</title>
+  <link rel="icon" type="image/png" href="../assets/brand/favicon-256.png">
+  <meta name="description" content="MUSE WAV · a NYC record label, recording studio and music-video house. A form beyond form, a silent symphony.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/video.css">
+  <link rel="stylesheet" href="concept.css">
+</head>
+<body>
+
+  <!-- ====================== PRELOADER ====================== -->
+  <div class="mw-preloader ss-preloader" aria-hidden="true">
+    <img class="mw-preloader__mark ss-preloader__mark"
+         src="seal-dragon-gold.png" alt="">
+  </div>
+
+  <!-- ====================== NAV ====================== -->
+  <header class="ss-nav" id="top">
+    <div class="ss-nav__inner container">
+      <a class="ss-nav__brand" href="#top" aria-label="MUSE WAV · home">
+        <img class="ss-nav__seal" src="seal-symphony-gold.png" alt="" width="34" height="34">
+        <span class="ss-nav__name">MUSE WAV</span>
+      </a>
+
+      <nav class="ss-nav__links" aria-label="Primary">
+        <!-- links injected from MUSEWAV.nav + module anchors -->
+      </nav>
+
+      <div class="ss-nav__actions">
+        <a class="ss-nav__cta" href="#booking">Book the studio</a>
+        <button class="ss-toggle" type="button" role="switch" aria-checked="false"
+                aria-label="Switch to light theme" title="Toggle light / dark theme">
+          <span class="ss-toggle__track" aria-hidden="true">
+            <span class="ss-toggle__thumb"></span>
+          </span>
+          <span class="ss-toggle__label" data-toggle-label>Dark</span>
+        </button>
+        <button class="ss-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="ss-menu">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- mobile menu -->
+    <div class="ss-menu" id="ss-menu" aria-hidden="true">
+      <nav class="ss-menu__links" aria-label="Mobile"></nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ====================== HERO ====================== -->
+    <section class="ss-hero" id="hero">
+      <div class="container ss-hero__inner">
+        <p class="kicker ss-hero__kicker">
+          <span data-hero-group>MUSE WAV MUSIC GROUP</span><span class="ss-dot">·</span><span>New York City</span>
+        </p>
+
+        <img class="ss-hero__seal" src="seal-dragon-gold.png"
+             alt="The MUSE WAV gold seal: a soaring dragon shaping heaven and earth" width="180" height="180">
+
+        <h1 class="ss-hero__title reveal" data-split>MUSE WAV</h1>
+
+        <p class="ss-hero__tagline kicker kicker--gold" data-hero-tagline>Record Label</p>
+
+        <p class="ss-hero__motto" data-hero-motto>
+          A form beyond form. Soaring dragon shaping the heaven and earth, a silent symphony.
+        </p>
+
+        <canvas class="ss-hero__wave" aria-hidden="true"></canvas>
+
+        <a class="ss-hero__cue" href="#booking" aria-label="Scroll to book the studio">
+          <span class="kicker">Scroll</span>
+          <span class="ss-hero__cue-line" aria-hidden="true"></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ====================== MOD-1 · STUDIO + BOOKING (top) ====================== -->
+    <section class="ss-booking" id="booking">
+      <div class="container">
+        <header class="ss-section-head">
+          <p class="kicker">The Studio · Reserve a session</p>
+          <h2 class="ss-section-head__title reveal" data-split>Book the room.</h2>
+          <p class="ss-section-head__meta" data-reveal>
+            Pro recording in the heart of NYC, open around the clock. Pick a day, a time, and a room.
+            <span class="ss-tag" aria-label="Preview feature">Preview</span>
+          </p>
+        </header>
+
+        <div class="ss-booking__grid">
+          <!-- LEFT: persistent month calendar -->
+          <aside class="ss-booking__cal-col" data-reveal>
+            <div class="ss-book-cal">
+              <div class="ss-book-cal__head">
+                <button class="ss-book-cal__nav" type="button" data-cal-prev aria-label="Previous month">&#x2039;</button>
+                <p class="ss-book-cal__month" data-cal-month>Month</p>
+                <button class="ss-book-cal__nav" type="button" data-cal-next aria-label="Next month">&#x203A;</button>
+              </div>
+              <div class="ss-book-cal__dow" aria-hidden="true">
+                <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+              </div>
+              <div class="ss-book-cal__grid" id="booking-cal" role="grid" aria-label="Choose a day"></div>
+              <p class="ss-booking__note kicker">Pick a day to begin. Choose a time and a studio. Rates shown are sample rates, confirmed on request.</p>
+            </div>
+          </aside>
+
+          <!-- RIGHT: stepped panel — one step at a time (day -> time -> studio -> summary) -->
+          <div class="ss-booking__panel" data-reveal>
+            <!-- step rail -->
+            <ol class="ss-book-rail" aria-label="Booking steps">
+              <li class="ss-book-rail__item is-active" data-rail="0"><span>1</span> Day</li>
+              <li class="ss-book-rail__item" data-rail="1"><span>2</span> Time</li>
+              <li class="ss-book-rail__item" data-rail="2"><span>3</span> Studio</li>
+              <li class="ss-book-rail__item" data-rail="3"><span>4</span> Confirm</li>
+            </ol>
+
+            <div class="ss-book-stage" id="booking-stage">
+
+              <!-- step 0: prompt to pick a day -->
+              <div class="ss-book-step is-active" data-bstep="0">
+                <p class="kicker ss-book-step__eyebrow">Step 1</p>
+                <h3 class="ss-book-step__title">Pick a day.</h3>
+                <p class="ss-book-step__lede">Choose an open day on the calendar. Open days carry a gold dot.</p>
+              </div>
+
+              <!-- step 1: time slots -->
+              <div class="ss-book-step" data-bstep="1">
+                <p class="kicker ss-book-step__eyebrow">Step 2 <span data-book-day></span></p>
+                <h3 class="ss-book-step__title">Choose a time.</h3>
+                <div class="ss-book-slots" id="booking-slots" role="listbox" aria-label="Available time slots"></div>
+                <div class="ss-book-step__nav">
+                  <button class="ss-book-step__back" type="button" data-bstep-back>Back</button>
+                </div>
+              </div>
+
+              <!-- step 2: studio picker -->
+              <div class="ss-book-step" data-bstep="2">
+                <p class="kicker ss-book-step__eyebrow">Step 3</p>
+                <h3 class="ss-book-step__title">Choose a studio.</h3>
+                <div class="ss-booking__rooms" id="booking-rooms" role="radiogroup" aria-label="Choose a studio">
+                  <!-- studio cards injected (selectable) -->
+                </div>
+                <div class="ss-book-step__nav">
+                  <button class="ss-book-step__back" type="button" data-bstep-back>Back</button>
+                </div>
+              </div>
+
+              <!-- step 3: summary -->
+              <div class="ss-book-step" data-bstep="3">
+                <p class="kicker ss-book-step__eyebrow">Step 4</p>
+                <h3 class="ss-book-step__title">Confirm your session.</h3>
+                <div class="ss-book-summary" id="booking-summary" aria-live="polite">
+                  <dl class="ss-book-summary__list">
+                    <div><dt>Day</dt><dd data-sum-day>Not set</dd></div>
+                    <div><dt>Time</dt><dd data-sum-time>Not set</dd></div>
+                    <div><dt>Studio</dt><dd data-sum-room>Not set</dd></div>
+                    <div><dt>Rate</dt><dd data-sum-rate>Not set</dd></div>
+                  </dl>
+                  <button class="btn ss-book-go" type="button" data-book-go disabled>
+                    Book this session
+                  </button>
+                  <p class="ss-book-confirm" data-book-confirm hidden></p>
+                  <p class="ss-book-quote kicker">
+                    Rates shown are sample rates. For a real number,
+                    <a href="mailto:info@musewav.com?subject=Custom%20studio%20quote">request a custom quote</a>
+                    or call <a href="tel:+12012401114">+1 (201) 240-1114</a>.
+                  </p>
+                </div>
+                <div class="ss-book-step__nav">
+                  <button class="ss-book-step__back" type="button" data-bstep-back>Back</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== MANIFESTO ====================== -->
+    <section class="ss-manifesto" id="manifesto">
+      <div class="container ss-manifesto__inner">
+        <p class="kicker" data-reveal>Manifesto</p>
+        <h2 class="ss-manifesto__quote reveal" data-split>
+          A form beyond form. A silent symphony.
+        </h2>
+        <p class="ss-manifesto__body" data-reveal data-mission>
+          The MUSE WAV RED Series is committed to promoting the best artists and their works through
+          high-quality music video production and social media platform operations.
+        </p>
+      </div>
+    </section>
+
+    <!-- ====================== WORK / VIDEOS (museum grid) ====================== -->
+    <section class="ss-work" id="work">
+      <div class="container">
+        <header class="ss-section-head">
+          <p class="kicker">Selected Work</p>
+          <h2 class="ss-section-head__title reveal" data-split>The RED Series</h2>
+          <p class="ss-section-head__meta" data-reveal>
+            Music videos from <a href="https://www.youtube.com/@MUSEWAV_INC" target="_blank" rel="noopener">@MUSEWAV_INC</a>.
+            <span class="ss-credit" data-credit>By Sir Wolfsbane &amp; Jjeramii.</span>
+          </p>
+        </header>
+
+        <ul class="ss-grid" id="work-grid">
+          <!-- video cells injected from MUSEWAV.videos (MWV.preview + lightbox) -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====================== SERVICES ====================== -->
+    <section class="ss-services" id="services">
+      <div class="container">
+        <header class="ss-section-head">
+          <p class="kicker">What We Do</p>
+          <h2 class="ss-section-head__title reveal" data-split>Services</h2>
+        </header>
+
+        <div class="ss-services__list" id="services-list">
+          <!-- service rows injected from MUSEWAV.services -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== MOD-4 · ROSTER + APPLY ====================== -->
+    <section class="ss-roster" id="roster">
+      <div class="container">
+        <header class="ss-section-head">
+          <p class="kicker">The Label · Roster</p>
+          <h2 class="ss-section-head__title reveal" data-split>Artists on the wave.</h2>
+          <p class="ss-section-head__meta" data-reveal>
+            Representation, development, and release. Roster slots shown are sample placeholders.
+            <span class="ss-tag" aria-label="Preview feature">Preview</span>
+          </p>
+        </header>
+
+        <ul class="ss-roster__grid" id="roster-grid">
+          <!-- roster cards injected (placeholder) -->
+        </ul>
+
+        <div class="ss-apply" id="apply">
+          <div class="ss-apply__intro" data-reveal>
+            <p class="kicker">Apply to be represented</p>
+            <h3 class="ss-apply__title">Send us your sound.</h3>
+            <p class="ss-apply__lede">
+              Choose a representation tier, tell us about your project, and our A&amp;R team reviews every
+              submission. Tiers and prices below are sample placeholders.
+            </p>
+          </div>
+
+          <form class="ss-apply__form" id="apply-form" novalidate>
+            <div class="ss-tiers" id="apply-tiers" role="radiogroup" aria-label="Representation tier">
+              <!-- tier cards injected (placeholder) -->
+            </div>
+
+            <div class="ss-field-row">
+              <label class="ss-field">
+                <span class="ss-field__label">Artist / project name</span>
+                <input class="ss-field__input" type="text" name="artist" required placeholder="Your stage name">
+                <span class="ss-field__hint" data-hint></span>
+              </label>
+              <label class="ss-field">
+                <span class="ss-field__label">Email</span>
+                <input class="ss-field__input" type="email" name="email" required placeholder="you@email.com">
+                <span class="ss-field__hint" data-hint></span>
+              </label>
+            </div>
+            <label class="ss-field">
+              <span class="ss-field__label">Link to your music</span>
+              <input class="ss-field__input" type="url" name="link" placeholder="Spotify, SoundCloud, YouTube…">
+              <span class="ss-field__hint" data-hint></span>
+            </label>
+            <label class="ss-field">
+              <span class="ss-field__label">Tell us about your project</span>
+              <textarea class="ss-field__input" name="about" rows="3" placeholder="Genre, goals, where you are right now…"></textarea>
+            </label>
+
+            <div class="ss-apply__foot">
+              <p class="ss-apply__price" data-apply-price>Select a tier</p>
+              <button class="btn ss-apply__pay" type="submit">
+                Apply &amp; pay deposit
+              </button>
+            </div>
+            <p class="ss-apply__confirm" data-apply-confirm hidden></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== MOD-2 · LOGIN + AI RELEASE WINDOW ====================== -->
+    <section class="ss-studio-portal" id="portal">
+      <div class="container">
+        <header class="ss-section-head">
+          <p class="kicker">Artist Portal · Internal</p>
+          <h2 class="ss-section-head__title reveal" data-split>Release your record.</h2>
+          <p class="ss-section-head__meta" data-reveal>
+            Signed artists submit a release through the MUSE WAV portal. Sign in, then walk the steps.
+            <span class="ss-tag" aria-label="Preview feature">Preview</span>
+          </p>
+        </header>
+
+        <div class="ss-portal">
+          <!-- login card -->
+          <form class="ss-login" id="portal-login" data-reveal>
+            <p class="kicker ss-login__eyebrow">Sign in</p>
+            <h3 class="ss-login__title">MUSE WAV artists</h3>
+            <label class="ss-field">
+              <span class="ss-field__label">Artist email</span>
+              <input class="ss-field__input" type="email" name="email" required placeholder="you@musewav.com">
+              <span class="ss-field__hint" data-hint></span>
+            </label>
+            <label class="ss-field">
+              <span class="ss-field__label">Password</span>
+              <input class="ss-field__input" type="password" name="password" required placeholder="••••••••">
+              <span class="ss-field__hint" data-hint></span>
+            </label>
+            <button class="btn ss-login__go" type="submit">Sign in</button>
+            <p class="ss-login__demo kicker">Demo only. Use any email + password to preview the release window.</p>
+          </form>
+
+          <!-- AI release window (revealed after "login") -->
+          <div class="ss-release" id="portal-release" hidden>
+            <div class="ss-release__head">
+              <div>
+                <p class="kicker ss-release__who">Signed in <span data-release-who></span></p>
+                <h3 class="ss-release__title">New release</h3>
+              </div>
+              <button class="ss-release__out" type="button" data-release-out>Sign out</button>
+            </div>
+
+            <!-- step rail -->
+            <ol class="ss-steps" id="release-steps" aria-label="Release steps">
+              <li class="ss-steps__item is-active" data-step="0"><span>1</span> Metadata</li>
+              <li class="ss-steps__item" data-step="1"><span>2</span> Files</li>
+              <li class="ss-steps__item" data-step="2"><span>3</span> Splits</li>
+              <li class="ss-steps__item" data-step="3"><span>4</span> Review</li>
+            </ol>
+
+            <form class="ss-release__form" id="release-form" novalidate>
+              <!-- panel 0: metadata -->
+              <div class="ss-panel is-active" data-panel="0">
+                <div class="ss-field-row">
+                  <label class="ss-field">
+                    <span class="ss-field__label">Release title</span>
+                    <input class="ss-field__input" type="text" name="title" required placeholder="Track or EP name">
+                    <span class="ss-field__hint" data-hint></span>
+                  </label>
+                  <label class="ss-field">
+                    <span class="ss-field__label">Primary artist</span>
+                    <input class="ss-field__input" type="text" name="primary" required placeholder="As it should appear">
+                    <span class="ss-field__hint" data-hint></span>
+                  </label>
+                </div>
+                <div class="ss-field-row">
+                  <label class="ss-field">
+                    <span class="ss-field__label">Genre</span>
+                    <select class="ss-field__input" name="genre">
+                      <option>Hip-Hop / Rap</option><option>R&amp;B / Soul</option><option>Pop</option>
+                      <option>Electronic</option><option>Mandopop</option><option>Other</option>
+                    </select>
+                  </label>
+                  <label class="ss-field">
+                    <span class="ss-field__label">Release date</span>
+                    <input class="ss-field__input" type="date" name="date">
+                    <span class="ss-field__hint" data-hint></span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- panel 1: files -->
+              <div class="ss-panel" data-panel="1">
+                <div class="ss-field-row">
+                  <div class="ss-drop" data-drop="cover" tabindex="0" role="button" aria-label="Add cover art">
+                    <span class="ss-drop__icon" aria-hidden="true">&#x25A2;</span>
+                    <span class="ss-drop__label">Cover art</span>
+                    <span class="ss-drop__hint">3000 × 3000 JPG/PNG</span>
+                    <span class="ss-drop__file" data-drop-file></span>
+                    <input class="ss-drop__input" type="file" accept="image/*" hidden>
+                  </div>
+                  <div class="ss-drop" data-drop="audio" tabindex="0" role="button" aria-label="Add master audio">
+                    <span class="ss-drop__icon" aria-hidden="true">&#x266B;</span>
+                    <span class="ss-drop__label">Master audio</span>
+                    <span class="ss-drop__hint">WAV / AIFF, 16-bit+</span>
+                    <span class="ss-drop__file" data-drop-file></span>
+                    <input class="ss-drop__input" type="file" accept="audio/*" hidden>
+                  </div>
+                </div>
+                <p class="ss-panel__note kicker">Upload is a preview. Files are not sent anywhere.</p>
+              </div>
+
+              <!-- panel 2: splits -->
+              <div class="ss-panel" data-panel="2">
+                <div class="ss-splits" id="release-splits">
+                  <!-- split rows injected -->
+                </div>
+                <div class="ss-splits__foot">
+                  <button class="ss-splits__add" type="button" data-split-add>+ Add collaborator</button>
+                  <p class="ss-splits__total">Total <span data-split-total>100</span>%</p>
+                </div>
+                <span class="ss-field__hint" data-split-hint></span>
+              </div>
+
+              <!-- panel 3: review -->
+              <div class="ss-panel" data-panel="3">
+                <div class="ss-review" id="release-review" aria-live="polite">
+                  <!-- review summary injected -->
+                </div>
+                <label class="ss-check">
+                  <input type="checkbox" name="agree" required>
+                  <span>I confirm I hold the rights to this release and approve distribution.</span>
+                </label>
+              </div>
+
+              <!-- step nav -->
+              <div class="ss-release__nav">
+                <button class="ss-release__back" type="button" data-step-back hidden>Back</button>
+                <button class="ss-release__next btn" type="button" data-step-next>Continue</button>
+                <button class="ss-release__submit btn" type="submit" data-step-submit hidden>Submit release</button>
+              </div>
+              <p class="ss-release__confirm" data-release-confirm hidden></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== COMMUNITY ====================== -->
+    <section class="ss-community" id="community">
+      <div class="container ss-community__inner">
+        <p class="kicker" data-reveal>Community</p>
+        <h2 class="ss-community__title reveal" data-split>A meeting place for talent, worldwide.</h2>
+        <p class="ss-community__body" data-reveal data-community>
+          MUSE WAV Community is the way to meet up the music talented from all over the world,
+          sharing resources to make everyone in the community get a better deal.
+        </p>
+      </div>
+    </section>
+
+    <!-- ====================== STUDIO (address) ====================== -->
+    <section class="ss-studio" id="studio">
+      <div class="container ss-studio__inner">
+        <div class="ss-studio__intro">
+          <p class="kicker">The Studio</p>
+          <h2 class="ss-studio__title reveal" data-split>In the heart of NYC.</h2>
+          <p class="ss-studio__lede" data-reveal>
+            Pro recording, open around the clock. Walk in to record, mix, or just hear your sound in the room.
+          </p>
+        </div>
+
+        <address class="ss-studio__card" data-reveal>
+          <p class="kicker ss-studio__card-label">Address</p>
+          <p class="ss-studio__address" data-studio-address>
+            <!-- address lines injected from MUSEWAV.studio.addressLines -->
+          </p>
+          <hr class="rule ss-studio__hr">
+          <p class="kicker ss-studio__card-label">Hours</p>
+          <p class="ss-studio__hours" data-studio-hours>06:00 – 03:30 · Studio available for service 24/7</p>
+        </address>
+      </div>
+    </section>
+
+    <!-- ====================== CTA / CONTACT ====================== -->
+    <section class="ss-cta" id="contact">
+      <div class="container ss-cta__inner">
+        <p class="kicker kicker--gold" data-reveal>Start a project</p>
+        <h2 class="ss-cta__title reveal" data-split data-cta-title>
+          Get your custom project quote here.
+        </h2>
+
+        <div class="ss-cta__details" data-reveal data-reveal-group>
+          <a class="ss-cta__link" data-contact-email href="mailto:info@musewav.com">
+            <span class="kicker">Email</span>
+            <span class="ss-cta__link-val">info@musewav.com</span>
+          </a>
+          <a class="ss-cta__link" data-contact-phone href="tel:+12012401114">
+            <span class="kicker">Phone</span>
+            <span class="ss-cta__link-val">+1 (201) 240-1114</span>
+          </a>
+        </div>
+
+        <a class="btn ss-cta__btn" data-contact-mailto href="mailto:info@musewav.com">
+          Get your custom project quote
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="ss-footer">
+    <div class="container ss-footer__inner">
+      <div class="ss-footer__brand">
+        <a class="ss-footer__seal-link" href="#top" aria-label="MUSE WAV · home">
+          <img class="ss-footer__seal" src="seal-symphony-gold.png" alt="MUSE WAV gold seal" width="72" height="72">
+        </a>
+        <p class="ss-footer__motto" data-footer-motto>
+          A form beyond form. Soaring dragon shaping the heaven and earth, a silent symphony.
+        </p>
+      </div>
+
+      <nav class="ss-footer__socials" aria-label="Social media">
+        <!-- socials injected from MUSEWAV.socials -->
+      </nav>
+
+      <div class="ss-footer__base">
+        <p class="kicker" data-copyright>© 2023 MUSE WAV · All Rights Reserved.</p>
+        <a class="kicker ss-footer__totop" href="#top" aria-label="Back to top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================== SCRIPTS ====================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
+  <script src="../assets/js/content.js"></script>
+  <script src="../assets/js/motion.js"></script>
+  <script src="../assets/js/video.js"></script>
+  <script src="concept.js"></script>
+</body>
+</html>
