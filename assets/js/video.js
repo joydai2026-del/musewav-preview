@@ -17,23 +17,54 @@
 
   /* ---- 1. autoplay preview <video> --------------------------------------- */
 
-  // One-time "kick". Some browsers (Safari with Auto-Play = Never, Low Power
+  // Persistent "kick". Some browsers (Safari with Auto-Play = Never, Low Power
   // Mode / battery saver, strict data-saver) refuse muted autoplay on load, but
-  // DO allow play() invoked from a real user gesture. We collect every preview
-  // and start them all on the first interaction, so the loops never stay frozen
-  // on a still poster. The listeners remove themselves after the first gesture.
-  var KICK_FNS = [], KICK_ARMED = false;
+  // DO allow play() invoked from a real user gesture. We register every preview
+  // and, on EVERY user interaction, re-attempt play() on any registered clip
+  // that is currently paused AND intersecting the viewport. We keep listening
+  // until ALL registered previews are confirmed playing, so a single rejected
+  // attempt (or a clip that wasn't ready yet) never leaves a tile frozen on its
+  // poster. Already-playing clips are skipped, so the handler stays cheap.
+  var PREVIEWS = [];                 // { v: <video>, seen: fn() -> bool intersecting }
+  var KICK_ARMED = false;
   var KICK_EVENTS = ["pointerdown", "touchstart", "keydown", "click", "wheel", "scroll"];
   var KICK_OPTS = { passive: true, capture: true };
-  function armKick(fn) {
-    KICK_FNS.push(fn);
+
+  function allPlaying() {
+    for (var i = 0; i < PREVIEWS.length; i++) {
+      var v = PREVIEWS[i].v;
+      if (v.paused || v.ended) return false;
+    }
+    return PREVIEWS.length > 0;
+  }
+  function fireKick() {
+    PREVIEWS.forEach(function (p) {
+      var v = p.v;
+      if (!v.paused && !v.ended) return;          // already running -> skip (cheap)
+      if (p.seen && !p.seen()) return;            // off-screen -> leave paused (CPU/battery)
+      try {
+        var pr = v.play();
+        if (pr && pr.catch) pr.catch(function () {});
+      } catch (e) {}
+    });
+  }
+  function disarmKick() {
+    KICK_EVENTS.forEach(function (ev) { window.removeEventListener(ev, kickHandler, KICK_OPTS); });
+    KICK_ARMED = false;
+  }
+  function kickHandler() {
+    fireKick();
+    // Only stop listening once every registered preview is confirmed playing;
+    // otherwise stay armed so the next interaction retries the stragglers.
+    if (allPlaying()) disarmKick();
+  }
+  // Register a preview so the persistent kick can retry it. `seen` reports
+  // whether the clip is currently in (or near) the viewport.
+  function registerPreview(v, seen) {
+    PREVIEWS.push({ v: v, seen: seen });
     if (KICK_ARMED) return;
     KICK_ARMED = true;
-    var fire = function () {
-      KICK_FNS.forEach(function (f) { try { f(); } catch (e) {} });
-      KICK_EVENTS.forEach(function (ev) { window.removeEventListener(ev, fire, KICK_OPTS); });
-    };
-    KICK_EVENTS.forEach(function (ev) { window.addEventListener(ev, fire, KICK_OPTS); });
+    KICK_EVENTS.forEach(function (ev) { window.addEventListener(ev, kickHandler, KICK_OPTS); });
   }
 
   function preview(id, opts) {
@@ -60,24 +91,37 @@
     v.autoplay = true; v.setAttribute("autoplay", "");
     v.preload = "auto";
 
+    var inView = true;   // assume visible until the observer says otherwise
     var tryPlay = function () {
+      if (!inView) return;
       var p = v.play();
-      if (p && p.catch) p.catch(function () {});   // blocked: poster holds; the kick will start it on first interaction
+      if (p && p.catch) p.catch(function () {});   // blocked: poster holds; the kick / hover will start it later
     };
 
     if ("IntersectionObserver" in window) {
       // Start a touch before it scrolls in; pause once well off-screen (CPU/battery).
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) tryPlay();
+          inView = e.isIntersecting;
+          if (inView) tryPlay();
           else { try { v.pause(); } catch (e2) {} }
         });
       }, { threshold: 0.01, rootMargin: "200px 0px" });
       io.observe(v);
     }
 
-    tryPlay();          // best-effort immediate start (works wherever autoplay is allowed)
-    armKick(tryPlay);   // guaranteed start on the first user interaction otherwise
+    // Hover-to-play: entering a tile plays its clip. Works in Chrome AND default
+    // Safari (a hover is a user gesture), so a clip starts the moment it's eyed
+    // even when load-time autoplay was refused. Listen on the video itself; the
+    // pointer is inside the tile so the clip is by definition in view.
+    if (window.matchMedia && window.matchMedia("(hover: hover)").matches) {
+      v.addEventListener("pointerenter", function () {
+        if (v.paused || v.ended) tryPlay();
+      });
+    }
+
+    tryPlay();                                     // best-effort immediate start (works wherever autoplay is allowed)
+    registerPreview(v, function () { return inView; });  // persistent retry on every interaction until it plays
     return v;
   }
 

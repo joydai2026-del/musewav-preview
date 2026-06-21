@@ -448,13 +448,20 @@ select.field__input{ appearance:none; background-image:
   position:absolute; top: clamp(.8rem,1.6vw,1.3rem); right: clamp(.8rem,1.6vw,1.3rem); z-index:3;
   width: clamp(44px,4vw,58px); height: clamp(44px,4vw,58px); border-radius:50%;
   background: var(--crimson); display:grid; place-items:center;
-  transition: transform .45s var(--ease), background .35s; color: var(--bone);
+  transition: transform .45s var(--ease), background .35s, opacity .35s var(--ease); color: var(--bone);
 }
 .vfacade__play svg{ width:38%; height:38%; margin-left:6%; fill: currentColor; }
 @media (hover:hover){
+  /* Hover-only: an autoplaying tile reads as clean video; the button appears on hover. */
+  .vfacade__play{ opacity:0; transform: scale(.9); pointer-events:none; }
   .vfacade:hover .vfacade__video{ transform: scale(1.07); filter: saturate(1.05) contrast(1.05); }
   .vfacade:hover .vfacade__title{ transform: none; opacity:1; }
-  .vfacade:hover .vfacade__play{ transform: scale(1.12); background: var(--crimson-hot); }
+  .vfacade:hover .vfacade__play,
+  .vfacade:focus-within .vfacade__play{ opacity:1; transform: scale(1.12); background: var(--crimson-hot); pointer-events:auto; }
+}
+/* Touch devices have no hover: keep a small subtle tap affordance so the video stays openable. */
+@media (hover:none){
+  .vfacade__play{ opacity:.82; }
 }
 /* swapped iframe */
 .vcell iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }

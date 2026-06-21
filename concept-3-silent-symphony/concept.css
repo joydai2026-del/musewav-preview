@@ -420,11 +420,21 @@ html[data-theme="light"] .ss-book-quote a:hover{ color:var(--gold-deep); text-de
   background:color-mix(in srgb,var(--ink) 32%,transparent);
   -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
   display:grid; place-items:center; z-index:2;
-  transition:background-color .4s var(--ease), border-color .4s var(--ease), transform .5s var(--ease);
+  transition:background-color .4s var(--ease), border-color .4s var(--ease), transform .5s var(--ease), opacity .4s var(--ease);
 }
 .ss-grid__play svg{ width:18px; height:18px; margin-left:3px; fill:var(--bone); }
-.ss-grid__item:hover .ss-grid__play{ background:var(--gold); border-color:var(--gold); transform:translate(-50%,-50%) scale(1.06); }
-.ss-grid__item:hover .ss-grid__play svg{ fill:var(--ink); }
+@media (hover:hover){
+  /* Hover-only: the autoplay preview reads as clean video; the play seal fades in on hover. */
+  .ss-grid__play{ opacity:0; transform:translate(-50%,-50%) scale(.88); pointer-events:none; }
+  .ss-grid__item:hover .ss-grid__play,
+  .ss-grid__item:focus-within .ss-grid__play{ opacity:1; background:var(--gold); border-color:var(--gold); transform:translate(-50%,-50%) scale(1.06); pointer-events:auto; }
+  .ss-grid__item:hover .ss-grid__play svg,
+  .ss-grid__item:focus-within .ss-grid__play svg{ fill:var(--ink); }
+}
+/* Touch: no hover, keep a subtle tap target so the video stays openable. */
+@media (hover:none){
+  .ss-grid__play{ opacity:.82; }
+}
 
 .ss-grid__caption{ display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin-top:1.1rem; }
 .ss-grid__titlewrap{ display:flex; flex-direction:column; align-items:flex-start; gap:.4rem; min-width:0; }

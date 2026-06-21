@@ -458,10 +458,21 @@
   display:grid;place-items:center;
   background:var(--grad-candy);color:#0a0a0f;
   box-shadow:0 12px 40px rgba(255,79,163,.5);
-  transition:transform .4s var(--ease),filter .4s;
+  transition:transform .4s var(--ease),filter .4s,opacity .35s var(--ease);
 }
 .c2-panel__play svg{width:26px;height:26px;margin-left:4px}
 .c2-panel__play:hover{transform:translate(-50%,-50%) scale(1.08);filter:brightness(1.1)}
+@media (hover:hover){
+  /* Hover-only: clean autoplaying panel; the play button fades in on hover. */
+  .c2-panel__play{opacity:0;transform:translate(-50%,-50%) scale(.86);pointer-events:none}
+  .c2-panel:hover .c2-panel__play,
+  .c2-panel:focus-within .c2-panel__play{opacity:1;transform:translate(-50%,-50%);pointer-events:auto}
+  .c2-panel:hover .c2-panel__play:hover{transform:translate(-50%,-50%) scale(1.08)}
+}
+/* Touch: no hover, keep a subtle tap target so the video stays openable. */
+@media (hover:none){
+  .c2-panel__play{opacity:.82}
+}
 /* explicit "Watch on YouTube" chip — original link stays reachable (click → youtube.com) */
 .c2-panel__yt{
   position:absolute;top:1rem;right:1rem;z-index:3;
