@@ -550,17 +550,16 @@
   function servicesStack() {
     var cards = $$(".c2-card");
     if (!cards.length || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
-    cards.forEach(function (card, i) {
+    // Cards are position:sticky at the same top, so each one cleanly COVERS the
+    // previous as it scrolls up (opaque bg + uniform min-height on desktop, set in
+    // concept.css). We deliberately do NOT crossfade the cards: an opacity fade
+    // made the covered card show through the covering one, so two headings read at
+    // once mid-handoff. Only the active (top) card gets the accent styling.
+    cards.forEach(function (card) {
       ScrollTrigger.create({
         trigger: card, start: "top 18%", end: "bottom 18%",
         onToggle: function (self) { card.classList.toggle("is-active", self.isActive); }
       });
-      if (i < cards.length - 1) {
-        gsap.to(card, {
-          scale: 0.94, opacity: 0.55, ease: "none",
-          scrollTrigger: { trigger: cards[i + 1], start: "top bottom", end: "top top", scrub: true }
-        });
-      }
     });
   }
 

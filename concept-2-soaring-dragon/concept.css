@@ -166,7 +166,7 @@
 .c2-hero::after{
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    linear-gradient(180deg, rgba(8,8,10,.35) 0%, transparent 24%, transparent 52%, rgba(8,8,10,.92) 100%),
+    linear-gradient(180deg, rgba(8,8,10,.35) 0%, transparent 22%, transparent 46%, rgba(8,8,10,.82) 80%, rgba(8,8,10,.95) 100%),
     radial-gradient(120% 90% at 50% 50%, transparent 52%, rgba(8,8,10,.55) 100%);
 }
 .c2-hero__inner{position:relative;z-index:2;width:100%}
@@ -190,10 +190,12 @@
 .c2-hero__tag{
   font-family:var(--mono);text-transform:uppercase;letter-spacing:.42em;
   color:var(--bone-dim);margin-top:1.6rem;font-size:clamp(.8rem,1.4vw,1.05rem);
+  text-shadow:0 2px 18px rgba(8,8,10,.8);
 }
 .c2-hero__motto{
-  max-width:46ch;margin-top:1.6rem;color:var(--bone-dim);
+  max-width:46ch;margin-top:1.6rem;color:var(--bone);
   font-size:clamp(1rem,1.4vw,1.25rem);font-weight:300;line-height:1.5;
+  text-shadow:0 2px 22px rgba(8,8,10,.85);
 }
 .c2-hero__scroll{
   display:inline-flex;align-items:center;gap:.9rem;margin-top:2.6rem;color:var(--ash);
@@ -431,6 +433,13 @@
 }
 .c2-card.is-active .c2-card__arc{border-color:var(--candy-yellow);color:var(--candy-yellow);transform:rotate(45deg)}
 .c2-card__arc svg{width:18px;height:18px}
+/* Desktop, motion-on only: uniform card height so each sticky card fully COVERS
+   the one beneath it as it stacks (no bottom-peek when a shorter card covers a
+   taller one). Mobile (position:static) + reduced-motion keep their natural,
+   compact heights. 207px = the tallest natural card (2-line description). */
+@media (min-width:769px) and (prefers-reduced-motion:no-preference){
+  .c2-card{min-height:207px}
+}
 
 /* ─── Work — horizontal-scroll panels ──────────────────────────── */
 .c2-work{overflow:hidden}
