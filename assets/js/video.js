@@ -36,6 +36,8 @@
   // attempt (or a clip that wasn't ready yet) never leaves a tile frozen on its
   // poster. Already-playing clips are skipped, so the handler stays cheap.
   var PREVIEWS = [];                 // { v: <video>, seen: fn() -> bool intersecting }
+  var ARMED_VIDEOS = typeof WeakSet !== "undefined" ? new WeakSet() : null;
+  var VIDEO_IO = null;
   var KICK_ARMED = false;
   var KICK_EVENTS = ["pointerdown", "touchstart", "keydown", "click", "wheel", "scroll", "mousemove"];
   var KICK_OPTS = { passive: true, capture: true };
@@ -75,6 +77,41 @@
         var p = v.play();
         if (p && p.catch) p.catch(function () {});
       } catch (e) {}
+    });
+  }
+  function playOne(v) {
+    if (!v || !v.isConnected) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.playsInline = true;
+    v.autoplay = true;
+    v.setAttribute("muted", "");
+    v.setAttribute("playsinline", "");
+    v.setAttribute("webkit-playsinline", "");
+    v.setAttribute("autoplay", "");
+    if (!v.paused && !v.ended) return;
+    try {
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    } catch (e) {}
+  }
+  function armAutoplay(root) {
+    root = root || document;
+    if ("IntersectionObserver" in window && !VIDEO_IO) {
+      VIDEO_IO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) playOne(entry.target);
+        });
+      }, { rootMargin: "320px 0px", threshold: 0.01 });
+    }
+    root.querySelectorAll("video[autoplay], video[playsinline]").forEach(function (v) {
+      if (ARMED_VIDEOS && ARMED_VIDEOS.has(v)) return;
+      if (ARMED_VIDEOS) ARMED_VIDEOS.add(v);
+      if (VIDEO_IO) VIDEO_IO.observe(v);
+      playOne(v);
+      v.addEventListener("loadeddata", function () { playOne(v); });
+      v.addEventListener("canplay", function () { playOne(v); });
+      v.addEventListener("pointerenter", function () { playOne(v); });
     });
   }
   function disarmKick() {
@@ -252,13 +289,15 @@
     markup: markup,
     clipSrc: clipSrc,
     posterSrc: posterSrc,
+    armAutoplay: armAutoplay,
     forcePlayAll: forcePlayAll,
     lightbox: { open: open, close: close }
   };
-  window.addEventListener("pageshow", forcePlayAll);
-  window.addEventListener("load", forcePlayAll);
-  window.addEventListener("scroll", forcePlayAll, { passive: true });
+  window.addEventListener("pageshow", function () { armAutoplay(); forcePlayAll(); });
+  window.addEventListener("load", function () { armAutoplay(); forcePlayAll(); });
+  window.addEventListener("scroll", function () { armAutoplay(); forcePlayAll(); }, { passive: true });
   window.setInterval(function () {
+    armAutoplay();
     forcePlayAll();
     heartbeatAutoplay();
   }, 1800);

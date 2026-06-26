@@ -42,13 +42,13 @@
   }
   var REDUCE = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   var HERO_VIDEO_BY_SERVICE = {
-    "recording-studio": "hero-artist-session",
-    "music-video-production": "hero-artist-session",
-    "customized-beats": "hero-artist-session",
-    "artist-development": "hero-artist-session",
-    "music-tour-service": "hero-artist-session",
-    "marketing-agency": "hero-artist-session",
-    "music-publishing": "hero-artist-session"
+    "recording-studio": "hero-recording-studio",
+    "music-video-production": "hero-music-video-production",
+    "customized-beats": "hero-customized-beats",
+    "artist-development": "hero-artist-development",
+    "music-tour-service": "hero-music-tour-service",
+    "marketing-agency": "hero-marketing-agency",
+    "music-publishing": "hero-music-publishing"
   };
 
   function setupMotionToggles() {
@@ -91,6 +91,7 @@
     var existing = frame.querySelector("video,img");
     if (existing) existing.remove();
     frame.insertAdjacentHTML("afterbegin", videoMarkup(id, "c2-service-hero__video"));
+    if (window.MWV && typeof MWV.armAutoplay === "function") MWV.armAutoplay(frame);
   })();
 
   (function nav() {
@@ -153,6 +154,7 @@
       card.appendChild(label);
       wrap.appendChild(card);
     });
+    if (window.MWV && typeof MWV.armAutoplay === "function") MWV.armAutoplay(wrap);
   }
 
   function renderAudio(wrap) {

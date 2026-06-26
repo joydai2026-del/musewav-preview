@@ -283,7 +283,8 @@ window.MUSEWAV = {
 
   // Self-hosted silent preview loops (built from the real videos by
   // assets/make-video-previews.sh). Poster shares the clip's first frame.
+  assetVersion: "15",
   clipBase: "../assets/video/",
-  clip:       function (id) { return this.clipBase + id + ".mp4"; },
-  clipPoster: function (id) { return this.clipBase + id + ".jpg"; }
+  clip:       function (id) { return this.clipBase + id + ".mp4?v=" + this.assetVersion; },
+  clipPoster: function (id) { return this.clipBase + id + ".jpg?v=" + this.assetVersion; }
 };

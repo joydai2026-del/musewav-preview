@@ -241,6 +241,7 @@
       if (!media) return;
       if (!media.querySelector("video,img")) media.insertAdjacentHTML("afterbegin", videoMarkup(id, "c2-panel__thumb c2-panel__video"));
     });
+    if (window.MWV && typeof MWV.armAutoplay === "function") MWV.armAutoplay(document);
   }
 
   function setupInlineMotionToggles() {
@@ -255,6 +256,7 @@
         if (p && p.catch) p.catch(function () {});
       });
     });
+    if (window.MWV && typeof MWV.armAutoplay === "function") MWV.armAutoplay(document);
   }
 
   /* ───────────────────────────────────────────────────────────────
