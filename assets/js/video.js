@@ -10,7 +10,7 @@
 (function () {
   "use strict";
   var M = window.MUSEWAV || {};
-  var REDUCE = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var REDUCE = false;
 
   function clipSrc(id)   { return M.clip       ? M.clip(id)       : "../assets/video/" + id + ".mp4"; }
   function posterSrc(id) { return M.clipPoster ? M.clipPoster(id) : "../assets/video/" + id + ".jpg"; }
@@ -27,7 +27,7 @@
   // poster. Already-playing clips are skipped, so the handler stays cheap.
   var PREVIEWS = [];                 // { v: <video>, seen: fn() -> bool intersecting }
   var KICK_ARMED = false;
-  var KICK_EVENTS = ["pointerdown", "touchstart", "keydown", "click", "wheel", "scroll"];
+  var KICK_EVENTS = ["pointerdown", "touchstart", "keydown", "click", "wheel", "scroll", "mousemove"];
   var KICK_OPTS = { passive: true, capture: true };
 
   function allPlaying() {
@@ -47,6 +47,23 @@
       try {
         var pr = v.play();
         if (pr && pr.catch) pr.catch(function () {});
+      } catch (e) {}
+    });
+  }
+  function forcePlayAll() {
+    fireKick();
+    window.setTimeout(fireKick, 120);
+    window.setTimeout(fireKick, 500);
+    window.setTimeout(fireKick, 1100);
+  }
+  function heartbeatAutoplay() {
+    document.querySelectorAll("video").forEach(function (v) {
+      if (!v.muted) return;
+      if (!v.autoplay && !v.hasAttribute("autoplay")) return;
+      if (!v.paused && !v.ended) return;
+      try {
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});
       } catch (e) {}
     });
   }
@@ -81,6 +98,15 @@
   // play until a scripted call that, again, WebKit refused).
   function preview(id, opts) {
     opts = opts || {};
+    if (REDUCE) {
+      var img = document.createElement("img");
+      img.className = opts.className || "mwv";
+      img.src = posterSrc(id);
+      img.alt = "";
+      img.loading = "lazy";
+      img.decoding = "async";
+      return img;
+    }
     var v = document.createElement("video");
     v.className = opts.className || "mwv";
 
@@ -127,6 +153,18 @@
     // any clip a browser still refused to start on load. Always "seen" — we no
     // longer pause off-screen, so every registered clip should be playing.
     registerPreview(v, function () { return true; });
+    // JS-created videos often finish `preview()` before they are attached to the
+    // DOM. Queue retries for the next task/frame so the kick runs after the caller
+    // inserts the node, even if the browser only loaded metadata and never emitted
+    // canplay.
+    window.setTimeout(kick, 0);
+    window.setTimeout(kick, 250);
+    window.setTimeout(kick, 900);
+    if (window.requestAnimationFrame) window.requestAnimationFrame(kick);
+    window.addEventListener("load", kick, { once: true });
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) kick();
+    });
     return v;
   }
 
@@ -203,6 +241,20 @@
     preview: preview,
     clipSrc: clipSrc,
     posterSrc: posterSrc,
+    forcePlayAll: forcePlayAll,
     lightbox: { open: open, close: close }
   };
+  window.addEventListener("pageshow", forcePlayAll);
+  window.addEventListener("load", forcePlayAll);
+  window.addEventListener("scroll", forcePlayAll, { passive: true });
+  window.setInterval(function () {
+    forcePlayAll();
+    heartbeatAutoplay();
+  }, 1800);
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) {
+      forcePlayAll();
+      heartbeatAutoplay();
+    }
+  });
 })();

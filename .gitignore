@@ -1,0 +1,10 @@
+# Muse Wav website-concepts: keep the deliverable + markdown docs,
+# drop heavy regenerable captures (screenshots, raw site scrapes, vendor bundles).
+_qa/
+brand-research/*.png
+brand-research/*.PNG
+brand-research/*.jpg
+brand-research/index.html
+ref-research/*.png
+ref-research/bundles/
+ref-research/raw_*.html

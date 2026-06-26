@@ -1,9 +1,8 @@
 /* ════════════════════════════════════════════════════════════════════
    MUSE WAV · CONCEPT 2 · "STREET LABEL"  (direction B)  ·  concept.js
    Content injection + candy/rainbow WebGL hero + cinematic motion +
-   three net-new modules (studio booking, login + AI release window,
-   roster + apply). All stubbed flows are clearly marked "Preview" and
-   use placeholder data only (never fabricated real-looking prices/names).
+   current homepage routing: autoplay proof, real service links, booking CTA,
+   selected work, idea-to-release banner, studio, contact.
    Depends on globals: THREE, gsap, ScrollTrigger, Lenis, SplitType,
    window.MUSEWAV (content), window.MW (shared motion), window.MWV (video).
    ════════════════════════════════════════════════════════════════════ */
@@ -57,17 +56,25 @@
   function injectContent() {
     // NAV
     var nav = $(".c2-nav__links");
-    if (nav && M.nav) {
-      nav.innerHTML = M.nav.map(function (n) {
+    var conceptNav = [
+      { label: "Home", href: "index.html" },
+      { label: "Services", href: "services.html" },
+      { label: "Work", href: "#work" },
+      { label: "Studio", href: "#studio" },
+      { label: "About", href: "#about" },
+      { label: "Contact", href: "#contact" }
+    ];
+    if (nav) {
+      nav.innerHTML = conceptNav.map(function (n) {
         return '<a href="' + n.href + '">' + esc(n.label) + "</a>";
       }).join("");
     }
     var navCta = $(".c2-nav__cta span");
-    if (navCta) navCta.textContent = "Get a quote";
+    if (navCta) navCta.textContent = "Book Now";
 
     // HERO motto
     var motto = $(".c2-hero__motto");
-    if (motto) motto.textContent = M.motto || "";
+    if (motto) motto.textContent = "NYC recording studio, label, and music production house for artists, creators, and records that need the full path from sound to release.";
 
     // MANIFESTO
     var mMotto = $(".c2-manifesto__motto");
@@ -81,14 +88,14 @@
       var arrow = '<span class="c2-card__arc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>';
       stack.innerHTML = M.services.map(function (s) {
         return '' +
-          '<article class="c2-card">' +
+          '<a class="c2-card" href="services/' + esc(s.slug) + '.html">' +
             '<span class="c2-card__n">' + esc(s.n) + "</span>" +
             '<div class="c2-card__body">' +
               '<h3 class="c2-card__title">' + esc(s.title) + "</h3>" +
               '<p class="c2-card__desc">' + esc(s.desc) + "</p>" +
             "</div>" +
             arrow +
-          "</article>";
+          "</a>";
       }).join("");
     }
 
@@ -116,13 +123,6 @@
     }
     var credit = $(".c2-work__credit");
     if (credit) credit.textContent = M.trackCredit || "";
-    var pin = $(".c2-work__pin");
-    if (pin && !$(".c2-work__progress")) {
-      var prog = document.createElement("div");
-      prog.className = "c2-work__progress";
-      prog.innerHTML = "<span></span>";
-      pin.parentNode.insertBefore(prog, pin.nextSibling);
-    }
 
     // COMMUNITY body + marquee
     var cBody = $(".c2-community__body");
@@ -167,6 +167,12 @@
     }
     var copy = $(".c2-footer__copy");
     if (copy) copy.textContent = M.copyright || "";
+    var footerAddress = $(".c2-footer__address");
+    if (footerAddress && M.studio && M.studio.addressLines) {
+      footerAddress.innerHTML = M.studio.addressLines.map(function (l) { return "<span>" + esc(l) + "</span>"; }).join("");
+    }
+    var footerHours = $(".c2-footer__hours");
+    if (footerHours && M.studio) footerHours.textContent = M.studio.hours || "";
 
     // ROSTER grid: placeholder stage names + self-hosted portrait photos of
     // fictional people. ("Sample" labelled per placeholder_policy.)
@@ -219,6 +225,22 @@
      ─────────────────────────────────────────────────────────────── */
   function wireWork() {
     var hasMWV = window.MWV && typeof MWV.preview === "function";
+    $$("[data-video-id]").forEach(function (wrap) {
+      var id = wrap.getAttribute("data-video-id");
+      if (!id) return;
+      var layer;
+      if (hasMWV) {
+        layer = MWV.preview(id, { className: "c2-inline-video" });
+      } else {
+        layer = document.createElement("img");
+        layer.className = "c2-inline-video";
+        layer.src = (typeof M.ytThumb === "function" ? M.ytThumb(id) : "");
+        layer.alt = "";
+        layer.loading = "lazy";
+      }
+      wrap.appendChild(layer);
+    });
+
     $$(".c2-panel").forEach(function (panel) {
       var id = panel.getAttribute("data-id");
       var media = $(".c2-panel__media", panel);
@@ -244,6 +266,20 @@
       }
       if (play) play.addEventListener("click", watch);
       if (title) title.addEventListener("click", watch);
+    });
+  }
+
+  function setupInlineMotionToggles() {
+    $$(".c2-allwant__media, .c2-footer__motion").forEach(function (wrap) {
+      var videos = $$("video", wrap);
+      videos.forEach(function (v) {
+        v.muted = true;
+        v.defaultMuted = true;
+        v.playsInline = true;
+        v.autoplay = true;
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});
+      });
     });
   }
 
@@ -478,27 +514,49 @@
   function heroReveal() {
     var lines = $$(".c2-hero__line > span");
     if (REDUCE || typeof gsap === "undefined") { lines.forEach(function (l) { l.style.transform = "none"; }); return; }
+    var scrollCue = $(".c2-hero__scroll");
     var tl = gsap.timeline({ defaults: { ease: "power4.out" } });
     tl.from(lines, { yPercent: 120, duration: 1.1, stagger: 0.12 }, 0)
       .from(".c2-hero__kicker", { y: 24, opacity: 0, duration: 0.8 }, 0.2)
       .from(".c2-hero__tag", { y: 20, opacity: 0, duration: 0.8 }, 0.45)
-      .from(".c2-hero__motto", { y: 20, opacity: 0, duration: 0.9 }, 0.6)
-      .from(".c2-hero__scroll", { y: 16, opacity: 0, duration: 0.8 }, 0.8);
+      .from(".c2-hero__motto", { y: 20, opacity: 0, duration: 0.9 }, 0.6);
+    if (scrollCue) tl.from(scrollCue, { y: 16, opacity: 0, duration: 0.8 }, 0.8);
   }
 
   function navBehavior() {
     var nav = $(".c2-nav");
     if (!nav) return;
     var toggle = $(".c2-nav__toggle", nav);
+    var links = $(".c2-nav__links", nav);
+    var mobileQuery = window.matchMedia ? window.matchMedia("(max-width: 768px)") : null;
+    function syncMobileA11y(open) {
+      if (!links) return;
+      var mobile = mobileQuery ? mobileQuery.matches : window.innerWidth <= 768;
+      if (mobile && !open) {
+        links.setAttribute("inert", "");
+        links.setAttribute("aria-hidden", "true");
+      } else {
+        links.removeAttribute("inert");
+        links.removeAttribute("aria-hidden");
+      }
+    }
+    syncMobileA11y(false);
+    if (mobileQuery && mobileQuery.addEventListener) {
+      mobileQuery.addEventListener("change", function () {
+        syncMobileA11y(nav.classList.contains("is-open"));
+      });
+    }
     if (toggle) {
       toggle.addEventListener("click", function () {
         var open = nav.classList.toggle("is-open");
         toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        syncMobileA11y(open);
       });
       $$(".c2-nav__links a", nav).forEach(function (a) {
         a.addEventListener("click", function () {
           nav.classList.remove("is-open");
           toggle.setAttribute("aria-expanded", "false");
+          syncMobileA11y(false);
         });
       });
     }
@@ -518,31 +576,17 @@
     });
   }
 
-  function workHorizontal() {
-    var pin = $(".c2-work__pin");
+  function animateWorkMedia() {
     var track = $(".c2-work__track");
-    if (!pin || !track || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
-
-    var getScroll = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
-    var prog = $(".c2-work__progress span");
-
-    var tween = gsap.to(track, {
-      x: function () { return -getScroll(); },
-      ease: "none",
-      scrollTrigger: {
-        trigger: pin, start: "top top",
-        end: function () { return "+=" + getScroll(); },
-        pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1,
-        onUpdate: function (self) { if (prog) prog.style.width = (self.progress * 100).toFixed(2) + "%"; }
-      }
-    });
-
+    if (!track || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
     $$(".c2-panel").forEach(function (panel) {
       var thumb = $(".c2-panel__thumb", panel);
       if (!thumb) return;
-      gsap.fromTo(thumb, { xPercent: -6 }, {
-        xPercent: 6, ease: "none",
-        scrollTrigger: { trigger: panel, containerAnimation: tween, start: "left right", end: "right left", scrub: true }
+      gsap.to(thumb, {
+        scale: 1.05,
+        yPercent: -4,
+        ease: "none",
+        scrollTrigger: { trigger: panel, start: "top bottom", end: "bottom top", scrub: true }
       });
     });
   }
@@ -998,6 +1042,7 @@
      ─────────────────────────────────────────────────────────────── */
   injectContent();   // content first so motion can measure real DOM
   wireWork();
+  setupInlineMotionToggles();
 
   // module logic is motion-independent → wire it immediately so the page
   // is fully interactive even if a CDN motion lib fails to load.
@@ -1023,11 +1068,11 @@
       var waveCanvas = $(".c2-wave__canvas");
       if (waveCanvas) MW.soundwave(waveCanvas, { color: "#FF4FA3", lines: 64, amp: 0.4, thickness: 3 });
 
-      // heavy / desktop-only: WebGL hero + horizontal work + sticky stack
+      // heavy / desktop-only: WebGL hero + work media motion + sticky stack
       var gl = null;
       MW.desktop(function () {
         gl = initCandyGL();
-        workHorizontal();
+        animateWorkMedia();
         servicesStack();
         MW.refresh();
       });

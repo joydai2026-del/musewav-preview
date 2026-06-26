@@ -19,6 +19,30 @@
   }
   function on(node, ev, fn) { if (node) node.addEventListener(ev, fn); }
 
+  function setupMotionToggles() {
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    $all(".hero__reel, .work, .footer__motion").forEach(function (wrap) {
+      var videos = $all("video", wrap);
+      if (!videos.length || $(".motion-toggle", wrap)) return;
+      var btn = el("button", "motion-toggle");
+      btn.type = "button";
+      function setPaused(paused) {
+        videos.forEach(function (v) {
+          if (paused) v.pause();
+          else {
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {});
+          }
+        });
+        btn.textContent = paused ? "Play motion" : "Pause motion";
+        btn.setAttribute("aria-pressed", paused ? "true" : "false");
+      }
+      on(btn, "click", function () { setPaused(!videos[0].paused); });
+      wrap.appendChild(btn);
+      setPaused(!!reduce);
+    });
+  }
+
   /* ============================================================
      1. INJECT REAL CONTENT (showcase spine)
      ============================================================ */
@@ -59,12 +83,27 @@
     if (!list) return;
     (M.services || []).forEach(function (s) {
       var li = el("li", "services__item");
-      var row = el("div", "services__row");
+      var row = el("a", "services__row");
+      row.href = M.serviceUrl ? M.serviceUrl(s.slug) : "#services";
       row.appendChild(el("span", "services__num", s.n));
       row.appendChild(el("span", "services__name", s.title));
       row.appendChild(el("span", "services__desc", s.desc));
       li.appendChild(row);
       list.appendChild(li);
+    });
+  })();
+
+  /* --- PHIL RED / OPEN MIC links: quick proof links under the video grid --- */
+  (function redLinks() {
+    var wrap = $(".work__links");
+    if (!wrap) return;
+    (M.redLinks || []).forEach(function (item) {
+      var a = el("a", "worklink");
+      a.href = item.url;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.innerHTML = '<span class="worklink__title">' + item.title + '</span><span class="worklink__note">' + item.note + ' &#x2197;</span>';
+      wrap.appendChild(a);
     });
   })();
 
@@ -158,11 +197,19 @@
   (function burger() {
     var nav = $(".nav"), burger = $(".nav__burger"), menu = $("#navmenu");
     if (!burger || !menu) return;
-    function close() { nav.classList.remove("is-open"); menu.classList.remove("is-open"); menu.setAttribute("aria-hidden", "true"); burger.setAttribute("aria-expanded", "false"); }
+    function close() {
+      nav.classList.remove("is-open");
+      menu.classList.remove("is-open");
+      menu.setAttribute("aria-hidden", "true");
+      menu.setAttribute("inert", "");
+      burger.setAttribute("aria-expanded", "false");
+    }
     on(burger, "click", function () {
       var open = menu.classList.toggle("is-open");
       nav.classList.toggle("is-open", open);
       menu.setAttribute("aria-hidden", open ? "false" : "true");
+      if (open) menu.removeAttribute("inert");
+      else menu.setAttribute("inert", "");
       burger.setAttribute("aria-expanded", open ? "true" : "false");
     });
     $all("a", menu).forEach(function (a) { on(a, "click", close); });
@@ -185,18 +232,16 @@
       { name: "Full-day block", note: "8 hours", price: "$X" },
       { name: "Video + studio", note: "Studio + MV crew", price: "$X" }
     ],
-    // Sample roster: PLACEHOLDER stage names (not real signed artists), each with a
-    // self-hosted PORTRAIT photo of a fictional person (AI-generated, no real
-    // likeness; rights-clean). One open slot stays at the end.
+    // Sample roster: explicit placeholder cards, not real signed artists.
     roster: [
-      { name: "NYLA",        tag: "R&B / Soul" },
-      { name: "VELL",        tag: "Hip-Hop / Rap" },
-      { name: "Saint Aria",  tag: "Alt Pop" },
-      { name: "Devon Cross", tag: "Drill" },
-      { name: "K. Tanaka",   tag: "Electronic" },
-      { name: "Jamal P.",    tag: "Afrobeats" },
-      { name: "Cassidy Vale", tag: "Indie Pop" },
-      { name: "Theo Mars",   tag: "Trap / Melodic" },
+      { name: "Sample Artist 01", tag: "Placeholder profile" },
+      { name: "Sample Artist 02", tag: "Placeholder profile" },
+      { name: "Sample Artist 03", tag: "Placeholder profile" },
+      { name: "Sample Artist 04", tag: "Placeholder profile" },
+      { name: "Sample Artist 05", tag: "Placeholder profile" },
+      { name: "Sample Artist 06", tag: "Placeholder profile" },
+      { name: "Sample Artist 07", tag: "Placeholder profile" },
+      { name: "Sample Artist 08", tag: "Placeholder profile" },
       { name: "Open slot",   tag: "Your name here", open: true }
     ],
     tiers: [
@@ -571,7 +616,7 @@
       if (!a.open) {
         var img = el("img", "artist__photo");
         img.src = "../assets/roster/roster-" + (++photoCount) + ".jpg";
-        img.alt = "Sample portrait (placeholder, fictional person)";
+        img.alt = "Placeholder artist portrait";
         img.loading = "lazy";
         img.decoding = "async";
         img.width = 600; img.height = 800;
@@ -665,6 +710,7 @@
   window.addEventListener("load", function () {
     MW.preloader(function () {
       MW.initLenis();
+      setupMotionToggles();
 
       /* line-mask reveals on the big editorial type */
       MW.splitReveal(".hero__title", { y: 120, stagger: 0.12, duration: 1.05 });
@@ -678,6 +724,7 @@
       /* reveal module blocks with stagger as they enter */
       MW.fadeUp(".services__item", { y: 56, stagger: 0.06, start: "top 90%" });
       MW.fadeUp(".vcell", { y: 60, stagger: 0.08, start: "top 92%" });
+      MW.fadeUp(".worklink", { y: 36, stagger: 0.05, start: "top 94%" });
       MW.fadeUp(".room", { y: 50, stagger: 0.08, start: "top 90%" });
       MW.fadeUp(".artist", { y: 50, stagger: 0.05, start: "top 92%" });
       /* The tier cards sit directly above the apply-form's first label. The shared
@@ -691,6 +738,7 @@
       revealTiers();
       MW.fadeUp(".book__widget", { y: 40, start: "top 88%" });
       MW.fadeUp(".release__panel", { y: 40, start: "top 86%" });
+      MW.fadeUp(".footer__motion", { y: 44, start: "top 92%" });
       MW.fadeUp(".footer__socials", { start: "top 95%" });
 
       /* infinite crimson marquee */

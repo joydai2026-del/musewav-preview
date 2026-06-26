@@ -1,57 +1,140 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MUSE WAV — Website Directions</title>
-<meta name="description" content="MUSE WAV record label website — three design directions to choose from.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUSE WAV · Website Makeover · 3 Directions</title>
 <link rel="icon" href="assets/brand/favicon-256.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#0E0E0F;--ink2:#161616;--crimson:#B81D24;--hot:#F03535;--bone:#F4EFE9;--dim:#CFC9C0;--line:rgba(244,239,233,.14)}
-  *{box-sizing:border-box;margin:0}
-  body{background:var(--ink);color:var(--bone);font-family:'Work Sans',-apple-system,system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,6vw,72px)}
-  .kick{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--hot);margin-bottom:1rem}
-  h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.02em;line-height:.98;font-size:clamp(2.4rem,7vw,5rem);margin-bottom:.5rem}
-  h1 b{color:var(--hot)}
-  .sub{color:var(--dim);max-width:52ch;font-size:clamp(1rem,1.4vw,1.2rem);margin-bottom:clamp(2rem,5vh,3.5rem)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(14px,2vw,22px)}
-  a.card{display:block;text-decoration:none;color:inherit;background:var(--ink2);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,2.4vw,30px);transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,background .35s}
-  a.card:hover{transform:translateY(-4px);border-color:var(--crimson);background:#1b1416}
-  .tag{font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--hot)}
-  .name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.4rem,2.4vw,2rem);letter-spacing:-.01em;margin:.5rem 0 .4rem}
-  .desc{color:var(--dim);font-size:.95rem;line-height:1.5}
-  .go{display:inline-flex;align-items:center;gap:.5em;margin-top:1.2rem;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--bone)}
-  .go b{color:var(--hot)}
-  footer{margin-top:clamp(2rem,5vh,3.5rem);color:var(--dim);font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.1em}
+  :root{
+    --ink:#0E0E0F;--ink-2:#161616;--surface:#1C1C1F;--crimson:#B81D24;--crimson-hot:#F03535;
+    --bone:#F4EFE9;--bone-dim:#CFC9C0;--ash:#8A8A8E;--line:rgba(244,239,233,.14);--ember:#E8A33D;
+    --display:"Space Grotesk",sans-serif;--body:"Work Sans",sans-serif;--mono:"Space Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--body);background:var(--ink);color:var(--bone);
+    -webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--crimson);color:var(--bone)}
+  .wrap{max-width:1280px;margin:0 auto;padding:clamp(2rem,5vw,5rem) clamp(1.25rem,5vw,4rem)}
+  .kicker{font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.24em;color:var(--crimson-hot)}
+
+  header{display:flex;flex-direction:column;gap:1.4rem;border-bottom:1px solid var(--line);
+    padding-bottom:clamp(2rem,4vw,3.5rem);margin-bottom:clamp(2.5rem,5vw,4.5rem)}
+  .brand{display:flex;align-items:center;gap:1.1rem}
+  .brand img.dragon{height:64px;width:auto}
+  .brand img.word{height:30px;width:auto}
+  h1{font-family:var(--display);font-weight:700;letter-spacing:-.02em;line-height:1.02;
+    font-size:clamp(2.1rem,5.4vw,4.2rem);max-width:18ch;margin-top:.4rem}
+  h1 em{font-style:normal;color:var(--crimson-hot)}
+  .lede{max-width:62ch;color:var(--bone-dim);font-size:clamp(1rem,1.3vw,1.2rem);margin-top:.4rem}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.1rem,2vw,1.8rem)}
+  @media(max-width:920px){.grid{grid-template-columns:1fr}}
+  .card{display:flex;flex-direction:column;background:var(--ink-2);border:1px solid var(--line);
+    border-radius:16px;overflow:hidden;transition:transform .5s cubic-bezier(.16,1,.3,1),border-color .5s;
+    opacity:0;transform:translateY(26px)}
+  .card.in{opacity:1;transform:none}
+  .card:hover{transform:translateY(-6px);border-color:var(--crimson)}
+  .thumb{aspect-ratio:16/10;overflow:hidden;background:#000;border-bottom:1px solid var(--line)}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+  .card:hover .thumb img{transform:scale(1.05)}
+  .body{padding:clamp(1.3rem,2vw,1.8rem);display:flex;flex-direction:column;gap:.7rem;flex:1}
+  .num{font-family:var(--mono);color:var(--ash);font-size:.8rem;letter-spacing:.1em}
+  .name{font-family:var(--display);font-weight:700;font-size:clamp(1.4rem,2.2vw,1.9rem);letter-spacing:-.01em;line-height:1}
+  .vibe{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.18em;color:var(--crimson-hot)}
+  .ref{font-size:.85rem;color:var(--ash)}
+  .ref b{color:var(--bone-dim);font-weight:500}
+  .desc{color:var(--bone-dim);font-size:.96rem}
+  .sig{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.2rem}
+  .sig span{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--bone-dim);border:1px solid var(--line);border-radius:100px;padding:.32em .7em}
+  .open{margin-top:auto;display:inline-flex;align-items:center;gap:.6em;font-family:var(--mono);
+    text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;color:var(--bone);
+    background:var(--crimson);border-radius:100px;padding:.95em 1.3em;align-self:flex-start;
+    transition:background .4s,gap .4s}
+  .open:hover{background:var(--crimson-hot);gap:1em}
+
+  footer{margin-top:clamp(2.5rem,5vw,4rem);padding-top:2rem;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;color:var(--ash);font-size:.82rem;font-family:var(--mono)}
+  footer a:hover{color:var(--crimson-hot)}
+  @media (prefers-reduced-motion:reduce){.card{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
-  <p class="kick">MUSE WAV &middot; Record Label &middot; New York City</p>
-  <h1>Three <b>directions</b>.<br>One sound.</h1>
-  <p class="sub">A preview of the MUSE WAV website redesign. Open each direction, scroll it top to bottom, and pick the one that feels right.</p>
-  <div class="grid">
-    <a class="card" href="concept-1-red-series/">
-      <span class="tag">Direction A</span>
-      <div class="name">Red Dragon</div>
-      <p class="desc">Bold editorial flagship. The crimson dragon-S, high-contrast color blocks, fast and confident.</p>
-      <span class="go">Open <b>&rarr;</b></span>
-    </a>
-    <a class="card" href="concept-2-soaring-dragon/">
-      <span class="tag">Direction B</span>
-      <div class="name">Street Label</div>
-      <p class="desc">Immersive and youthful. A living candy-gradient hero, blackletter wordmark, built for the roster.</p>
-      <span class="go">Open <b>&rarr;</b></span>
-    </a>
-    <a class="card" href="concept-3-silent-symphony/">
-      <span class="tag">Direction C</span>
-      <div class="name">Heaven &amp; Earth</div>
-      <p class="desc">Quiet Eastern luxury. Gold seal, beige and black, a museum-calm light and dark toggle.</p>
-      <span class="go">Open <b>&rarr;</b></span>
-    </a>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img class="dragon" src="assets/brand/dragon-white.png" alt="MUSE WAV dragon monogram">
+        <img class="word" src="assets/brand/wordmark-white.png" alt="MUSE WAV">
+      </div>
+      <p class="kicker">Website Makeover · 3 Directions</p>
+      <h1>Three ways to make <em>MUSE WAV</em> move as you scroll.</h1>
+      <p class="lede">Pick a direction. All three are built on your real brand: the crimson soaring-dragon
+        logo, the wordmark, your real <a href="https://www.youtube.com/@MUSEWAV_INC" target="_blank" rel="noopener" style="color:var(--bone-dim);text-decoration:underline">@MUSEWAV_INC</a>
+        music videos, rebuilt as a flowing, scroll-animated experience in the spirit of zero.nyc, It's Off+Brand, and Team. Open each and scroll.</p>
+    </header>
+
+    <main class="grid" id="grid">
+      <a class="card" href="concept-1-red-series/index.html" target="_blank" rel="noopener">
+        <div class="thumb"><img src="assets/thumbs/concept-1.jpg" alt="Concept 1 · RED SERIES hero"></div>
+        <div class="body">
+          <span class="num">01</span>
+          <span class="name">RED SERIES</span>
+          <span class="vibe">Bold Editorial · ref. zero.nyc</span>
+          <p class="desc">Black-and-crimson color blocks bleed into one another, giant type, an editorial grid of your videos. Fast, loud, confident. A record-label poster in motion.</p>
+          <div class="sig"><span>Color-block bleed</span><span>Giant type</span><span>Infinite marquee</span><span>Velocity skew</span></div>
+          <span class="open">Open concept →</span>
+        </div>
+      </a>
+
+      <a class="card" href="concept-2-soaring-dragon/index.html" target="_blank" rel="noopener">
+        <div class="thumb"><img src="assets/thumbs/concept-2.jpg" alt="Concept 2 · SOARING DRAGON WebGL hero"></div>
+        <div class="body">
+          <span class="num">02</span>
+          <span class="name">SOARING DRAGON</span>
+          <span class="vibe">Immersive Showpiece · ref. It's Off+Brand</span>
+          <p class="desc">A living crimson dragon-smoke WebGL hero, horizontal-scrolling video panels, a custom cursor and gold accents. The cinematic “wow” direction.</p>
+          <div class="sig"><span>WebGL hero</span><span>Horizontal scroll</span><span>Magnetic buttons</span><span>Stacking cards</span></div>
+          <span class="open">Open concept →</span>
+        </div>
+      </a>
+
+      <a class="card" href="concept-3-silent-symphony/index.html" target="_blank" rel="noopener">
+        <div class="thumb"><img src="assets/thumbs/concept-3.jpg" alt="Concept 3 · SILENT SYMPHONY hero"></div>
+        <div class="body">
+          <span class="num">03</span>
+          <span class="name">SILENT SYMPHONY</span>
+          <span class="vibe">Quiet Luxury · ref. Team</span>
+          <p class="desc">A calm, museum-grade layout with a light/dark toggle. Your music videos are presented like gallery works. Restraint, whitespace, and one crimson accent.</p>
+          <div class="sig"><span>Light / dark toggle</span><span>Museum grid</span><span>Soft reveals</span><span>Native scroll</span></div>
+          <span class="open">Open concept →</span>
+        </div>
+      </a>
+    </main>
+
+    <footer>
+      <span>MUSE WAV · NYC Record Label · 333 Hudson St, Rm 1005</span>
+      <span>Live prototypes. Open each and scroll · <a href="DESIGN.md">DESIGN.md</a></span>
+    </footer>
   </div>
-  <footer>Preview build. Sample data where noted. Not for distribution.</footer>
+
+  <script>
+    // gentle staggered reveal, reduced-motion safe
+    var cards = document.querySelectorAll('.card');
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      cards.forEach(function(c){c.classList.add('in');});
+    } else if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(e,i){ if(e.isIntersecting){ var el=e.target;
+          setTimeout(function(){el.classList.add('in');}, [].indexOf.call(cards,el)*120);
+          io.unobserve(el);} });
+      }, {threshold:0.15});
+      cards.forEach(function(c){io.observe(c);});
+    } else { cards.forEach(function(c){c.classList.add('in');}); }
+  </script>
 </body>
 </html>

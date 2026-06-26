@@ -13,9 +13,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;500;600&family=Pirata+One&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="../assets/css/tokens.css?v=4">
-  <link rel="stylesheet" href="../assets/css/video.css?v=4">
-  <link rel="stylesheet" href="concept.css?v=5">
+  <link rel="stylesheet" href="../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../assets/css/video.css?v=8">
+  <link rel="stylesheet" href="concept.css?v=8">
 </head>
 <body class="c2">
 
@@ -34,8 +34,8 @@
       <span class="c2-nav__word">muse wav</span>
     </a>
     <nav class="c2-nav__links" aria-label="Primary"><!-- nav links injected by concept.js --></nav>
-    <a class="btn c2-nav__cta" href="#contact" data-magnetic data-cursor>
-      <span>Get a quote</span>
+    <a class="btn c2-nav__cta" href="book-session.html" data-magnetic data-cursor>
+      <span>Book Now</span>
     </a>
     <button class="c2-nav__toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span>
@@ -57,337 +57,63 @@
         <span class="c2-hero__line"><span>muse</span></span>
         <span class="c2-hero__line"><span>wav</span></span>
       </h1>
-      <p class="c2-hero__tag" data-reveal>Record Label</p>
+      <p class="c2-hero__tag" data-reveal>Studio · Label · Production House</p>
       <p class="c2-hero__motto" data-reveal></p>
-      <a class="c2-hero__scroll" href="#booking" aria-label="Scroll to studio booking">
-        <span class="kicker">Scroll</span>
-        <span class="c2-hero__scroll-line" aria-hidden="true"></span>
-      </a>
-    </div>
-  </section>
-
-  <!-- ░░ MODULE 1 · STUDIO + BOOKING (net-new, near top) ░░ -->
-  <section class="c2-booking" id="booking" aria-label="Studio booking">
-    <div class="container">
-      <div class="c2-booking__head">
-        <p class="kicker kicker--candy" data-reveal>Book a studio <span class="c2-tag-preview">Preview</span></p>
-        <h2 class="display-l reveal" data-skew>Lock your<br>session.</h2>
-        <p class="c2-booking__sub" data-reveal>Pro recording in the heart of NYC. Pick a day, a slot, and a studio. This is a preview flow, no live booking yet.</p>
-      </div>
-
-      <!-- LEFT = persistent month calendar · RIGHT = stepped panel that
-           flips DAY -> TIME -> ROOM -> SUMMARY (one step in view) -->
-      <div class="c2-book c2-book--split" aria-label="Booking widget">
-
-        <!-- LEFT column: the calendar, always visible -->
-        <div class="c2-book__cal">
-          <div class="c2-book__cal-top">
-            <button class="c2-book__nav" type="button" data-cal-prev aria-label="Previous month">&#x2039;</button>
-            <span class="c2-book__month" data-cal-month>Month</span>
-            <button class="c2-book__nav" type="button" data-cal-next aria-label="Next month">&#x203A;</button>
-          </div>
-          <div class="c2-book__dow" aria-hidden="true">
-            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
-          </div>
-          <div class="c2-book__days" role="grid" aria-label="Choose a day"><!-- days injected --></div>
-          <p class="c2-book__cal-hint" data-cal-hint>Pick a day to start. Sample rates only, no live calendar.</p>
-        </div>
-
-        <!-- RIGHT column: the stepped stage -->
-        <div class="c2-book__stage">
-          <!-- step bar (clickable back-nav once a step is reached) -->
-          <ol class="c2-book__steps" aria-label="Booking progress">
-            <li class="is-on" data-step="1"><button type="button" data-goto="1">Day</button></li>
-            <li data-step="2"><button type="button" data-goto="2">Time</button></li>
-            <li data-step="3"><button type="button" data-goto="3">Room</button></li>
-            <li data-step="4"><button type="button" data-goto="4">Done</button></li>
-          </ol>
-
-          <!-- the flipping panels: exactly one is shown at a time -->
-          <div class="c2-book__panels">
-
-            <!-- STEP 1 prompt (before a day is chosen) -->
-            <div class="c2-book__panel" data-panel="day">
-              <p class="c2-book__panel-label">Choose a day</p>
-              <p class="c2-book__panel-copy">Use the calendar to pick a date for your session. Future days only.</p>
-            </div>
-
-            <!-- STEP 2 · time slots -->
-            <div class="c2-book__panel" data-panel="slots" hidden>
-              <p class="c2-book__panel-label">Time slot · <span data-sel-day>·</span></p>
-              <div class="c2-book__slots"><!-- slot buttons injected --></div>
-            </div>
-
-            <!-- STEP 3 · rooms / studios (the gradient cards ARE the choices) -->
-            <div class="c2-book__panel" data-panel="rooms" hidden>
-              <p class="c2-book__panel-label">Pick a studio <span class="c2-tag-preview">Sample rates</span></p>
-              <div class="c2-book__rooms"><!-- room cards injected --></div>
-            </div>
-
-            <!-- STEP 4 · summary -->
-            <div class="c2-book__panel" data-panel="summary" hidden>
-              <div class="c2-book__summary" data-summary>
-                <div class="c2-book__sum-row"><span>Day</span><b data-sum-day>·</b></div>
-                <div class="c2-book__sum-row"><span>Time</span><b data-sum-time>·</b></div>
-                <div class="c2-book__sum-row"><span>Studio</span><b data-sum-room>·</b></div>
-                <div class="c2-book__sum-row c2-book__sum-row--total"><span>Est. rate</span><b data-sum-total>·</b></div>
-                <button class="btn c2-book__confirm" type="button" data-book-confirm data-magnetic data-cursor disabled>
-                  <span>Request this session</span>
-                </button>
-                <a class="c2-book__quote" href="mailto:info@musewav.com?subject=Custom%20studio%20quote%20for%20MUSE%20WAV" data-cursor>
-                  Prefer a custom quote? Email info@musewav.com or call +1 (201) 240-1114
-                </a>
-                <p class="c2-book__note" data-book-note>Sample rates only. Final pricing is quoted per project. No charge, no live calendar.</p>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- back nav for the stepped panel -->
-          <div class="c2-book__foot">
-            <button class="c2-book__back" type="button" data-book-back hidden>&#x2039; Back</button>
-          </div>
-        </div>
+      <div class="c2-hero__actions" data-reveal>
+        <a class="btn" href="book-session.html" data-magnetic data-cursor><span>Talk to Us</span></a>
+        <a class="btn btn--ghost" href="#work" data-magnetic data-cursor><span>See Work</span></a>
       </div>
     </div>
   </section>
 
-  <!-- ░░ MANIFESTO ░░ -->
-  <section class="c2-manifesto" id="manifesto" aria-label="Manifesto">
-    <div class="container">
-      <p class="kicker" data-reveal>A form beyond form</p>
-      <h2 class="c2-manifesto__motto display-l reveal" data-skew></h2>
-      <div class="c2-manifesto__body">
-        <p class="kicker kicker--candy" data-reveal>The RED Series</p>
-        <p class="c2-manifesto__mission" data-reveal></p>
-      </div>
+  <!-- ░░ WORK / VIDEOS · autoplay work display ░░ -->
+  <section class="c2-work" id="work" aria-label="Work · music videos">
+    <h2 class="visually-hidden">Selected work</h2>
+    <div class="c2-work__pin">
+      <div class="c2-work__track"><!-- video panels injected by concept.js --></div>
     </div>
-    <!-- reactive soundwave divider -->
-    <div class="c2-wave" aria-hidden="true">
-      <canvas class="c2-wave__canvas"></canvas>
+    <div class="container c2-work__actions c2-work__actions--bottom" data-reveal>
+      <a class="btn" href="https://www.youtube.com/@MUSEWAV_INC" target="_blank" rel="noopener" data-magnetic data-cursor><span>See More Videos</span></a>
+      <a class="btn btn--ghost" href="book-session.html" data-magnetic data-cursor><span>Book a Video</span></a>
     </div>
   </section>
 
   <!-- ░░ SERVICES · stacking sticky cards ░░ -->
   <section class="c2-services" id="services" aria-label="Services">
     <div class="container c2-services__head">
-      <p class="kicker kicker--candy" data-reveal>What we do</p>
-      <h2 class="display-l reveal" data-skew>Full-service<br>house of sound</h2>
+      <p class="kicker kicker--candy" data-reveal>Full service</p>
+      <h2 class="display-l reveal" data-skew>Choose the door<br>for the work.</h2>
+      <p class="c2-services__sub" data-reveal>Recording, videos, beats, artist development, tour support, marketing, and publishing. Each service opens into its own page.</p>
     </div>
     <div class="c2-services__stack"><!-- service cards injected by concept.js --></div>
   </section>
 
-  <!-- ░░ WORK / VIDEOS · horizontal-scroll panels ░░ -->
-  <section class="c2-work" id="work" aria-label="Work · music videos">
-    <div class="c2-work__intro container">
-      <p class="kicker kicker--candy" data-reveal>Selected work</p>
-      <h2 class="display-l reveal" data-skew>The RED<br>Series.</h2>
-      <p class="c2-work__credit" data-reveal></p>
-    </div>
-    <!-- Desktop: pinned horizontal panels. Mobile/reduced-motion: vertical stack. -->
-    <div class="c2-work__pin">
-      <div class="c2-work__track"><!-- video panels injected by concept.js --></div>
-    </div>
-  </section>
-
-  <!-- ░░ MODULE 4 (+ label showcase / MOD 3) · ROSTER + APPLY ░░ -->
-  <section class="c2-roster" id="roster" aria-label="Roster and artist applications">
-    <div class="container">
-      <div class="c2-roster__head">
-        <p class="kicker kicker--candy" data-reveal>On the label <span class="c2-tag-preview">Sample roster · placeholder</span></p>
-        <h2 class="display-l reveal" data-skew>The family.</h2>
-        <p class="c2-roster__sub" data-reveal>Sample roster shown for layout, names are placeholders. We sign hip-hop, R&amp;B and beyond. Want in? Apply below.</p>
+  <!-- ░░ BOOK SESSION CTA ░░ -->
+  <section class="c2-booking c2-session-cta" id="booking" aria-label="Book your session">
+    <div class="container c2-session-cta__grid">
+      <div>
+        <p class="kicker kicker--candy" data-reveal>Book Your Session</p>
+        <h2 class="display-l reveal" data-skew>Tell us what<br>you are making.</h2>
       </div>
-
-      <div class="c2-roster__grid"><!-- artist cards injected --></div>
-
-      <!-- apply + package tiers -->
-      <div class="c2-apply" id="apply">
-        <div class="c2-apply__intro">
-          <p class="kicker kicker--candy" data-reveal>Get represented <span class="c2-tag-preview">Preview</span></p>
-          <h3 class="c2-apply__h" data-reveal>Pitch us your sound.</h3>
-          <p class="c2-apply__copy" data-reveal>Tell us who you are and pick a development tier. Submission is a preview, nothing is charged.</p>
-        </div>
-
-        <div class="c2-apply__cols">
-          <!-- form -->
-          <form class="c2-apply__form" novalidate data-apply-form>
-            <div class="c2-field">
-              <label for="ap-name">Artist / act name</label>
-              <input id="ap-name" name="name" type="text" autocomplete="off" placeholder="e.g. Your stage name" required>
-              <span class="c2-field__hint" data-hint></span>
-            </div>
-            <div class="c2-field">
-              <label for="ap-email">Email</label>
-              <input id="ap-email" name="email" type="email" autocomplete="off" placeholder="you@email.com" required>
-              <span class="c2-field__hint" data-hint></span>
-            </div>
-            <div class="c2-field">
-              <label for="ap-link">Link to your music</label>
-              <input id="ap-link" name="link" type="url" autocomplete="off" placeholder="https://" required>
-              <span class="c2-field__hint" data-hint></span>
-            </div>
-            <div class="c2-field">
-              <label for="ap-pitch">Your pitch</label>
-              <textarea id="ap-pitch" name="pitch" rows="3" placeholder="Who are you, what's the sound, why MUSE WAV?"></textarea>
-              <span class="c2-field__hint" data-hint></span>
-            </div>
-            <div class="c2-apply__tier-note">
-              <span>Selected tier</span><b data-tier-chosen>None yet</b>
-            </div>
-            <button class="btn c2-apply__submit" type="submit" data-magnetic data-cursor>
-              <span>Submit application</span>
-            </button>
-            <p class="c2-apply__status" data-apply-status role="status" aria-live="polite"></p>
-          </form>
-
-          <!-- package tiers -->
-          <div class="c2-tiers" role="radiogroup" aria-label="Development tier"><!-- tiers injected --></div>
-        </div>
+      <div class="c2-session-cta__copy" data-reveal>
+        <p>Start with a date, a service, or a rough idea. The full booking page is ready for the calendar and backend intake we will connect next.</p>
+        <a class="btn" href="book-session.html" data-magnetic data-cursor><span>Book It Now</span></a>
       </div>
     </div>
   </section>
 
-  <!-- ░░ COMMUNITY ░░ -->
-  <section class="c2-community" id="community" aria-label="Community">
-    <div class="container c2-community__grid">
-      <div class="c2-community__lead">
-        <p class="kicker" data-reveal>The collective</p>
-        <h2 class="display-l reveal" data-skew>MUSE WAV<br>Community.</h2>
+  <!-- ░░ IDEA TO RELEASE BANNER ░░ -->
+  <section class="c2-allwant" id="about" aria-label="Idea to release">
+    <div class="container c2-allwant__grid">
+      <div class="c2-allwant__media" aria-hidden="true">
+        <div class="c2-allwant__preview" data-video-id="Xt3TSxI8Uwg"></div>
       </div>
-      <p class="c2-community__body" data-reveal></p>
-    </div>
-    <div class="c2-community__marquee marquee" aria-hidden="true">
-      <div class="marquee__track"></div>
-    </div>
-  </section>
-
-  <!-- ░░ STUDIO ░░ -->
-  <section class="c2-studio" id="studio" aria-label="Studio">
-    <div class="container c2-studio__grid">
-      <div class="c2-studio__copy">
-        <p class="kicker kicker--candy" data-reveal>The room</p>
-        <h2 class="display-l reveal" data-skew>333 Hudson<br>Street.</h2>
-        <address class="c2-studio__address" data-reveal></address>
-        <p class="c2-studio__hours" data-reveal></p>
-      </div>
-      <div class="c2-studio__mark" data-parallax="0.12" aria-hidden="true">
-        <img src="./badge-rainbow.png" alt="">
-      </div>
-    </div>
-  </section>
-
-  <!-- ░░ MODULE 2 · LOGIN + AI RELEASE WINDOW (net-new) ░░ -->
-  <section class="c2-release" id="release" aria-label="Artist login and release window">
-    <div class="container">
-      <div class="c2-release__head">
-        <p class="kicker kicker--candy" data-reveal>Artist portal <span class="c2-tag-preview">Preview</span></p>
-        <h2 class="display-l reveal" data-skew>Drop a<br>release.</h2>
-        <p class="c2-release__sub" data-reveal>Sign in to the MUSE WAV release window and push a record to every platform. Preview flow, nothing is submitted.</p>
-      </div>
-
-      <div class="c2-portal">
-        <!-- LOGIN -->
-        <div class="c2-login" data-login>
-          <div class="c2-login__card">
-            <p class="c2-login__brand"><img src="./badge-candy.png" alt="" aria-hidden="true" width="34" height="34"> <span>muse wav</span></p>
-            <h3 class="c2-login__h">Artist sign in</h3>
-            <form class="c2-login__form" novalidate data-login-form>
-              <div class="c2-field">
-                <label for="lg-email">Email</label>
-                <input id="lg-email" name="email" type="email" autocomplete="off" placeholder="artist@musewav.com" required>
-                <span class="c2-field__hint" data-hint></span>
-              </div>
-              <div class="c2-field">
-                <label for="lg-pass">Password</label>
-                <input id="lg-pass" name="password" type="password" autocomplete="off" placeholder="••••••••" required>
-                <span class="c2-field__hint" data-hint></span>
-              </div>
-              <button class="btn c2-login__go" type="submit" data-magnetic data-cursor><span>Enter the window</span></button>
-              <p class="c2-login__demo">Preview: any email + password opens the demo window.</p>
-            </form>
-          </div>
-        </div>
-
-        <!-- RELEASE WINDOW (revealed after login) -->
-        <div class="c2-window" data-window hidden>
-          <div class="c2-window__bar">
-            <p class="c2-window__who">Signed in · <b data-window-user>artist@musewav.com</b></p>
-            <button class="c2-window__out" type="button" data-logout>Sign out</button>
-          </div>
-
-          <ol class="c2-window__steps">
-            <li class="is-on" data-rstep="1"><span>1</span> Metadata</li>
-            <li data-rstep="2"><span>2</span> Files</li>
-            <li data-rstep="3"><span>3</span> Splits</li>
-            <li data-rstep="4"><span>4</span> Review</li>
-          </ol>
-
-          <!-- step 1: metadata -->
-          <div class="c2-window__step" data-rpanel="1">
-            <div class="c2-field">
-              <label for="rl-title">Track title</label>
-              <input id="rl-title" type="text" placeholder="e.g. Contagious" data-r="title">
-              <span class="c2-field__hint" data-hint></span>
-            </div>
-            <div class="c2-field">
-              <label for="rl-artist">Primary artist</label>
-              <input id="rl-artist" type="text" placeholder="e.g. Sir Wolfsbane" data-r="artist">
-              <span class="c2-field__hint" data-hint></span>
-            </div>
-            <div class="c2-field c2-field--row">
-              <div>
-                <label for="rl-genre">Genre</label>
-                <select id="rl-genre" data-r="genre">
-                  <option value="">Choose…</option>
-                  <option>Hip-Hop</option><option>R&amp;B</option><option>Pop</option><option>Afrobeats</option><option>Electronic</option>
-                </select>
-                <span class="c2-field__hint" data-hint></span>
-              </div>
-              <div>
-                <label for="rl-date">Release date</label>
-                <input id="rl-date" type="date" data-r="date">
-                <span class="c2-field__hint" data-hint></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- step 2: files / upload UI -->
-          <div class="c2-window__step" data-rpanel="2" hidden>
-            <div class="c2-drop" data-drop="cover">
-              <p class="c2-drop__title">Cover art</p>
-              <p class="c2-drop__hint">3000×3000 JPG or PNG. Drag in or browse.</p>
-              <label class="c2-drop__btn">Choose cover<input type="file" accept="image/*" hidden data-file="cover"></label>
-              <p class="c2-drop__name" data-file-name>No file chosen</p>
-            </div>
-            <div class="c2-drop" data-drop="audio">
-              <p class="c2-drop__title">Master audio</p>
-              <p class="c2-drop__hint">WAV preferred, 16-bit or higher. One track for this preview.</p>
-              <label class="c2-drop__btn">Choose audio<input type="file" accept="audio/*" hidden data-file="audio"></label>
-              <p class="c2-drop__name" data-file-name>No file chosen</p>
-            </div>
-          </div>
-
-          <!-- step 3: per-track splits -->
-          <div class="c2-window__step" data-rpanel="3" hidden>
-            <p class="c2-splits__lead">Royalty splits must total 100%.</p>
-            <div class="c2-splits" data-splits><!-- split rows injected --></div>
-            <button class="c2-splits__add" type="button" data-split-add>+ Add collaborator</button>
-            <p class="c2-splits__total">Total <b data-split-total>0%</b> <span class="c2-splits__flag" data-split-flag></span></p>
-          </div>
-
-          <!-- step 4: review -->
-          <div class="c2-window__step" data-rpanel="4" hidden>
-            <div class="c2-review" data-review><!-- review summary injected --></div>
-            <button class="btn c2-window__submit" type="button" data-release-submit data-magnetic data-cursor><span>Submit release</span></button>
-            <p class="c2-window__note" data-release-note>Preview only. Nothing is sent to any platform.</p>
-          </div>
-
-          <!-- nav -->
-          <div class="c2-window__foot">
-            <button class="c2-window__back" type="button" data-rback hidden>Back</button>
-            <button class="btn btn--ghost c2-window__next" type="button" data-rnext><span>Next</span></button>
-          </div>
+      <div class="c2-allwant__copy">
+        <p class="kicker kicker--candy" data-reveal>Idea to release</p>
+        <h2 class="display-l reveal" data-skew>You bring the spark.<br>We build the record.</h2>
+        <p data-reveal>You do not have to arrive as a finished musician. Bring a song idea, AI demo, voice note, or rough direction. MUSE WAV can help shape the track, find collaborators, create visuals, release it, promote it, and build the next move around it.</p>
+        <div class="c2-allwant__chips" data-reveal>
+          <span>Studio</span><span>Beats</span><span>MV</span><span>Publishing</span><span>Artist Agency</span><span>Tour</span><span>Promotion</span>
         </div>
       </div>
     </div>
@@ -410,7 +136,10 @@
   </section>
 
   <!-- ░░ FOOTER ░░ -->
-  <footer class="c2-footer" aria-label="Footer">
+  <footer class="c2-footer" id="studio" aria-label="Footer">
+    <div class="c2-footer__motion" aria-hidden="true">
+      <div class="c2-footer__preview" data-video-id="xXxMosop68E"></div>
+    </div>
     <div class="container c2-footer__grid">
       <div class="c2-footer__brand">
         <p class="c2-footer__lockup">
@@ -421,8 +150,9 @@
       </div>
       <nav class="c2-footer__socials" aria-label="Social media"><!-- socials injected by concept.js --></nav>
       <div class="c2-footer__meta">
+        <address class="c2-footer__address"></address>
+        <p class="c2-footer__hours"></p>
         <p class="c2-footer__copy"></p>
-        <a class="c2-footer__totop kicker" href="#top" data-cursor>Back to top ↑</a>
       </div>
     </div>
   </footer>
@@ -433,9 +163,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
-  <script src="../assets/js/content.js?v=4"></script>
-  <script src="../assets/js/motion.js?v=4"></script>
-  <script src="../assets/js/video.js?v=4"></script>
-  <script src="concept.js?v=5"></script>
+  <script src="../assets/js/content.js?v=8"></script>
+  <script src="../assets/js/motion.js?v=8"></script>
+  <script src="../assets/js/video.js?v=8"></script>
+  <script src="concept.js?v=8"></script>
+  <script src="site-footer.js?v=8"></script>
 </body>
 </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MUSE WAV · Services</title>
+  <meta name="description" content="Seven MUSE WAV services: recording studio, music video production, customized beats, artist development, tour service, marketing agency, and music publishing.">
+  <link rel="icon" href="../assets/brand/favicon-256.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;500;600&family=Pirata+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../assets/css/video.css?v=8">
+  <link rel="stylesheet" href="concept.css?v=8">
+  <link rel="stylesheet" href="service-page.css?v=8">
+</head>
+<body class="c2 c2-service-page">
+  <div class="mw-preloader c2-preloader"><div class="c2-preloader__inner"><img class="mw-preloader__mark c2-preloader__badge" src="./badge-candy.png" alt=""><p class="c2-preloader__word">muse wav</p></div></div>
+  <header class="c2-service-nav">
+    <a class="c2-service-nav__brand" href="index.html" aria-label="MUSE WAV home"><img src="./badge-candy.png" alt=""><span>muse wav</span></a>
+    <nav class="c2-service-nav__links" aria-label="Primary"><a href="index.html">Home</a><a class="is-active" href="services.html">Services</a><a href="index.html#work">Work</a><a href="index.html#studio">Studio</a><a href="book-session.html">Book</a></nav>
+  </header>
+  <main>
+    <section class="c2-simple-hero">
+      <div class="container c2-simple-hero__copy">
+        <p class="kicker kicker--candy" data-reveal>Full Service</p>
+        <h1 class="display-xl reveal" data-skew>Seven doors into the studio.</h1>
+        <p data-reveal>Explore recording, video production, beats, artist development, touring, marketing, and publishing support through dedicated service pages.</p>
+      </div>
+    </section>
+    <section class="c2-service-section c2-service-section--surface">
+      <div class="container">
+        <div class="c2-services-index">
+          <a class="c2-services-index__card" href="services/recording-studio.html"><span class="c2-services-index__n">01</span><div class="c2-services-index__body"><h2>Recording Studio</h2><p>Professional recording, mixing, and creative sessions in New York City.</p></div><span class="c2-services-index__arrow" aria-hidden="true">→</span></a>
+          <a class="c2-services-index__card" href="services/music-video-production.html"><span class="c2-services-index__n">02</span><div class="c2-services-index__body"><h2>Music Video Production</h2><p>From concept to final cut, visuals that move with the record.</p></div><span class="c2-services-index__arrow" aria-hidden="true">→</span></a>
+          <a class="c2-services-index__card" href="services/customized-beats.html"><span class="c2-services-index__n">03</span><div class="c2-services-index__body"><h2>Customized Beats</h2><p>Original beats and custom production tailored to your sound.</p></div><span class="c2-services-index__arrow" aria-hidden="true">→</span></a>
+          <a class="c2-services-index__card" href="services/artist-development.html"><span class="c2-services-index__n">04</span><div class="c2-services-index__body"><h2>Artist Development</h2><p>Build the sound, visuals, strategy, and release path around the artist.</p></div><span class="c2-services-index__arrow" aria-hidden="true">→</span></a>
+          <a class="c2-services-index__card" href="services/music-tour-service.html"><span class="c2-services-index__n">05</span><div class="c2-services-index__body"><h2>Music Tour Service</h2><p>Live performance, event production, and artist booking support.</p></div><span class="c2-services-index__arrow" aria-hidden="true">→</span></a>
+          <a class="c2-services-index__card" href="services/marketing-agency.html"><span class="c2-services-index__n">06</span><div class="c2-services-index__body"><h2>Marketing Agency</h2><p>Cross-market music promotion for artists moving between China and the global market.</p></div><span class="c2-services-index__arrow" aria-hidden="true">→</span></a>
+          <a class="c2-services-index__card" href="services/music-publishing.html"><span class="c2-services-index__n">07</span><div class="c2-services-index__body"><h2>Music Publishing</h2><p>Publishing support for songs, albums, rights, and release strategy.</p></div><span class="c2-services-index__arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
+  <script src="../assets/js/content.js?v=8"></script>
+  <script src="../assets/js/motion.js?v=8"></script>
+  <script src="site-footer.js?v=8"></script>
+  <script>
+    window.addEventListener("load", function () {
+      MW.preloader(function () {
+        MW.initLenis();
+        MW.splitReveal(".reveal", { y: 118, duration: 1.05 });
+        MW.fadeUp("[data-reveal], .c2-services-index__card", { y: 42, stagger: 0.05 });
+        MW.velocitySkew("[data-skew]");
+        MW.refresh();
+      });
+    });
+  </script>
+</body>
+</html>
