@@ -27,15 +27,25 @@ window.MUSEWAV = {
     { n: "07", slug: "music-publishing", title: "Music Publishing", desc: "Publishing support for songs, albums, rights, and release strategy." }
   ],
 
-  // Real catalog — YouTube @MUSEWAV_INC. Titles are the real release names.
-  // Silent autoplay preview clips built by assets/make-video-previews.sh.
+  // Real catalog — YouTube @MUSEWAVCollective. These are performance/MV clips
+  // selected because the motion is visible in autoplay, not static visualizers.
   videos: [
-    { id: "EAQoqQFEvX4", title: "跨时区航班", note: "Selected Work" },
-    { id: "cgPTnWgzO9M", title: "过客", note: "MUSE WAV" },
-    { id: "dQvXAutyGU8", title: "I Don't Really Want No Love", note: "MUSE WAV" },
-    { id: "JjcA5fY5Ucw", title: "Fly Away", note: "MUSE WAV" },
-    { id: "Vxuz0sVf_ZY", title: "No One but You", note: "MUSE WAV" },
-    { id: "uqYpHJODPP8", title: "What's Wrong with That", note: "MUSE WAV" }
+    { id: "lIWlua_1Pgw", title: "ACee - Uni", note: "Official Music Video" },
+    { id: "KziYnIym0gc", title: "Bag Boy - TIMES", note: "Hummingbird Session" },
+    { id: "F8XMnfVN05Q", title: "NBTALENTED - I KNOW", note: "Hummingbird Session" },
+    { id: "N5WkI0KLTKk", title: "MATT OX", note: "Hummingbird Session" },
+    { id: "c3NxVZhtQPE", title: "Sabrina - Love like me", note: "Hummingbird Session" },
+    { id: "yPbOOClDlwQ", title: "MAJIN XUAN - FACE OF FLUSHING", note: "Hummingbird Session" }
+  ],
+
+  serviceVideos: [
+    { id: "1k-Mpvhd50M", title: "T-Bruin - Off The Opus", note: "Recording room performance" },
+    { id: "fxVCvOMKY3U", title: "Mattox first time in CHINA", note: "Interview session" },
+    { id: "klOaKftZdyE", title: "KnowKnow - DISAPPOINTED", note: "Hummingbird Session" },
+    { id: "l2xA0lbNmSg", title: "JUNOFLO", note: "Hummingbird Session" },
+    { id: "79h9OxG4Ux0", title: "Nosun", note: "Hummingbird Session" },
+    { id: "QGVVZ0ULZ2o", title: "G two Hwang", note: "Hummingbird Session" },
+    { id: "5xqEQ5TmEZw", title: "Papi Ojo", note: "Hummingbird Session" }
   ],
 
   studioRates: [
@@ -112,13 +122,12 @@ window.MUSEWAV = {
       factsHeading: "Services and rates",
       factsIntro: "Clear starting prices. Custom projects can still be quoted after intake.",
       media: [
-        { src: "../../assets/phil-2026-06-26/recording-studio/studio-room.jpg", label: "Artist lounge and listening room", focus: "center 55%" },
-        { src: "../../assets/phil-2026-06-26/recording-studio/studio-gear-03.jpg", label: "Vocal booth and Neumann U87 chain", focus: "center 22%" },
-        { src: "../../assets/phil-2026-06-26/recording-studio/studio-gear-04.jpg", label: "Control surface and mic setup", focus: "center 34%" },
-        { src: "../../assets/phil-2026-06-26/recording-studio/studio-gear-02.jpg", label: "Interface rack and mastering desk", focus: "center 42%" },
-        { src: "../../assets/phil-2026-06-26/recording-studio/studio-gear-05.jpg", label: "Monitor controller and mastering chain", focus: "center 48%" },
-        { src: "../../assets/phil-2026-06-26/recording-studio/studio-gear-06.jpg", label: "Studio control surface", focus: "center 28%" },
-        { src: "../../assets/phil-2026-06-26/recording-studio/studio-aux.jpg", label: "Live room and control-room overview", focus: "center 68%" }
+        { src: "../../assets/musewav-site/08-IMG_4840.jpeg", label: "Artist lounge and listening room", focus: "center 55%" },
+        { src: "../../assets/musewav-site/05-IMG_4836.jpeg", label: "Vocal booth with studio microphone", focus: "center 28%" },
+        { src: "../../assets/musewav-site/06-IMG_4837.jpeg", label: "Production desk and control gear", focus: "center 38%" },
+        { src: "../../assets/musewav-site/07-IMG_4835.jpeg", label: "Keyboard and recording console", focus: "center 40%" },
+        { src: "../../assets/musewav-site/16-IMG_1751.JPG", label: "Control room session", focus: "center 42%" },
+        { src: "../../assets/musewav-site/17-IMG_1752.JPG", label: "Engineer at the studio console", focus: "center 42%" }
       ],
       sections: [
         { title: "Built for focused sessions", body: "MUSE WAV gives artists a focused room, production support, and professional recording tools for vocal sessions, demos, beat work, and project production." },
@@ -191,6 +200,11 @@ window.MUSEWAV = {
       factsHeading: "Tour and event support",
       factsIntro: "Use this page to show what MUSE WAV can coordinate around a live music moment.",
       media: [
+        { src: "../../assets/musewav-site/13-Image_20240408232649.jpg", label: "Live performance moment", focus: "center 36%" },
+        { src: "../../assets/musewav-site/12-Image_20240408232731.jpg", label: "Artist at the stage edge", focus: "center 30%" },
+        { src: "../../assets/musewav-site/14-Image_20240408232727.jpg", label: "Crowd and performance room", focus: "center 42%" },
+        { src: "../../assets/musewav-site/39-IMG_1638.JPG", label: "Artist on stage", focus: "center 30%" },
+        { src: "../../assets/musewav-site/37-wangsulong2.jpg", label: "Event team and venue partners", focus: "center 45%" },
         { src: "../../assets/phil-2026-06-26/music-tour-service/tour-05.jpg", label: "Live event poster" },
         { src: "../../assets/phil-2026-06-26/music-tour-service/tour-01.png", label: "Performance moment" },
         { src: "../../assets/phil-2026-06-26/music-tour-service/tour-02.png", label: "Showcase proof" },
@@ -283,7 +297,7 @@ window.MUSEWAV = {
 
   // Self-hosted silent preview loops (built from the real videos by
   // assets/make-video-previews.sh). Poster shares the clip's first frame.
-  assetVersion: "15",
+  assetVersion: "17",
   clipBase: "../assets/video/",
   clip:       function (id) { return this.clipBase + id + ".mp4?v=" + this.assetVersion; },
   clipPoster: function (id) { return this.clipBase + id + ".jpg?v=" + this.assetVersion; }

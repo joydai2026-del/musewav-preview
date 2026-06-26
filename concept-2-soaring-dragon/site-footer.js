@@ -32,8 +32,8 @@
     return '' +
       '<div class="c2-footer__motion" aria-hidden="true">' +
         '<div class="c2-footer__preview">' +
-          '<video autoplay muted loop playsinline preload="auto" poster="' + assets + 'video/xXxMosop68E.jpg">' +
-            '<source src="' + assets + 'video/xXxMosop68E.mp4" type="video/mp4">' +
+          '<video autoplay muted loop playsinline preload="auto" poster="' + assets + 'video/ttohufZuv9Y.jpg">' +
+            '<source src="' + assets + 'video/ttohufZuv9Y.mp4?v=17" type="video/mp4">' +
           '</video>' +
         '</div>' +
       '</div>' +

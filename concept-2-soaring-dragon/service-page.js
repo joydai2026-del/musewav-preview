@@ -42,13 +42,13 @@
   }
   var REDUCE = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   var HERO_VIDEO_BY_SERVICE = {
-    "recording-studio": "hero-recording-studio",
-    "music-video-production": "hero-music-video-production",
-    "customized-beats": "hero-customized-beats",
-    "artist-development": "hero-artist-development",
-    "music-tour-service": "hero-music-tour-service",
-    "marketing-agency": "hero-marketing-agency",
-    "music-publishing": "hero-music-publishing"
+    "recording-studio": "1k-Mpvhd50M",
+    "music-video-production": "fxVCvOMKY3U",
+    "customized-beats": "klOaKftZdyE",
+    "artist-development": "l2xA0lbNmSg",
+    "music-tour-service": "79h9OxG4Ux0",
+    "marketing-agency": "QGVVZ0ULZ2o",
+    "music-publishing": "5xqEQ5TmEZw"
   };
 
   function setupMotionToggles() {
@@ -147,7 +147,7 @@
   }
 
   function renderVideos(wrap) {
-    (M.videos || []).forEach(function (v, i) {
+    (M.serviceVideos || M.videos || []).forEach(function (v, i) {
       var card = el("figure", "c2-service-card c2-service-video-card " + (i === 0 ? "c2-service-card--large" : (i < 3 ? "c2-service-card--mid" : "c2-service-card--small")));
       card.insertAdjacentHTML("afterbegin", videoMarkup(v.id, "vfacade__video"));
       var label = el("figcaption", "c2-service-card__label", '<a href="' + esc(ytWatch(v.id)) + '" target="_blank" rel="noopener">' + esc(v.title) + "</a>");
