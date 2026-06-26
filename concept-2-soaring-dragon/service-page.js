@@ -12,6 +12,13 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
+  function videoMarkup(id, className) {
+    if (window.MWV && typeof MWV.markup === "function") return MWV.markup(id, className);
+    var src = M.clip ? M.clip(id) : "../../assets/video/" + id + ".mp4";
+    return '<video class="' + esc(className || "") + '" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-hidden="true" tabindex="-1">' +
+      '<source src="' + esc(src) + '" type="video/mp4">' +
+    "</video>";
+  }
   function el(tag, cls, html) {
     var n = document.createElement(tag);
     if (cls) n.className = cls;
@@ -82,12 +89,7 @@
     if (!id) return;
     var existing = frame.querySelector("video,img");
     if (existing) existing.remove();
-    var media = window.MWV && MWV.preview ? MWV.preview(id, { className: "c2-service-hero__video" }) : el("img", "c2-service-hero__video");
-    if (media.tagName === "IMG") {
-      media.src = M.ytThumb ? M.ytThumb(id) : "";
-      media.alt = "";
-    }
-    frame.insertBefore(media, frame.firstChild);
+    frame.insertAdjacentHTML("afterbegin", videoMarkup(id, "c2-service-hero__video"));
   })();
 
   (function nav() {
@@ -145,16 +147,11 @@
   function renderVideos(wrap) {
     (M.videos || []).forEach(function (v, i) {
       var card = el("figure", "c2-service-card c2-service-video-card " + (i === 0 ? "c2-service-card--large" : (i < 3 ? "c2-service-card--mid" : "c2-service-card--small")));
-      var media = window.MWV && MWV.preview ? MWV.preview(v.id, { className: "vfacade__video" }) : el("img", "vfacade__video");
-      if (media.tagName === "IMG") {
-        media.src = M.ytThumb ? M.ytThumb(v.id) : "";
-        media.alt = "";
-      }
+      card.insertAdjacentHTML("afterbegin", videoMarkup(v.id, "vfacade__video"));
       var play = el("button", "vfacade__play", '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>');
       play.type = "button";
       play.setAttribute("aria-label", "Play " + v.title);
       var label = el("figcaption", "c2-service-card__label", esc(v.title) + ' · <a href="' + esc(ytWatch(v.id)) + '" target="_blank" rel="noopener">YouTube &#x2197;</a>');
-      card.appendChild(media);
       card.appendChild(play);
       card.appendChild(label);
       function open(e) {

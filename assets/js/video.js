@@ -14,6 +14,16 @@
 
   function clipSrc(id)   { return M.clip       ? M.clip(id)       : "../assets/video/" + id + ".mp4"; }
   function posterSrc(id) { return M.clipPoster ? M.clipPoster(id) : "../assets/video/" + id + ".jpg"; }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function markup(id, className) {
+    return '<video class="' + esc(className || "mwv") + '" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-hidden="true" tabindex="-1">' +
+      '<source src="' + esc(clipSrc(id)) + '" type="video/mp4">' +
+    "</video>";
+  }
 
   /* ---- 1. autoplay preview <video> --------------------------------------- */
 
@@ -239,6 +249,7 @@
 
   window.MWV = {
     preview: preview,
+    markup: markup,
     clipSrc: clipSrc,
     posterSrc: posterSrc,
     forcePlayAll: forcePlayAll,

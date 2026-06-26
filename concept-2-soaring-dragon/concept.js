@@ -18,6 +18,13 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
+  function videoMarkup(id, className) {
+    if (window.MWV && typeof MWV.markup === "function") return MWV.markup(id, className);
+    var src = M.clip ? M.clip(id) : "../assets/video/" + id + ".mp4";
+    return '<video class="' + esc(className || "") + '" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-hidden="true" tabindex="-1">' +
+      '<source src="' + esc(src) + '" type="video/mp4">' +
+    "</video>";
+  }
 
   /* ───────────────────────────────────────────────────────────────
      PLACEHOLDER DATA (modules only) — obviously not-real, per the
@@ -110,6 +117,7 @@
         return '' +
           '<article class="c2-panel" data-id="' + esc(v.id) + '">' +
             '<div class="c2-panel__media">' +
+              videoMarkup(v.id, "c2-panel__thumb c2-panel__video") +
               '<button class="c2-panel__play" type="button" aria-label="Play ' + esc(v.title) + ' · MUSE WAV">' + playSvg + "</button>" +
               '<a class="c2-panel__yt" href="' + esc(watch) + '" target="_blank" rel="noopener" aria-label="Watch ' + esc(v.title) + ' on YouTube">' + ytSvg + "<span>YouTube</span></a>" +
               '<div class="c2-panel__meta">' +
@@ -224,21 +232,10 @@
         Reuses the shared MWV engine read-only.
      ─────────────────────────────────────────────────────────────── */
   function wireWork() {
-    var hasMWV = window.MWV && typeof MWV.preview === "function";
     $$("[data-video-id]").forEach(function (wrap) {
       var id = wrap.getAttribute("data-video-id");
       if (!id) return;
-      var layer;
-      if (hasMWV) {
-        layer = MWV.preview(id, { className: "c2-inline-video" });
-      } else {
-        layer = document.createElement("img");
-        layer.className = "c2-inline-video";
-        layer.src = (typeof M.ytThumb === "function" ? M.ytThumb(id) : "");
-        layer.alt = "";
-        layer.loading = "lazy";
-      }
-      wrap.appendChild(layer);
+      if (!wrap.querySelector("video,img")) wrap.innerHTML = videoMarkup(id, "c2-inline-video");
     });
 
     $$(".c2-panel").forEach(function (panel) {
@@ -247,17 +244,7 @@
       var play = $(".c2-panel__play", panel);
       var title = $(".c2-panel__title", panel);
       if (!media) return;
-
-      var layer;
-      if (hasMWV) {
-        layer = MWV.preview(id, { className: "c2-panel__thumb c2-panel__video" });
-      } else {
-        layer = document.createElement("img");
-        layer.className = "c2-panel__thumb c2-panel__video";
-        layer.src = (typeof M.ytThumb === "function" ? M.ytThumb(id) : "");
-        layer.alt = ""; layer.loading = "lazy";
-      }
-      media.insertBefore(layer, media.firstChild);
+      if (!media.querySelector("video,img")) media.insertAdjacentHTML("afterbegin", videoMarkup(id, "c2-panel__thumb c2-panel__video"));
 
       function watch(e) {
         if (!window.MWV || !MWV.lightbox) return;     // no lightbox → the title's href opens YouTube
