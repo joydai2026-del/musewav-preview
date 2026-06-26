@@ -551,18 +551,7 @@
   }
 
   function animateWorkMedia() {
-    var track = $(".c2-work__track");
-    if (!track || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
-    $$(".c2-panel").forEach(function (panel) {
-      var thumb = $(".c2-panel__thumb", panel);
-      if (!thumb) return;
-      gsap.to(thumb, {
-        scale: 1.05,
-        yPercent: -4,
-        ease: "none",
-        scrollTrigger: { trigger: panel, start: "top bottom", end: "bottom top", scrub: true }
-      });
-    });
+    return;
   }
 
   function servicesStack() {
