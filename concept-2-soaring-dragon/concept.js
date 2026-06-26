@@ -106,11 +106,10 @@
       }).join("");
     }
 
-    // WORK · autoplay video panels (clip injected by wireWork; title → lightbox)
+    // WORK · autoplay video panels. The video itself is the display surface;
+    // the title is the YouTube link.
     var track = $(".c2-work__track");
     if (track && M.videos && M.videos.length) {
-      var playSvg = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
-      var ytSvg = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"/></svg>';
       track.innerHTML = M.videos.map(function (v, i) {
         var idx = String(i + 1).padStart(2, "0");
         var watch = typeof M.ytWatch === "function" ? M.ytWatch(v.id) : "#";
@@ -118,8 +117,6 @@
           '<article class="c2-panel" data-id="' + esc(v.id) + '">' +
             '<div class="c2-panel__media">' +
               videoMarkup(v.id, "c2-panel__thumb c2-panel__video") +
-              '<button class="c2-panel__play" type="button" aria-label="Play ' + esc(v.title) + ' · MUSE WAV">' + playSvg + "</button>" +
-              '<a class="c2-panel__yt" href="' + esc(watch) + '" target="_blank" rel="noopener" aria-label="Watch ' + esc(v.title) + ' on YouTube">' + ytSvg + "<span>YouTube</span></a>" +
               '<div class="c2-panel__meta">' +
                 '<a class="c2-panel__title" href="' + esc(watch) + '" target="_blank" rel="noopener">' + esc(v.title) + "</a>" +
                 '<span class="c2-panel__note">' + esc(v.note || "") + "</span>" +
@@ -241,18 +238,8 @@
     $$(".c2-panel").forEach(function (panel) {
       var id = panel.getAttribute("data-id");
       var media = $(".c2-panel__media", panel);
-      var play = $(".c2-panel__play", panel);
-      var title = $(".c2-panel__title", panel);
       if (!media) return;
       if (!media.querySelector("video,img")) media.insertAdjacentHTML("afterbegin", videoMarkup(id, "c2-panel__thumb c2-panel__video"));
-
-      function watch(e) {
-        if (!window.MWV || !MWV.lightbox) return;     // no lightbox → the title's href opens YouTube
-        if (e) e.preventDefault();
-        MWV.lightbox.open(id, title ? title.textContent : "");
-      }
-      if (play) play.addEventListener("click", watch);
-      if (title) title.addEventListener("click", watch);
     });
   }
 

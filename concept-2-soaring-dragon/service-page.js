@@ -148,21 +148,8 @@
     (M.videos || []).forEach(function (v, i) {
       var card = el("figure", "c2-service-card c2-service-video-card " + (i === 0 ? "c2-service-card--large" : (i < 3 ? "c2-service-card--mid" : "c2-service-card--small")));
       card.insertAdjacentHTML("afterbegin", videoMarkup(v.id, "vfacade__video"));
-      var play = el("button", "vfacade__play", '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>');
-      play.type = "button";
-      play.setAttribute("aria-label", "Play " + v.title);
-      var label = el("figcaption", "c2-service-card__label", esc(v.title) + ' · <a href="' + esc(ytWatch(v.id)) + '" target="_blank" rel="noopener">YouTube &#x2197;</a>');
-      card.appendChild(play);
+      var label = el("figcaption", "c2-service-card__label", '<a href="' + esc(ytWatch(v.id)) + '" target="_blank" rel="noopener">' + esc(v.title) + "</a>");
       card.appendChild(label);
-      function open(e) {
-        if (e) e.preventDefault();
-        if (window.MWV && MWV.lightbox) MWV.lightbox.open(v.id, v.title);
-      }
-      play.addEventListener("click", open);
-      card.addEventListener("click", function (e) {
-        if (e.target.closest("a")) return;
-        open(e);
-      });
       wrap.appendChild(card);
     });
   }
