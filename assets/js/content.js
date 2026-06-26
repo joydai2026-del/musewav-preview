@@ -30,7 +30,7 @@ window.MUSEWAV = {
   // Real catalog — YouTube @MUSEWAVCollective. These are performance/MV clips
   // selected because the motion is visible in autoplay, not static visualizers.
   videos: [
-    { id: "lIWlua_1Pgw", title: "ACee - Uni", note: "Official Music Video" },
+    { id: "Dq95TXEy_II", title: "T-Bruin", note: "Hummingbird Session" },
     { id: "KziYnIym0gc", title: "Bag Boy - TIMES", note: "Hummingbird Session" },
     { id: "F8XMnfVN05Q", title: "NBTALENTED - I KNOW", note: "Hummingbird Session" },
     { id: "N5WkI0KLTKk", title: "MATT OX", note: "Hummingbird Session" },
@@ -45,7 +45,9 @@ window.MUSEWAV = {
     { id: "l2xA0lbNmSg", title: "JUNOFLO", note: "Hummingbird Session" },
     { id: "79h9OxG4Ux0", title: "Nosun", note: "Hummingbird Session" },
     { id: "QGVVZ0ULZ2o", title: "G two Hwang", note: "Hummingbird Session" },
-    { id: "5xqEQ5TmEZw", title: "Papi Ojo", note: "Hummingbird Session" }
+    { id: "5xqEQ5TmEZw", title: "Papi Ojo", note: "Hummingbird Session" },
+    { id: "AZyiG78T9tI", title: "VIGGY X JUSTO", note: "Hummingbird Session" },
+    { id: "gpM2NzJa0dI", title: "JUVIE", note: "Hummingbird Session" }
   ],
 
   studioRates: [
@@ -297,7 +299,7 @@ window.MUSEWAV = {
 
   // Self-hosted silent preview loops (built from the real videos by
   // assets/make-video-previews.sh). Poster shares the clip's first frame.
-  assetVersion: "17",
+  assetVersion: "20",
   clipBase: "../assets/video/",
   clip:       function (id) { return this.clipBase + id + ".mp4?v=" + this.assetVersion; },
   clipPoster: function (id) { return this.clipBase + id + ".jpg?v=" + this.assetVersion; }
