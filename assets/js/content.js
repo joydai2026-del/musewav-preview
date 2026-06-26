@@ -136,7 +136,7 @@ window.MUSEWAV = {
       cta: "Get a Video Quote",
       visualType: "video-grid",
       visualHeading: "Music video reel",
-      visualIntro: "Autoplaying video previews from the MUSE WAV catalog. Captions link to the full videos.",
+      visualIntro: "Selected videos from the MUSE WAV catalog. Captions link to the full videos.",
       factsHeading: "Production scope",
       factsIntro: "What a video project can include before exact credits are confirmed.",
       sections: [

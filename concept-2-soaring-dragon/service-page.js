@@ -15,7 +15,8 @@
   function videoMarkup(id, className) {
     if (window.MWV && typeof MWV.markup === "function") return MWV.markup(id, className);
     var src = M.clip ? M.clip(id) : "../../assets/video/" + id + ".mp4";
-    return '<video class="' + esc(className || "") + '" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-hidden="true" tabindex="-1">' +
+    var poster = M.clipPoster ? M.clipPoster(id) : "../../assets/video/" + id + ".jpg";
+    return '<video class="' + esc(className || "") + '" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="' + esc(poster) + '" aria-hidden="true" tabindex="-1">' +
       '<source src="' + esc(src) + '" type="video/mp4">' +
     "</video>";
   }
@@ -41,13 +42,13 @@
   }
   var REDUCE = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   var HERO_VIDEO_BY_SERVICE = {
-    "recording-studio": "Ow8O87Xv5HM",
-    "music-video-production": "IbEKqjRCjxc",
-    "customized-beats": "Xt3TSxI8Uwg",
-    "artist-development": "cgPTnWgzO9M",
-    "music-tour-service": "k0utfYxGPpM",
-    "marketing-agency": "xXxMosop68E",
-    "music-publishing": "cgPTnWgzO9M"
+    "recording-studio": "hero-artist-session",
+    "music-video-production": "hero-artist-session",
+    "customized-beats": "hero-artist-session",
+    "artist-development": "hero-artist-session",
+    "music-tour-service": "hero-artist-session",
+    "marketing-agency": "hero-artist-session",
+    "music-publishing": "hero-artist-session"
   };
 
   function setupMotionToggles() {

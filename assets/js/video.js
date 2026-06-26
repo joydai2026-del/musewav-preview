@@ -20,7 +20,7 @@
     });
   }
   function markup(id, className) {
-    return '<video class="' + esc(className || "mwv") + '" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-hidden="true" tabindex="-1">' +
+    return '<video class="' + esc(className || "mwv") + '" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="' + esc(posterSrc(id)) + '" aria-hidden="true" tabindex="-1">' +
       '<source src="' + esc(clipSrc(id)) + '" type="video/mp4">' +
     "</video>";
   }

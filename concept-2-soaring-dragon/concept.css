@@ -505,7 +505,11 @@
   background:var(--ink-2);border:1px solid var(--line);
   box-shadow:0 40px 90px -50px rgba(0,0,0,.95);
 }
-.c2-panel__thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;scale:1.02;will-change:transform}
+.c2-panel__thumb{
+  position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;
+  transform:scale(1.08);transform-origin:52% 48%;will-change:transform;
+  animation:mwvPreviewDrift 5.6s ease-in-out infinite alternate;
+}
 .c2-panel__media::after{
   content:"";position:absolute;inset:0;
   background:linear-gradient(180deg, rgba(8,8,10,.05) 0%, transparent 35%, rgba(8,8,10,.8) 100%);
@@ -563,6 +567,12 @@
 .c2-work__actions .btn{font-size:.8rem}
 
 .c2-work__progress{display:none}
+
+@keyframes mwvPreviewDrift{
+  0%{transform:scale(1.08) translate3d(-3.8%, -2.4%, 0)}
+  50%{transform:scale(1.145) translate3d(3.4%, 2.2%, 0)}
+  100%{transform:scale(1.105) translate3d(-1.2%, 3.6%, 0)}
+}
 
 /* ════════════════════════════════════════════════════════════════
    MODULE 4 (+ label showcase) · ROSTER + APPLY
