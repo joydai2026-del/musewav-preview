@@ -900,8 +900,8 @@
 .c2-footer__hours-note{font-family:var(--mono);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--bone)}
 .c2-footer__hours-address{font-style:normal;color:var(--bone);font-size:.88rem;line-height:1.45;white-space:nowrap}
 .c2-footer__hours-contact{color:var(--bone);font-family:var(--mono);font-size:.8rem;letter-spacing:.04em;line-height:1.45}
-.c2-footer__social-contact{display:grid;gap:1.05rem;justify-items:end;text-align:right;align-self:start}
-.c2-footer__socials{display:flex;gap:.75rem;align-content:start;align-self:start;justify-self:end}
+.c2-footer__social-contact{display:grid;gap:1.05rem;justify-items:center;text-align:center;align-self:start;justify-self:end;min-width:220px;margin-right:clamp(1.6rem,3vw,3rem)}
+.c2-footer__socials{display:flex;gap:.75rem;align-content:start;align-self:start;justify-self:center}
 .c2-footer__socials a{
   display:grid;place-items:center;
   width:48px;height:48px;min-width:48px;border:1px solid var(--line);border-radius:14px;padding:0;
@@ -911,7 +911,7 @@
 .c2-footer__socials svg{width:22px;height:22px;display:block}
 .c2-footer__socials span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .c2-footer__socials a:hover{border-color:var(--candy-pink);color:var(--bone);background:rgba(255,79,163,.08);transform:translateY(-2px)}
-.c2-footer__meta{display:grid;gap:.55rem;justify-items:end;color:var(--bone);text-shadow:0 2px 18px rgba(0,0,0,.95)}
+.c2-footer__meta{display:grid;gap:.55rem;justify-items:center;color:var(--bone);text-shadow:0 2px 18px rgba(0,0,0,.95)}
 .c2-footer__address{font-style:normal;color:var(--bone);font-size:.88rem;line-height:1.45}
 .c2-footer__address span{display:block}
 .c2-footer__contact{color:var(--bone);font-family:var(--mono);font-size:.8rem;letter-spacing:.04em;line-height:1.45}
