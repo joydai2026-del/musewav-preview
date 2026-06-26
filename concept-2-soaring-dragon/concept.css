@@ -506,50 +506,14 @@
   box-shadow:0 40px 90px -50px rgba(0,0,0,.95);
 }
 .c2-panel__thumb{
-  position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;
-  transform:scale(1.08);transform-origin:52% 48%;will-change:transform;
-  animation:mwvPreviewDrift 5.6s ease-in-out infinite alternate;
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transform:none;will-change:auto;
 }
 .c2-panel__media::after{
   content:"";position:absolute;inset:0;
   background:linear-gradient(180deg, rgba(8,8,10,.05) 0%, transparent 35%, rgba(8,8,10,.8) 100%);
   pointer-events:none;
 }
-.c2-panel__play{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
-  width:84px;height:84px;border-radius:50%;
-  display:grid;place-items:center;
-  background:var(--grad-candy);color:#0a0a0f;
-  box-shadow:0 12px 40px rgba(255,79,163,.5);
-  transition:transform .4s var(--ease),filter .4s,opacity .35s var(--ease);
-  opacity:0;pointer-events:none;   /* hidden at rest in EVERY hover-state; revealed on hover below */
-}
-.c2-panel__play svg{width:26px;height:26px;margin-left:4px}
-.c2-panel__play:hover{transform:translate(-50%,-50%) scale(1.08);filter:brightness(1.1)}
-@media (hover:hover){
-  /* Hover-only: clean autoplaying panel; the play button fades in on hover. */
-  .c2-panel__play{opacity:0;transform:translate(-50%,-50%) scale(.86);pointer-events:none}
-  .c2-panel:hover .c2-panel__play,
-  .c2-panel:focus-within .c2-panel__play{opacity:1;transform:translate(-50%,-50%);pointer-events:auto}
-  .c2-panel:hover .c2-panel__play:hover{transform:translate(-50%,-50%) scale(1.08)}
-}
-/* Touch: no hover, keep a subtle tap target so the video stays openable. */
-@media (hover:none){
-  .c2-panel__play{opacity:0}
-}
-/* explicit "Watch on YouTube" chip — original link stays reachable (click → youtube.com) */
-.c2-panel__yt{
-  position:absolute;top:1rem;right:1rem;z-index:3;
-  display:inline-flex;align-items:center;gap:.4rem;
-  padding:.5em .85em;border-radius:100px;
-  background:rgba(8,8,10,.72);border:1px solid rgba(255,255,255,.22);
-  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
-  font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--bone);transition:background .25s,border-color .25s,color .25s;
-}
-.c2-panel__yt svg{width:15px;height:15px;color:var(--candy-red)}
-.c2-panel__yt:hover{background:#0a0a0f;border-color:var(--candy-red);color:#fff}
-.c2-panel.is-playing .c2-panel__yt{display:none}
 .c2-panel__meta{
   position:absolute;left:0;bottom:0;z-index:2;width:100%;
   display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;padding:1.3rem 1.5rem;
@@ -559,7 +523,6 @@
 .c2-panel__note{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--candy-cyan)}
 .c2-panel__idx{font-family:var(--mono);font-size:.78rem;color:var(--bone-dim);margin-top:1rem;letter-spacing:.08em}
 .c2-panel__media iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:5}
-.c2-panel.is-playing .c2-panel__play,
 .c2-panel.is-playing .c2-panel__meta,
 .c2-panel.is-playing .c2-panel__media::after{display:none}
 .c2-work__actions{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:1.5rem}
@@ -567,12 +530,6 @@
 .c2-work__actions .btn{font-size:.8rem}
 
 .c2-work__progress{display:none}
-
-@keyframes mwvPreviewDrift{
-  0%{transform:scale(1.08) translate3d(-3.8%, -2.4%, 0)}
-  50%{transform:scale(1.145) translate3d(3.4%, 2.2%, 0)}
-  100%{transform:scale(1.105) translate3d(-1.2%, 3.6%, 0)}
-}
 
 /* ════════════════════════════════════════════════════════════════
    MODULE 4 (+ label showcase) · ROSTER + APPLY

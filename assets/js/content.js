@@ -30,12 +30,12 @@ window.MUSEWAV = {
   // Real catalog — YouTube @MUSEWAV_INC. Titles are the real release names.
   // Silent autoplay preview clips built by assets/make-video-previews.sh.
   videos: [
-    { id: "IbEKqjRCjxc", title: "Contagious", note: "Selected Work" },
-    { id: "Ow8O87Xv5HM", title: "Exposing Me", note: "Memo 600" },
-    { id: "Xt3TSxI8Uwg", title: "No Friend Zone", note: "MUSE WAV" },
+    { id: "EAQoqQFEvX4", title: "跨时区航班", note: "Selected Work" },
     { id: "cgPTnWgzO9M", title: "过客", note: "MUSE WAV" },
-    { id: "k0utfYxGPpM", title: "3a.M. in the Morning", note: "MUSE WAV" },
-    { id: "xXxMosop68E", title: "时间电台", note: "MUSE WAV" }
+    { id: "dQvXAutyGU8", title: "I Don't Really Want No Love", note: "MUSE WAV" },
+    { id: "JjcA5fY5Ucw", title: "Fly Away", note: "MUSE WAV" },
+    { id: "Vxuz0sVf_ZY", title: "No One but You", note: "MUSE WAV" },
+    { id: "uqYpHJODPP8", title: "What's Wrong with That", note: "MUSE WAV" }
   ],
 
   studioRates: [
