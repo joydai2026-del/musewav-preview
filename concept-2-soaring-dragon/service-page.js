@@ -47,6 +47,14 @@
     if (slug === "customized-beats") return "Choose Beat Session";
     return "Book Free Consultation";
   }
+  function endBookingHref(slug) {
+    if (slug === "recording-studio") return "../book-session.html";
+    return bookHref(slug);
+  }
+  function endBookingButtonLabel(slug) {
+    if (slug === "recording-studio") return "Book Now";
+    return bookingButtonLabel(slug);
+  }
   function rateHref(rate) {
     var service = rate.bookingKey ? bookingConfig(rate.bookingKey) : null;
     if (service && service.scheduleUrl) return service.scheduleUrl;
@@ -106,9 +114,9 @@
   if (cta) externalLink(cta, bookHref(slug));
   var endCta = $(".c2-service-cta__actions .btn");
   if (endCta) {
-    externalLink(endCta, bookHref(slug));
+    externalLink(endCta, endBookingHref(slug));
     var endText = endCta.querySelector("span");
-    if (endText) endText.textContent = bookingButtonLabel(slug);
+    if (endText) endText.textContent = endBookingButtonLabel(slug);
   }
 
   (function heroVideo() {
@@ -310,12 +318,6 @@
       card.appendChild(el("h3", "c2-rate-card__label", esc(rate.label)));
       card.appendChild(el("p", "c2-rate-card__price", esc(rate.price)));
       card.appendChild(el("p", "c2-rate-card__note", esc(rate.note)));
-      if (rate.bookingKey && M.bookingLinks) {
-        card.appendChild(el("p", "c2-rate-card__policy", esc(M.bookingLinks.paymentDeadline || "")));
-        card.appendChild(el("p", "c2-rate-card__policy", esc(M.bookingLinks.cancellationPolicy || "")));
-      } else if (rate.consultation && M.bookingLinks) {
-        card.appendChild(el("p", "c2-rate-card__policy", esc(M.bookingLinks.freeConsultationNote || "")));
-      }
       var href = rateHref(rate);
       if (href) {
         var link = el("a", "c2-rate-card__cta", esc(rate.cta || "Book Now"));
@@ -324,6 +326,17 @@
       }
       grid.appendChild(card);
     });
+  }
+
+  function renderRatePolicy(grid) {
+    if (!M.bookingLinks) return;
+    var section = grid.closest(".c2-service-section");
+    var head = section && section.querySelector(".c2-service-head");
+    if (!head || section.querySelector(".c2-rate-policy-note")) return;
+    var note = el("div", "c2-rate-policy-note");
+    note.appendChild(el("p", null, '<strong>Paid bookings:</strong> ' + esc(M.bookingLinks.paymentDeadline || "") + " " + esc(M.bookingLinks.cancellationPolicy || "")));
+    note.appendChild(el("p", null, '<strong>Consultation:</strong> ' + esc(M.bookingLinks.freeConsultationNote || "")));
+    head.insertAdjacentElement("afterend", note);
   }
 
   (function visual() {
@@ -366,6 +379,7 @@
     setHead(grid, page.factsHeading || "Service details", page.factsIntro || "");
     if (page.factsType === "rates") {
       grid.className = "c2-rate-grid";
+      renderRatePolicy(grid);
       renderRates(grid);
       return;
     }
