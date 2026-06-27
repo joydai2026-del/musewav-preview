@@ -367,10 +367,24 @@
 .c2-book-hero{min-height:68svh}
 .c2-book-hero .c2-simple-hero__copy h1{font-size:clamp(3rem,5.8vw,5.25rem);max-width:16ch}
 .c2-book-paid-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(.9rem,1.6vw,1.25rem)}
-.c2-book-service-note{display:grid;gap:.55rem;max-width:62ch}
+.c2-book-service-note{display:grid;gap:.9rem;max-width:64ch}
 .c2-book-service-note p{margin:0;color:#f0e9df;line-height:1.58;font-size:clamp(1rem,1.25vw,1.16rem)}
-.c2-book-service-note p:last-child{font-family:var(--mono);font-size:.72rem;letter-spacing:.035em;color:#d7cec4}
 .c2-book-service-note strong{color:var(--candy-yellow)}
+.c2-book-flow{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.55rem;margin:0;padding:0;list-style:none;
+}
+.c2-book-flow li{
+  display:flex;align-items:center;gap:.55rem;min-height:42px;border:1px solid rgba(244,239,233,.16);
+  border-radius:999px;padding:.55rem .78rem;color:#f7f0e8;background:rgba(255,255,255,.04);
+  font-family:var(--mono);font-size:.76rem;letter-spacing:.04em;text-transform:uppercase;
+}
+.c2-book-flow li:not(:last-child)::after{
+  content:"→";margin-left:.08rem;color:var(--candy-yellow);font-size:.9rem;line-height:1;
+}
+.c2-book-flow span{
+  display:grid;place-items:center;width:1.72rem;height:1.72rem;border-radius:50%;
+  color:#0a0a0f;background:var(--grad-candy);font-weight:700;letter-spacing:0;
+}
 .c2-book-service-card{
   min-height:300px;border:1px solid var(--line);border-radius:22px;padding:clamp(1.15rem,2vw,1.55rem);
   background:
