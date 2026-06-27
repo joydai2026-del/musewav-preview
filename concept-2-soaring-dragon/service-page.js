@@ -32,6 +32,34 @@
   }
   function serviceHref(slug) { return slug + ".html"; }
   function ytWatch(id) { return M.ytWatch ? M.ytWatch(id) : "https://www.youtube.com/watch?v=" + id; }
+  function bookingConfig(key) {
+    var links = M.bookingLinks || {};
+    var services = links.services || {};
+    return services[key] || null;
+  }
+  function bookHref(slug) {
+    var service = bookingConfig(slug);
+    if (service && service.scheduleUrl) return service.scheduleUrl;
+    return (M.bookingLinks && M.bookingLinks.consultation) || "../book-session.html?service=" + encodeURIComponent(slug);
+  }
+  function bookingButtonLabel(slug) {
+    if (slug === "recording-studio") return "Choose Studio Time";
+    if (slug === "customized-beats") return "Choose Beat Session";
+    return "Book Free Consultation";
+  }
+  function rateHref(rate) {
+    var service = rate.bookingKey ? bookingConfig(rate.bookingKey) : null;
+    if (service && service.scheduleUrl) return service.scheduleUrl;
+    if (rate.consultation) return (M.bookingLinks && M.bookingLinks.consultation) || "../book-session.html";
+    return "";
+  }
+  function externalLink(a, href) {
+    a.href = href;
+    if (/^https?:\/\//.test(href)) {
+      a.target = "_blank";
+      a.rel = "noopener";
+    }
+  }
   function setHead(wrap, heading, intro) {
     if (!wrap) return;
     var section = wrap.closest(".c2-service-section");
@@ -75,12 +103,12 @@
   text("[data-service-copy]", page.heroCopy);
   text("[data-service-cta]", page.cta);
   var cta = $("[data-service-cta]");
-  if (cta) cta.href = "../book-session.html?service=" + encodeURIComponent(slug);
+  if (cta) externalLink(cta, bookHref(slug));
   var endCta = $(".c2-service-cta__actions .btn");
   if (endCta) {
-    endCta.href = "../book-session.html?service=" + encodeURIComponent(slug);
+    externalLink(endCta, bookHref(slug));
     var endText = endCta.querySelector("span");
-    if (endText) endText.textContent = "Book This Service Now";
+    if (endText) endText.textContent = bookingButtonLabel(slug);
   }
 
   (function heroVideo() {
@@ -117,7 +145,7 @@
     switcher.appendChild(menu);
     links.appendChild(switcher);
     var book = el("a", "c2-service-nav__book", "Book");
-    book.href = "../book-session.html?service=" + encodeURIComponent(slug);
+    externalLink(book, bookHref(slug));
     links.appendChild(book);
   })();
 
@@ -282,6 +310,18 @@
       card.appendChild(el("h3", "c2-rate-card__label", esc(rate.label)));
       card.appendChild(el("p", "c2-rate-card__price", esc(rate.price)));
       card.appendChild(el("p", "c2-rate-card__note", esc(rate.note)));
+      if (rate.bookingKey && M.bookingLinks) {
+        card.appendChild(el("p", "c2-rate-card__policy", esc(M.bookingLinks.paymentDeadline || "")));
+        card.appendChild(el("p", "c2-rate-card__policy", esc(M.bookingLinks.cancellationPolicy || "")));
+      } else if (rate.consultation && M.bookingLinks) {
+        card.appendChild(el("p", "c2-rate-card__policy", esc(M.bookingLinks.freeConsultationNote || "")));
+      }
+      var href = rateHref(rate);
+      if (href) {
+        var link = el("a", "c2-rate-card__cta", esc(rate.cta || "Book Now"));
+        externalLink(link, href);
+        card.appendChild(link);
+      }
       grid.appendChild(card);
     });
   }

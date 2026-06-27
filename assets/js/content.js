@@ -8,6 +8,47 @@ window.MUSEWAV = {
   mission: "The MUSE WAV RED Series is committed to promoting the best artists and their works through high-quality music video production and social media platform operations.",
   community: "MUSE WAV Community is the way to meet up the music talented from all over the world, sharing resources to make everyone in the community get a better deal.",
   trackCredit: "By Sir Wolfsbane & Jjeramii",
+  bookingLinks: {
+    consultation: "https://cal.com/muse-wav-consulting/15min",
+    tally: "https://tally.so/r/kdpNPr",
+    paymentDeadline: "Payment is required to confirm paid bookings. Please complete payment after choosing your appointment slot.",
+    cancellationPolicy: "If payment is not completed at least 24 hours before the appointment time, the appointment may be canceled and released.",
+    freeConsultationNote: "Free consultation. No payment is required to book the call.",
+    services: {
+      "recording-studio": {
+        title: "Recording Studio Session",
+        price: "$95 deposit",
+        description: "Reserve an in-person studio session. The deposit holds the room and is credited toward the final session total.",
+        scheduleUrl: "https://calendar.app.google/a3fsJmzL13XSGfNY6",
+        paymentUrl: "https://buy.stripe.com/7sYfZb6oo55EeTPfJY43S05",
+        paymentMode: "Deposit"
+      },
+      "music-mixing": {
+        title: "Music Mixing Session",
+        price: "$295 / song",
+        description: "Book a project mixing session for up to 35 tracks.",
+        scheduleUrl: "https://calendar.app.google/9QtRPV4xKd6A61wa8",
+        paymentUrl: "https://buy.stripe.com/bJeaER6oocy69zv0P443S03",
+        paymentMode: "Full payment"
+      },
+      "music-mastering": {
+        title: "Music Mastering Session",
+        price: "$145 / song",
+        description: "Book final polish and delivery preparation for a release-ready track.",
+        scheduleUrl: "https://calendar.app.google/CecRCKLqUZdhbfw19",
+        paymentUrl: "https://buy.stripe.com/6oU28l9AA1Ts5jffJY43S01",
+        paymentMode: "Full payment"
+      },
+      "customized-beats": {
+        title: "Customized Beats Booking Session",
+        price: "$295",
+        description: "Book custom beat production around the artist direction, references, and release plan.",
+        scheduleUrl: "https://calendar.app.google/s23qxLyzsxqnYA9o7",
+        paymentUrl: "https://buy.stripe.com/6oU14h9AA1Ts6njgO243S02",
+        paymentMode: "Full payment"
+      }
+    }
+  },
 
   nav: [
     { label: "Work", href: "#work" },
@@ -51,12 +92,10 @@ window.MUSEWAV = {
   ],
 
   studioRates: [
-    { label: "Recording Session", price: "$95/hour", note: "Studio room and recording support." },
-    { label: "Project Mixing", price: "$295/song", note: "Up to 35 tracks included." },
-    { label: "Project Mastering", price: "$145/song", note: "Final polish for release delivery." },
-    { label: "Beats Production / Arrangement", price: "From $250", note: "Custom production and arrangement." },
-    { label: "Writing Camp", price: "$105/hour", note: "Room and creative session support." },
-    { label: "Custom Project", price: "Quote", note: "Scoped after intake." }
+    { label: "Recording Session", price: "$95 deposit", note: "In-person studio room and recording support.", bookingKey: "recording-studio", cta: "Choose Time" },
+    { label: "Project Mixing", price: "$295/song", note: "Up to 35 tracks included.", bookingKey: "music-mixing", cta: "Choose Time" },
+    { label: "Project Mastering", price: "$145/song", note: "Final polish for release delivery.", bookingKey: "music-mastering", cta: "Choose Time" },
+    { label: "Custom Project", price: "Quote", note: "Scoped through a free consultation first.", consultation: true, cta: "Free Consultation" }
   ],
 
   studioEquipment: [
@@ -117,7 +156,7 @@ window.MUSEWAV = {
       title: "Recording Studio",
       eyebrow: "01 · Recording Studio",
       heroCopy: "Professional recording, mixing, and creative sessions in New York City.",
-      cta: "Book Your Session",
+      cta: "Choose Studio Time",
       visualType: "gallery",
       visualHeading: "Studio rooms and gear",
       visualIntro: "A closer look at the lounge, control room, vocal chain, interface rack, production desk, and recording gear artists use during a session.",
@@ -144,7 +183,7 @@ window.MUSEWAV = {
       title: "Music Video Production",
       eyebrow: "02 · Music Video Production",
       heroCopy: "From concept to final cut, MUSE WAV builds visuals that move with the record.",
-      cta: "Get a Video Quote",
+      cta: "Book Free Consultation",
       visualType: "video-grid",
       visualHeading: "Music video reel",
       visualIntro: "Selected videos from the MUSE WAV catalog. Captions link to the full videos.",
@@ -161,7 +200,7 @@ window.MUSEWAV = {
       title: "Customized Beats",
       eyebrow: "03 · Customized Beats",
       heroCopy: "Original beats and custom production tailored to your sound.",
-      cta: "Request a Custom Beat",
+      cta: "Choose Beat Session",
       visualType: "audio",
       visualHeading: "Listen to beat previews",
       visualIntro: "Short beat previews visitors can play before requesting custom production around their voice, genre, and release direction.",
@@ -178,7 +217,7 @@ window.MUSEWAV = {
       title: "Artist Development",
       eyebrow: "04 · Artist Development",
       heroCopy: "Build the sound, visuals, strategy, and release path around the artist.",
-      cta: "Apply to Work With Us",
+      cta: "Book Free Consultation",
       visualType: "roster",
       visualHeading: "Artist and producer roster",
       visualIntro: "A working roster view for artists, producers, and collaborators connected to the MUSE WAV development path.",
@@ -195,7 +234,7 @@ window.MUSEWAV = {
       title: "Music Tour Service",
       eyebrow: "05 · Music Tour Service",
       heroCopy: "Live performance, event production, and artist booking support for shows, showcases, and music events.",
-      cta: "Plan a Show",
+      cta: "Book Free Consultation",
       visualType: "gallery",
       visualHeading: "Shows and live moments",
       visualIntro: "Live shows, performance moments, event posters, and recap assets for showcases, bookings, and artist appearances.",
@@ -226,7 +265,7 @@ window.MUSEWAV = {
       title: "Marketing Agency",
       eyebrow: "06 · Marketing Agency",
       heroCopy: "Cross-market music promotion for artists moving between China and the global market.",
-      cta: "Start a Campaign",
+      cta: "Book Free Consultation",
       visualType: "strategy",
       visualHeading: "Cross-market campaign map",
       visualIntro: "The page should show how promotion actually moves through platforms, languages, content, and reporting.",
@@ -243,7 +282,7 @@ window.MUSEWAV = {
       title: "Music Publishing",
       eyebrow: "07 · Music Publishing",
       heroCopy: "Publishing support for songs, albums, rights, and release strategy.",
-      cta: "Discuss Publishing",
+      cta: "Book Free Consultation",
       visualType: "path",
       visualHeading: "Publishing path",
       visualIntro: "What happens to a song after the recording is ready: rights, splits, collection, licensing, and release support.",
