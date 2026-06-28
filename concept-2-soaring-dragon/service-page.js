@@ -40,6 +40,7 @@
   function bookHref(slug) {
     var service = bookingConfig(slug);
     if (service && service.scheduleUrl) return service.scheduleUrl;
+    if (slug === "music-video-production") return "../book-session.html?service=music-video-production";
     return (M.bookingLinks && M.bookingLinks.consultation) || "../book-session.html?service=" + encodeURIComponent(slug);
   }
   function bookingButtonLabel(slug) {
@@ -198,10 +199,23 @@
   }
 
   function renderAudio(wrap) {
+    var producerProfiles = {
+      "cashnova": "cashnova",
+      "maxhunnid": "maxhunnid",
+      "prodnomii": "prodnomii"
+    };
     (M.beatPreviews || []).forEach(function (item) {
       var card = el("article", "c2-audio-card");
       var top = el("div", "c2-audio-card__top");
-      card.appendChild(el("p", "c2-audio-card__meta", esc(item.producer)));
+      var producerKey = String(item.producer || "").toLowerCase();
+      var producerSlug = producerProfiles[producerKey];
+      if (producerSlug) {
+        var producerLink = el("a", "c2-audio-card__meta c2-audio-card__meta--link", esc(item.producer));
+        producerLink.href = "../artists/" + producerSlug + ".html";
+        card.appendChild(producerLink);
+      } else {
+        card.appendChild(el("p", "c2-audio-card__meta", esc(item.producer)));
+      }
       card.appendChild(el("h3", "c2-audio-card__title", esc(item.title)));
       card.appendChild(el("p", "c2-audio-card__tags", esc(item.tags)));
       var audio = el("audio");

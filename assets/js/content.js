@@ -75,8 +75,8 @@ window.MUSEWAV = {
     { id: "KziYnIym0gc", title: "Bag Boy - TIMES", note: "Hummingbird Session" },
     { id: "F8XMnfVN05Q", title: "NBTALENTED - I KNOW", note: "Hummingbird Session" },
     { id: "N5WkI0KLTKk", title: "MATT OX", note: "Hummingbird Session" },
-    { id: "c3NxVZhtQPE", title: "Sabrina - Love like me", note: "Hummingbird Session" },
-    { id: "yPbOOClDlwQ", title: "MAJIN XUAN - FACE OF FLUSHING", note: "Hummingbird Session" }
+    { id: "MNyS8DWlFVs", title: "Jessie - Not ur Babe", note: "Hummingbird Session" },
+    { id: "79h9OxG4Ux0", title: "Nosun", note: "Hummingbird Session" }
   ],
 
   serviceVideos: [
@@ -296,7 +296,7 @@ window.MUSEWAV = {
       visualHeading: "Listen to beat previews",
       visualIntro: "Short beat previews visitors can play before requesting custom production around their voice, genre, and release direction.",
       factsHeading: "Producer network",
-      factsIntro: "A practical way to show sound, producer identity, and request flow without exposing full source files.",
+      factsIntro: "Preview producer styles, then book a custom session around the artist's voice, references, and release direction.",
       sections: [
         { title: "Listen to Samples", body: "Preview production styles from the MUSE WAV producer network, then request a beat built around your voice and direction." },
         { title: "Producer Credits", body: "Work with producers who understand the sound, references, and release goals behind each project." },
@@ -403,7 +403,7 @@ window.MUSEWAV = {
 
   socials: [
     { label: "Instagram", short: "IG", href: "https://www.instagram.com/musewav/" },
-    { label: "YouTube", short: "YT", href: "https://www.youtube.com/@MUSEWAV_INC" },
+    { label: "YouTube", short: "YT", href: "https://www.youtube.com/@MUSEWAVCollective/videos" },
     { label: "Facebook", short: "FB", href: "https://www.facebook.com/profile.php?id=100093280189343" }
   ],
 

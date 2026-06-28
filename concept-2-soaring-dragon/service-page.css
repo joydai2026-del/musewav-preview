@@ -152,6 +152,8 @@
 .c2-audio-card__meta,.c2-roster-card__role,.c2-strategy-card__n,.c2-path-card__step{
   font-family:var(--mono);font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;color:var(--candy-cyan);
 }
+.c2-audio-card__meta--link{display:inline-flex;width:max-content;text-decoration:none;transition:color .25s var(--ease),transform .25s var(--ease)}
+.c2-audio-card__meta--link:hover{color:var(--candy-yellow);transform:translateX(3px)}
 .c2-audio-card__title,.c2-roster-card__name,.c2-strategy-card__title,.c2-path-card__title{
   margin:0;font-family:var(--display);font-size:clamp(1.25rem,2.2vw,1.9rem);line-height:1;text-transform:uppercase;
 }
@@ -372,6 +374,7 @@
 .c2-book-talk .c2-book-form .c2-book-page__actions{margin-top:1.25rem}
 .c2-book-hero{min-height:68svh}
 .c2-book-hero .c2-simple-hero__copy h1{font-size:clamp(3rem,5.8vw,5.25rem);max-width:16ch}
+.c2-book-hero .c2-simple-hero__copy>p{color:#f0e9df;text-shadow:0 1px 18px rgba(0,0,0,.42)}
 .c2-book-paid-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(.9rem,1.6vw,1.25rem)}
 .c2-book-service-note{display:grid;gap:.9rem;max-width:64ch}
 .c2-book-service-note p{margin:0;color:#f0e9df;line-height:1.58;font-size:clamp(1rem,1.25vw,1.16rem)}

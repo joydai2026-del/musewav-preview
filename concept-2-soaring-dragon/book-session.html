@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;500;600&family=Pirata+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/tokens.css?v=27">
-  <link rel="stylesheet" href="../assets/css/video.css?v=27">
-  <link rel="stylesheet" href="concept.css?v=27">
-  <link rel="stylesheet" href="service-page.css?v=27">
+  <link rel="stylesheet" href="../assets/css/tokens.css?v=28">
+  <link rel="stylesheet" href="../assets/css/video.css?v=28">
+  <link rel="stylesheet" href="concept.css?v=28">
+  <link rel="stylesheet" href="service-page.css?v=28">
 </head>
 <body class="c2 c2-service-page">
   <div class="mw-preloader c2-preloader"><div class="c2-preloader__inner"><img class="mw-preloader__mark c2-preloader__badge" src="./badge-candy.png" alt=""><p class="c2-preloader__word">muse wav</p></div></div>
@@ -23,16 +23,16 @@
   <main>
     <section class="c2-simple-hero c2-book-hero">
       <div class="container c2-simple-hero__copy">
-        <p class="kicker kicker--candy" data-reveal>Book Your Session</p>
-        <h1 class="display-xl c2-line-stack reveal" data-skew>
+        <p class="kicker kicker--candy" data-reveal data-book-hero-kicker>Book Your Session</p>
+        <h1 class="display-xl c2-line-stack reveal" data-skew data-book-hero-title>
           <span>Choose a service.</span>
           <span>Pick a live slot.</span>
           <span>Complete payment.</span>
         </h1>
-        <p data-reveal>Paid services use MUSE WAV appointment calendars and are confirmed after payment. Custom projects start with a free consultation so the team can route the next step.</p>
+        <p data-reveal data-book-hero-copy>Paid services use MUSE WAV appointment calendars and are confirmed after payment. Custom projects start with a free consultation so the team can route the next step.</p>
       </div>
     </section>
-    <section class="c2-service-section c2-service-section--surface">
+    <section class="c2-service-section c2-service-section--surface" data-paid-booking-section>
       <div class="container">
         <div class="c2-service-head" data-reveal>
           <div>
@@ -54,15 +54,15 @@
     <section class="c2-service-section c2-book-talk">
       <div class="container c2-book-consult-grid">
         <div class="c2-book-talk__copy" data-reveal>
-          <p class="kicker kicker--candy">Not sure yet?</p>
-          <h2>Start with a consultation.</h2>
-          <p>For music videos, artist development, tour support, marketing, publishing, or custom projects, book a free 15-minute call and tell MUSE WAV what you want to make.</p>
+          <p class="kicker kicker--candy" data-consult-kicker>Not sure yet?</p>
+          <h2 data-consult-title>Start with a consultation.</h2>
+          <p data-consult-copy>For music videos, artist development, tour support, marketing, publishing, or custom projects, book a free 15-minute call and tell MUSE WAV what you want to make.</p>
         </div>
         <a class="c2-book-consult-card" href="#" target="_blank" rel="noopener" data-consult-link data-reveal>
-          <span>Free consultation</span>
-          <strong>Talk to us first.</strong>
-          <p>Choose a call time, add project notes, and get a response with the best next step. No payment is required for the consultation call.</p>
-          <b>Book consultation</b>
+          <span data-consult-card-kicker>Free consultation</span>
+          <strong data-consult-card-title>Talk to us first.</strong>
+          <p data-consult-card-copy>Choose a call time, add project notes, and get a response with the best next step. No payment is required for the consultation call.</p>
+          <b data-consult-card-action>Book consultation</b>
         </a>
       </div>
     </section>
@@ -71,9 +71,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
-  <script src="../assets/js/content.js?v=27"></script>
-  <script src="../assets/js/motion.js?v=27"></script>
-  <script src="site-footer.js?v=27"></script>
+  <script src="../assets/js/content.js?v=28"></script>
+  <script src="../assets/js/motion.js?v=28"></script>
+  <script src="site-footer.js?v=28"></script>
   <script>
     window.addEventListener("load", function () {
       var M = window.MUSEWAV || {};
@@ -81,6 +81,20 @@
       var services = links.services || {};
       var order = ["recording-studio", "customized-beats", "music-mixing", "music-mastering"];
       var selected = new URLSearchParams(window.location.search).get("service");
+      var consultOnly = {
+        "music-video-production": {
+          kicker: "Book a Video",
+          title: ["Plan the video.", "Shape the shoot.", "Build the release."],
+          copy: "Book a free music video consultation. Bring the song, references, rough idea, timeline, and budget range so MUSE WAV can recommend the right next step.",
+          consultKicker: "Music video consultation",
+          consultTitle: "Book the visual call.",
+          consultCopy: "This page is only for music video and visual production inquiries. It will not show recording, mixing, mastering, or beat-session booking cards.",
+          cardKicker: "Free video consultation",
+          cardTitle: "Talk through the video.",
+          cardCopy: "Choose a call time, share the song and visual references, and MUSE WAV will follow up with a production path. No payment is required for the consultation call.",
+          action: "Book video consultation"
+        }
+      };
       if (selected && services[selected]) {
         order = [selected].concat(order.filter(function (key) { return key !== selected; }));
       }
@@ -90,6 +104,32 @@
         });
       }
       var grid = document.querySelector("[data-booking-services]");
+      if (selected && consultOnly[selected]) {
+        var mode = consultOnly[selected];
+        document.body.classList.add("is-consult-only");
+        var paid = document.querySelector("[data-paid-booking-section]");
+        if (paid) paid.hidden = true;
+        var heroKicker = document.querySelector("[data-book-hero-kicker]");
+        var heroTitle = document.querySelector("[data-book-hero-title]");
+        var heroCopy = document.querySelector("[data-book-hero-copy]");
+        if (heroKicker) heroKicker.textContent = mode.kicker;
+        if (heroTitle) heroTitle.innerHTML = mode.title.map(function (line) { return "<span>" + esc(line) + "</span>"; }).join("");
+        if (heroCopy) heroCopy.textContent = mode.copy;
+        var consultKicker = document.querySelector("[data-consult-kicker]");
+        var consultTitle = document.querySelector("[data-consult-title]");
+        var consultCopy = document.querySelector("[data-consult-copy]");
+        var cardKicker = document.querySelector("[data-consult-card-kicker]");
+        var cardTitle = document.querySelector("[data-consult-card-title]");
+        var cardCopy = document.querySelector("[data-consult-card-copy]");
+        var cardAction = document.querySelector("[data-consult-card-action]");
+        if (consultKicker) consultKicker.textContent = mode.consultKicker;
+        if (consultTitle) consultTitle.textContent = mode.consultTitle;
+        if (consultCopy) consultCopy.textContent = mode.consultCopy;
+        if (cardKicker) cardKicker.textContent = mode.cardKicker;
+        if (cardTitle) cardTitle.textContent = mode.cardTitle;
+        if (cardCopy) cardCopy.textContent = mode.cardCopy;
+        if (cardAction) cardAction.textContent = mode.action;
+      }
       if (grid) {
         grid.innerHTML = order.map(function (key) {
           var item = services[key];
