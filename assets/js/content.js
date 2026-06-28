@@ -112,7 +112,10 @@ window.MUSEWAV = {
     { producer: "CashNova", title: "Fallen Alien", src: "../../assets/phil-2026-06-26/beats/cashnova-fallen-alien.mp3", tags: "Atmospheric · 35s preview" },
     { producer: "maxhunnid", title: "Miami", src: "../../assets/phil-2026-06-26/beats/maxhunnid-miami-100bpm.mp3", tags: "100 BPM · 35s preview" },
     { producer: "maxhunnid", title: "CXDY", src: "../../assets/phil-2026-06-26/beats/maxhunnid-cxdy-134bpm.mp3", tags: "134 BPM · 35s preview" },
-    { producer: "ProdNomii", title: "Hahn", src: "../../assets/phil-2026-06-26/beats/prodnomii-hahn-140bpm-fminor.mp3", tags: "140 BPM · F minor · 35s preview" }
+    { producer: "maxhunnid", title: "Orange Bottle", src: "../../assets/phil-2026-06-26/beats/maxhunnid-orange-bottle-134bpm.mp3", tags: "134 BPM · 35s preview" },
+    { producer: "ProdNomii", title: "Hahn", src: "../../assets/phil-2026-06-26/beats/prodnomii-hahn-140bpm-fminor.mp3", tags: "140 BPM · F minor · 35s preview" },
+    { producer: "ProdNomii", title: "Lov3 Hat3", src: "../../assets/phil-2026-06-26/beats/prodnomii-lov3-hat3-145bpm-amajor.mp3", tags: "145 BPM · A major · 35s preview" },
+    { producer: "ProdNomii", title: "Marc", src: "../../assets/phil-2026-06-26/beats/prodnomii-marc-150bpm-ebminor.mp3", tags: "150 BPM · Eb minor · 35s preview" }
   ],
 
   roster: [
@@ -136,7 +139,7 @@ window.MUSEWAV = {
       image: "../../assets/phil-2026-06-26/artist-development/acee-01.jpg",
       focus: "center 22%",
       headline: "R&B and hip-hop shaped by Chinese roots and contemporary Western sound.",
-      bio: "ACee moves between melodic R&B, hip-hop, and bilingual identity. The page gives listeners a fast path into the video, the Spotify profile, and the MUSE WAV development lane around the artist.",
+      bio: "ACee moves between melodic R&B, hip-hop, and bilingual identity, shaping a sound that connects Chinese roots with contemporary Western production.",
       tags: ["R&B", "Hip-hop", "Bilingual artist"],
       youtubeId: "lIWlua_1Pgw",
       youtubeUrl: "https://youtu.be/lIWlua_1Pgw?is=Aw_2tkL477jlBRJ2",
@@ -151,7 +154,7 @@ window.MUSEWAV = {
       image: "../../assets/phil-2026-06-26/artist-development/jeramia-jackson.jpg",
       focus: "center 16%",
       headline: "Melodic storytelling around love, growth, ambition, and real-life experience.",
-      bio: "JJeramii brings a songwriter's voice to melodic records, emotional hooks, and story-led visuals. The profile keeps the music video, Spotify updates, and booking path in one place.",
+      bio: "JJeramii brings a songwriter's voice to melodic records, emotional hooks, and story-led visuals rooted in love, growth, ambition, and lived experience.",
       tags: ["Songwriter", "Melodic rap", "R&B"],
       youtubeId: "5hwP0gbFeWY",
       youtubeUrl: "https://youtu.be/5hwP0gbFeWY?is=fJIX32ZgnjXSXfLS",
@@ -166,7 +169,7 @@ window.MUSEWAV = {
       image: "../../assets/phil-2026-06-26/artist-development/sir-wolfsbane.jpg",
       focus: "center top",
       headline: "Alternative, rebellious, werewolf-punk identity built across music, fashion, and culture.",
-      bio: "Sir WOLFSBANE is presented as a full visual identity, not only a single track. The page connects the MV preview, Spotify profile, and artist-development pathway.",
+      bio: "Sir WOLFSBANE builds an alternative visual world across music, fashion, performance, and culture.",
       tags: ["Alternative", "Visual identity", "Fashion culture"],
       youtubeId: "PcBKaynn5Rk",
       youtubeUrl: "https://youtu.be/PcBKaynn5Rk?is=-Wo8FNwT-voM8Sfo",
@@ -181,7 +184,7 @@ window.MUSEWAV = {
       image: "../../assets/phil-2026-06-26/artist-development/cashnova.jpg",
       focus: "center 24%",
       headline: "Multi-genre producer with 400+ tracks across R&B, hip-hop, pop, and brand sound.",
-      bio: "CashNova's page is built as a producer portfolio: playable previews, production identity, and a direct path to request a custom beat session.",
+      bio: "Multi-genre producer with 400+ tracks across R&B, hip-hop, pop, and brand sound.",
       tags: ["R&B", "Hip-hop", "400+ tracks"],
       youtubeId: "Ow8O87Xv5HM",
       youtubeUrl: "https://youtu.be/Ow8O87Xv5HM?is=B5OvpzRpCPwJMTng",
@@ -195,7 +198,7 @@ window.MUSEWAV = {
       image: "../../assets/phil-2026-06-26/artist-development/maxhunnid.jpg",
       focus: "center 18%",
       headline: "High-energy beat previews shaped for rap, melodic hooks, and artist writing sessions.",
-      bio: "maxhunnid's profile focuses on custom production and beat direction, with demos organized for fast listening before a booking conversation.",
+      bio: "Producer with high-energy beat previews shaped for rap, melodic hooks, and artist writing sessions.",
       tags: ["Rap", "Melodic hooks", "Custom beats"],
       beatProducer: "maxhunnid"
     },
@@ -206,7 +209,7 @@ window.MUSEWAV = {
       image: "../../assets/phil-2026-06-26/artist-development/prodnomii.jpg",
       focus: "center 18%",
       headline: "China and U.S.-based producer working across hip-hop, R&B, and everything in between.",
-      bio: "ProdNomii's profile is a production-forward page for beat previews, genre range, and custom beat booking.",
+      bio: "China and U.S.-based producer working across hip-hop, R&B, and everything in between.",
       tags: ["Hip-hop", "R&B", "China / U.S."],
       beatProducer: "ProdNomii"
     }

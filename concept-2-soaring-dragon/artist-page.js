@@ -80,6 +80,7 @@
   var profile = M.profiles && M.profiles[slug];
   if (!profile) return;
 
+  document.body.classList.add(profile.type === "Producer" ? "is-producer-profile" : "is-artist-profile");
   document.title = "MUSE WAV · " + profile.name;
   setText("[data-profile-type]", profile.type + " profile");
   setText("[data-profile-name]", profile.name);
@@ -112,7 +113,7 @@
 
   var spotify = $("[data-profile-spotify]");
   if (spotify && profile.spotifyId) {
-    spotify.innerHTML = '<h3>Latest on Spotify</h3><p>The embedded artist profile updates from Spotify as the artist catalog changes.</p>' +
+    spotify.innerHTML = '<h3>Spotify</h3>' +
       '<iframe title="' + esc(profile.name) + ' on Spotify" src="https://open.spotify.com/embed/artist/' + esc(profile.spotifyId) + '?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>' +
       '<a href="' + esc(profile.spotifyUrl) + '" target="_blank" rel="noopener">Open Spotify profile</a>';
   } else if (spotify) {
