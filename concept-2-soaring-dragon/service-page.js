@@ -140,6 +140,10 @@
     var all = el("a", "c2-service-nav__all", "Services");
     all.href = "../services.html";
     links.appendChild(all);
+    var roster = el("a", slug === "artist-development" ? "c2-service-nav__roster is-active" : "c2-service-nav__roster", "Roster");
+    roster.href = "artist-development.html";
+    if (slug === "artist-development") roster.setAttribute("aria-current", "page");
+    links.appendChild(roster);
     var switcher = el("details", "c2-service-nav__switcher");
     var summary = el("summary", null, esc(page.title) + '<span aria-hidden="true">⌄</span>');
     switcher.appendChild(summary);

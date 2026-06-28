@@ -66,6 +66,7 @@
     var conceptNav = [
       { label: "Home", href: "index.html" },
       { label: "Services", href: "services.html" },
+      { label: "Roster", href: "services/artist-development.html" },
       { label: "Work", href: "#work" },
       { label: "Studio", href: "#studio" },
       { label: "About", href: "#about" },
