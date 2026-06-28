@@ -251,7 +251,11 @@
 
   function renderRoster(wrap) {
     (M.roster || []).forEach(function (item) {
-      var card = el("article", "c2-roster-card");
+      var card = item.slug ? el("a", "c2-roster-card c2-roster-card--link") : el("article", "c2-roster-card");
+      if (item.slug) {
+        card.href = (M.profileUrl ? M.profileUrl(item.slug) : "../artists/" + item.slug + ".html");
+        card.setAttribute("aria-label", "Open " + item.name + " profile");
+      }
       var img = el("img");
       img.src = item.image;
       img.alt = item.name;
@@ -262,6 +266,7 @@
       card.appendChild(el("p", "c2-roster-card__role", esc(item.role)));
       card.appendChild(el("h3", "c2-roster-card__name", esc(item.name)));
       card.appendChild(el("p", "c2-roster-card__bio", esc(item.bio)));
+      if (item.slug) card.appendChild(el("span", "c2-roster-card__cta", "Open profile"));
       wrap.appendChild(card);
     });
   }

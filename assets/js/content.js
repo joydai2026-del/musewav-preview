@@ -116,13 +116,101 @@ window.MUSEWAV = {
   ],
 
   roster: [
-    { name: "ACee", role: "Artist", image: "../../assets/phil-2026-06-26/artist-development/acee-01.jpg", focus: "center 22%", bio: "R&B and hip-hop shaped by Chinese roots and contemporary Western sound." },
-    { name: "Jeramia Jackson", role: "Artist / Songwriter", image: "../../assets/phil-2026-06-26/artist-development/jeramia-jackson.jpg", focus: "center 16%", bio: "Melodic storytelling around love, growth, ambition, and real-life experience." },
-    { name: "Sir WOLFSBANE", role: "Artist / Model", image: "../../assets/phil-2026-06-26/artist-development/sir-wolfsbane.jpg", focus: "center top", bio: "Alternative, rebellious, werewolf-punk identity built across music, fashion, and culture." },
-    { name: "CashNova", role: "Producer", image: "../../assets/phil-2026-06-26/artist-development/cashnova.jpg", focus: "center 24%", bio: "Multi-genre producer with 400+ tracks across R&B, hip-hop, pop, and brand sound." },
-    { name: "maxhunnid", role: "Producer", image: "../../assets/phil-2026-06-26/artist-development/maxhunnid.jpg", focus: "center 18%", bio: "Producer with high-energy beat previews shaped for rap, melodic hooks, and artist writing sessions." },
-    { name: "ProdNomii", role: "Producer", image: "../../assets/phil-2026-06-26/artist-development/prodnomii.jpg", focus: "center 18%", bio: "China and U.S.-based producer working across hip-hop, R&B, and everything in between." }
+    { slug: "acee", name: "ACee", role: "Artist", image: "../../assets/phil-2026-06-26/artist-development/acee-01.jpg", focus: "center 22%", bio: "R&B and hip-hop shaped by Chinese roots and contemporary Western sound." },
+    { slug: "jjeramii", name: "JJeramii", role: "Artist / Songwriter", image: "../../assets/phil-2026-06-26/artist-development/jeramia-jackson.jpg", focus: "center 16%", bio: "Melodic storytelling around love, growth, ambition, and real-life experience." },
+    { slug: "sir-wolfsbane", name: "Sir WOLFSBANE", role: "Artist / Model", image: "../../assets/phil-2026-06-26/artist-development/sir-wolfsbane.jpg", focus: "center top", bio: "Alternative, rebellious, werewolf-punk identity built across music, fashion, and culture." },
+    { slug: "cashnova", name: "CashNova", role: "Producer", image: "../../assets/phil-2026-06-26/artist-development/cashnova.jpg", focus: "center 24%", bio: "Multi-genre producer with 400+ tracks across R&B, hip-hop, pop, and brand sound." },
+    { slug: "maxhunnid", name: "maxhunnid", role: "Producer", image: "../../assets/phil-2026-06-26/artist-development/maxhunnid.jpg", focus: "center 18%", bio: "Producer with high-energy beat previews shaped for rap, melodic hooks, and artist writing sessions." },
+    { slug: "prodnomii", name: "ProdNomii", role: "Producer", image: "../../assets/phil-2026-06-26/artist-development/prodnomii.jpg", focus: "center 18%", bio: "China and U.S.-based producer working across hip-hop, R&B, and everything in between." }
   ],
+
+  profileUrl: function (slug) {
+    return "../artists/" + slug + ".html";
+  },
+
+  profiles: {
+    "acee": {
+      name: "ACee",
+      type: "Artist",
+      role: "Artist",
+      image: "../../assets/phil-2026-06-26/artist-development/acee-01.jpg",
+      focus: "center 22%",
+      headline: "R&B and hip-hop shaped by Chinese roots and contemporary Western sound.",
+      bio: "ACee moves between melodic R&B, hip-hop, and bilingual identity. The page gives listeners a fast path into the video, the Spotify profile, and the MUSE WAV development lane around the artist.",
+      tags: ["R&B", "Hip-hop", "Bilingual artist"],
+      youtubeId: "lIWlua_1Pgw",
+      youtubeUrl: "https://youtu.be/lIWlua_1Pgw?is=Aw_2tkL477jlBRJ2",
+      spotifyId: "28PQ7NNObSiYRMtnBXKr7I",
+      spotifyUrl: "https://open.spotify.com/artist/28PQ7NNObSiYRMtnBXKr7I?si=gl7hMe0IRjCti20_jrOMMw",
+      mvTitle: "ACee - Uni"
+    },
+    "jjeramii": {
+      name: "JJeramii",
+      type: "Artist",
+      role: "Artist / Songwriter",
+      image: "../../assets/phil-2026-06-26/artist-development/jeramia-jackson.jpg",
+      focus: "center 16%",
+      headline: "Melodic storytelling around love, growth, ambition, and real-life experience.",
+      bio: "JJeramii brings a songwriter's voice to melodic records, emotional hooks, and story-led visuals. The profile keeps the music video, Spotify updates, and booking path in one place.",
+      tags: ["Songwriter", "Melodic rap", "R&B"],
+      youtubeId: "5hwP0gbFeWY",
+      youtubeUrl: "https://youtu.be/5hwP0gbFeWY?is=fJIX32ZgnjXSXfLS",
+      spotifyId: "5sDfT3lsBjF9oc3HRYIBfO",
+      spotifyUrl: "https://open.spotify.com/artist/5sDfT3lsBjF9oc3HRYIBfO?si=nHHqQCBRSk2KPcQsHp021A",
+      mvTitle: "JJeramii - Music Video"
+    },
+    "sir-wolfsbane": {
+      name: "Sir WOLFSBANE",
+      type: "Artist",
+      role: "Artist / Model",
+      image: "../../assets/phil-2026-06-26/artist-development/sir-wolfsbane.jpg",
+      focus: "center top",
+      headline: "Alternative, rebellious, werewolf-punk identity built across music, fashion, and culture.",
+      bio: "Sir WOLFSBANE is presented as a full visual identity, not only a single track. The page connects the MV preview, Spotify profile, and artist-development pathway.",
+      tags: ["Alternative", "Visual identity", "Fashion culture"],
+      youtubeId: "PcBKaynn5Rk",
+      youtubeUrl: "https://youtu.be/PcBKaynn5Rk?is=-Wo8FNwT-voM8Sfo",
+      spotifyId: "039SX4CUNwIX99XyFGhE7i",
+      spotifyUrl: "https://open.spotify.com/artist/039SX4CUNwIX99XyFGhE7i?si=So8u6lHhRECM6NaNoLsK6g",
+      mvTitle: "Sir WOLFSBANE - Music Video"
+    },
+    "cashnova": {
+      name: "CashNova",
+      type: "Producer",
+      role: "Producer",
+      image: "../../assets/phil-2026-06-26/artist-development/cashnova.jpg",
+      focus: "center 24%",
+      headline: "Multi-genre producer with 400+ tracks across R&B, hip-hop, pop, and brand sound.",
+      bio: "CashNova's page is built as a producer portfolio: playable previews, production identity, and a direct path to request a custom beat session.",
+      tags: ["R&B", "Hip-hop", "400+ tracks"],
+      youtubeId: "Ow8O87Xv5HM",
+      youtubeUrl: "https://youtu.be/Ow8O87Xv5HM?is=B5OvpzRpCPwJMTng",
+      mvTitle: "Exposing Me",
+      beatProducer: "CashNova"
+    },
+    "maxhunnid": {
+      name: "maxhunnid",
+      type: "Producer",
+      role: "Producer",
+      image: "../../assets/phil-2026-06-26/artist-development/maxhunnid.jpg",
+      focus: "center 18%",
+      headline: "High-energy beat previews shaped for rap, melodic hooks, and artist writing sessions.",
+      bio: "maxhunnid's profile focuses on custom production and beat direction, with demos organized for fast listening before a booking conversation.",
+      tags: ["Rap", "Melodic hooks", "Custom beats"],
+      beatProducer: "maxhunnid"
+    },
+    "prodnomii": {
+      name: "ProdNomii",
+      type: "Producer",
+      role: "Producer",
+      image: "../../assets/phil-2026-06-26/artist-development/prodnomii.jpg",
+      focus: "center 18%",
+      headline: "China and U.S.-based producer working across hip-hop, R&B, and everything in between.",
+      bio: "ProdNomii's profile is a production-forward page for beat previews, genre range, and custom beat booking.",
+      tags: ["Hip-hop", "R&B", "China / U.S."],
+      beatProducer: "ProdNomii"
+    }
+  },
 
   marketingLanes: [
     { icon: "US", title: "U.S. Release Lane", body: "Push the release through Instagram, YouTube, TikTok, creator clips, playlist angles, press outreach, and paid social tests.", channels: ["Instagram", "YouTube", "TikTok", "Playlists"] },

@@ -8,10 +8,10 @@
     });
   }
   function base() {
-    return location.pathname.indexOf("/services/") >= 0 ? "../" : "./";
+    return /\/(services|artists)\//.test(location.pathname) ? "../" : "./";
   }
   function assetBase() {
-    return location.pathname.indexOf("/services/") >= 0 ? "../../assets/" : "../assets/";
+    return /\/(services|artists)\//.test(location.pathname) ? "../../assets/" : "../assets/";
   }
   function socialIcon(label) {
     var key = String(label || "").toLowerCase();
