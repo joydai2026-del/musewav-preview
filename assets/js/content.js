@@ -9,7 +9,7 @@ window.MUSEWAV = {
   community: "MUSE WAV Community is the way to meet up the music talented from all over the world, sharing resources to make everyone in the community get a better deal.",
   trackCredit: "By Sir Wolfsbane & Jjeramii",
   bookingLinks: {
-    consultation: "https://cal.com/muse-wav-consulting/15min",
+    consultation: "https://calendly.com/musewav-info/muse-wav-consultation",
     tally: "https://tally.so/r/kdpNPr",
     paymentDeadline: "Payment is required to confirm paid bookings. Please complete payment after choosing your appointment slot.",
     cancellationPolicy: "If payment is not completed at least 24 hours before the appointment time, the appointment may be canceled and released.",
@@ -19,7 +19,7 @@ window.MUSEWAV = {
         title: "Recording Studio Session",
         price: "$95 deposit",
         description: "Reserve an in-person studio session. The deposit holds the room and is credited toward the final session total.",
-        scheduleUrl: "https://calendar.app.google/a3fsJmzL13XSGfNY6",
+        scheduleUrl: "https://calendly.com/musewav-info/recording-studio",
         paymentUrl: "https://buy.stripe.com/7sYfZb6oo55EeTPfJY43S05",
         paymentMode: "Deposit"
       },
@@ -27,7 +27,7 @@ window.MUSEWAV = {
         title: "Music Mixing Session",
         price: "$295 / song",
         description: "Book a project mixing session for up to 35 tracks.",
-        scheduleUrl: "https://calendar.app.google/9QtRPV4xKd6A61wa8",
+        scheduleUrl: "https://calendly.com/musewav-info/music-mixing-session-booking",
         paymentUrl: "https://buy.stripe.com/bJeaER6oocy69zv0P443S03",
         paymentMode: "Full payment"
       },
@@ -35,7 +35,7 @@ window.MUSEWAV = {
         title: "Music Mastering Session",
         price: "$145 / song",
         description: "Book final polish and delivery preparation for a release-ready track.",
-        scheduleUrl: "https://calendar.app.google/CecRCKLqUZdhbfw19",
+        scheduleUrl: "https://calendly.com/musewav-info/music-mastering-booking-session",
         paymentUrl: "https://buy.stripe.com/6oU28l9AA1Ts5jffJY43S01",
         paymentMode: "Full payment"
       },
@@ -43,7 +43,7 @@ window.MUSEWAV = {
         title: "Customized Beats Booking Session",
         price: "$295",
         description: "Book custom beat production around the artist direction, references, and release plan.",
-        scheduleUrl: "https://calendar.app.google/s23qxLyzsxqnYA9o7",
+        scheduleUrl: "https://calendly.com/musewav-info/customized-beats-booking-session",
         paymentUrl: "https://buy.stripe.com/6oU14h9AA1Ts6njgO243S02",
         paymentMode: "Full payment"
       }
