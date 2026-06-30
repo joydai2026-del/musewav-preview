@@ -137,11 +137,13 @@
 
   var primary = $("[data-profile-primary]");
   if (primary) {
+    var links = M.bookingLinks || {};
+    var services = links.services || {};
     if (profile.type === "Producer") {
-      external(primary, "../book-session.html?service=customized-beats");
+      external(primary, (services["customized-beats"] && services["customized-beats"].scheduleUrl) || "https://calendly.com/musewav-info/customized-beats-booking-session");
       primary.querySelector("span").textContent = "Book Custom Beats";
     } else {
-      external(primary, "../book-session.html");
+      external(primary, links.consultation || "https://calendly.com/musewav-info/muse-wav-consultation");
       primary.querySelector("span").textContent = "Book Artist Development";
     }
   }

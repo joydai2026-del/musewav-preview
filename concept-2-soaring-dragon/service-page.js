@@ -40,8 +40,7 @@
   function bookHref(slug) {
     var service = bookingConfig(slug);
     if (service && service.scheduleUrl) return service.scheduleUrl;
-    if (slug === "music-video-production") return "../book-session.html?service=music-video-production";
-    return (M.bookingLinks && M.bookingLinks.consultation) || "../book-session.html?service=" + encodeURIComponent(slug);
+    return (M.bookingLinks && M.bookingLinks.consultation) || "https://calendly.com/musewav-info/muse-wav-consultation";
   }
   function bookingButtonLabel(slug) {
     if (slug === "recording-studio") return "Choose Studio Time";
@@ -49,7 +48,6 @@
     return "Book Free Consultation";
   }
   function endBookingHref(slug) {
-    if (slug === "recording-studio") return "../book-session.html";
     return bookHref(slug);
   }
   function endBookingButtonLabel(slug) {
@@ -59,7 +57,7 @@
   function rateHref(rate) {
     var service = rate.bookingKey ? bookingConfig(rate.bookingKey) : null;
     if (service && service.scheduleUrl) return service.scheduleUrl;
-    if (rate.consultation) return (M.bookingLinks && M.bookingLinks.consultation) || "../book-session.html";
+    if (rate.consultation) return (M.bookingLinks && M.bookingLinks.consultation) || "https://calendly.com/musewav-info/muse-wav-consultation";
     return "";
   }
   function externalLink(a, href) {

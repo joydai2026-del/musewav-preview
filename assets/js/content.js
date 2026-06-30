@@ -279,7 +279,7 @@ window.MUSEWAV = {
       visualHeading: "Music video reel",
       visualIntro: "Selected videos from the MUSE WAV catalog. Captions link to the full videos.",
       factsHeading: "Production scope",
-      factsIntro: "What a video project can include before exact credits are confirmed.",
+      factsIntro: "What a video project can include before the final package is selected.",
       sections: [
         { title: "Selected Music Videos", body: "A showcase of music videos, RED Series work, and visual projects created with MUSE WAV artists and collaborators." },
         { title: "What We Handle", body: "Creative direction, filming, editing, performance footage, short-form cutdowns, and release-ready visuals for music campaigns." },
