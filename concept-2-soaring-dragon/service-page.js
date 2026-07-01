@@ -258,9 +258,9 @@
   function renderPending(wrap) {
     ["Project proof", "Case study", "Press and platform reach", "Campaign notes"].forEach(function (title) {
       var card = el("article", "c2-service-card c2-service-card--small c2-pending-card");
-      card.appendChild(el("p", "c2-pending-card__top", "Coming soon"));
+      card.appendChild(el("p", "c2-pending-card__top", "New work"));
       card.appendChild(el("h3", "c2-pending-card__title", title));
-      card.appendChild(el("p", "c2-pending-card__body", "More examples will be added as the project library grows."));
+      card.appendChild(el("p", "c2-pending-card__body", "More examples will be added as new releases and projects are ready to share."));
       wrap.appendChild(card);
     });
   }

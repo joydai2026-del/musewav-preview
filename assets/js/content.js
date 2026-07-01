@@ -1,4 +1,3 @@
-/* MUSE WAV — real content (from brand-research/brand-profile.md). REAL DATA ONLY. */
 window.MUSEWAV = {
   name: "MUSE WAV",
   group: "MUSE WAV MUSIC GROUP",
@@ -10,8 +9,7 @@ window.MUSEWAV = {
   trackCredit: "By Sir Wolfsbane & Jjeramii",
   bookingLinks: {
     consultation: "https://calendly.com/musewav-info/muse-wav-consultation",
-    tally: "https://tally.so/r/kdpNPr",
-    paymentDeadline: "Payment is required to confirm paid bookings. Please complete payment after choosing your appointment slot.",
+    paymentDeadline: "Payment confirms paid bookings. Please complete payment after choosing your appointment slot.",
     cancellationPolicy: "If payment is not completed at least 24 hours before the appointment time, the appointment may be canceled and released.",
     freeConsultationNote: "Free consultation. No payment is required to book the call.",
     services: {
@@ -20,7 +18,6 @@ window.MUSEWAV = {
         price: "$95 deposit",
         description: "Reserve an in-person studio session. The deposit holds the room and is credited toward the final session total.",
         scheduleUrl: "https://calendly.com/musewav-info/recording-studio",
-        paymentUrl: "https://buy.stripe.com/7sYfZb6oo55EeTPfJY43S05",
         paymentMode: "Deposit"
       },
       "music-mixing": {
@@ -28,7 +25,6 @@ window.MUSEWAV = {
         price: "$295 / song",
         description: "Book a project mixing session for up to 35 tracks.",
         scheduleUrl: "https://calendly.com/musewav-info/music-mixing-session-booking",
-        paymentUrl: "https://buy.stripe.com/bJeaER6oocy69zv0P443S03",
         paymentMode: "Full payment"
       },
       "music-mastering": {
@@ -36,15 +32,13 @@ window.MUSEWAV = {
         price: "$145 / song",
         description: "Book final polish and delivery preparation for a release-ready track.",
         scheduleUrl: "https://calendly.com/musewav-info/music-mastering-booking-session",
-        paymentUrl: "https://buy.stripe.com/6oU28l9AA1Ts5jffJY43S01",
         paymentMode: "Full payment"
       },
       "customized-beats": {
         title: "Customized Beats Booking Session",
         price: "$295",
-        description: "Book custom beat production around the artist direction, references, and release plan.",
+        description: "Reserve a custom beat session shaped around the artist's sound, creative direction, and release plan.",
         scheduleUrl: "https://calendly.com/musewav-info/customized-beats-booking-session",
-        paymentUrl: "https://buy.stripe.com/6oU14h9AA1Ts6njgO243S02",
         paymentMode: "Full payment"
       }
     }
@@ -68,8 +62,6 @@ window.MUSEWAV = {
     { n: "07", slug: "music-publishing", title: "Music Publishing", desc: "Publishing support for songs, albums, rights, and release strategy." }
   ],
 
-  // Real catalog — YouTube @MUSEWAVCollective. These are performance/MV clips
-  // selected because the motion is visible in autoplay, not static visualizers.
   videos: [
     { id: "Dq95TXEy_II", title: "T-Bruin", note: "Hummingbird Session" },
     { id: "KziYnIym0gc", title: "Bag Boy - TIMES", note: "Hummingbird Session" },
@@ -107,24 +99,24 @@ window.MUSEWAV = {
   ],
 
   beatPreviews: [
-    { producer: "CashNova", title: "Do You Love Me", src: "../../assets/phil-2026-06-26/beats/cashnova-do-you-love-me.mp3", tags: "R&B · melodic · 35s preview" },
-    { producer: "CashNova", title: "Exes", src: "../../assets/phil-2026-06-26/beats/cashnova-exes.mp3", tags: "R&B / hip-hop · 35s preview" },
-    { producer: "CashNova", title: "Fallen Alien", src: "../../assets/phil-2026-06-26/beats/cashnova-fallen-alien.mp3", tags: "Atmospheric · 35s preview" },
-    { producer: "maxhunnid", title: "Miami", src: "../../assets/phil-2026-06-26/beats/maxhunnid-miami-100bpm.mp3", tags: "100 BPM · 35s preview" },
-    { producer: "maxhunnid", title: "CXDY", src: "../../assets/phil-2026-06-26/beats/maxhunnid-cxdy-134bpm.mp3", tags: "134 BPM · 35s preview" },
-    { producer: "maxhunnid", title: "Orange Bottle", src: "../../assets/phil-2026-06-26/beats/maxhunnid-orange-bottle-134bpm.mp3", tags: "134 BPM · 35s preview" },
-    { producer: "ProdNomii", title: "Hahn", src: "../../assets/phil-2026-06-26/beats/prodnomii-hahn-140bpm-fminor.mp3", tags: "140 BPM · F minor · 35s preview" },
-    { producer: "ProdNomii", title: "Lov3 Hat3", src: "../../assets/phil-2026-06-26/beats/prodnomii-lov3-hat3-145bpm-amajor.mp3", tags: "145 BPM · A major · 35s preview" },
-    { producer: "ProdNomii", title: "Marc", src: "../../assets/phil-2026-06-26/beats/prodnomii-marc-150bpm-ebminor.mp3", tags: "150 BPM · Eb minor · 35s preview" }
+    { producer: "CashNova", title: "Do You Love Me", src: "../../assets/musewav-audio/cashnova-do-you-love-me.mp3", tags: "R&B · melodic · 35s preview" },
+    { producer: "CashNova", title: "Exes", src: "../../assets/musewav-audio/cashnova-exes.mp3", tags: "R&B / hip-hop · 35s preview" },
+    { producer: "CashNova", title: "Fallen Alien", src: "../../assets/musewav-audio/cashnova-fallen-alien.mp3", tags: "Atmospheric · 35s preview" },
+    { producer: "maxhunnid", title: "Miami", src: "../../assets/musewav-audio/maxhunnid-miami-100bpm.mp3", tags: "100 BPM · 35s preview" },
+    { producer: "maxhunnid", title: "CXDY", src: "../../assets/musewav-audio/maxhunnid-cxdy-134bpm.mp3", tags: "134 BPM · 35s preview" },
+    { producer: "maxhunnid", title: "Orange Bottle", src: "../../assets/musewav-audio/maxhunnid-orange-bottle-134bpm.mp3", tags: "134 BPM · 35s preview" },
+    { producer: "ProdNomii", title: "Hahn", src: "../../assets/musewav-audio/prodnomii-hahn-140bpm-fminor.mp3", tags: "140 BPM · F minor · 35s preview" },
+    { producer: "ProdNomii", title: "Lov3 Hat3", src: "../../assets/musewav-audio/prodnomii-lov3-hat3-145bpm-amajor.mp3", tags: "145 BPM · A major · 35s preview" },
+    { producer: "ProdNomii", title: "Marc", src: "../../assets/musewav-audio/prodnomii-marc-150bpm-ebminor.mp3", tags: "150 BPM · Eb minor · 35s preview" }
   ],
 
   roster: [
-    { slug: "acee", name: "ACee", role: "Artist", image: "../../assets/phil-2026-06-26/artist-development/acee-01.jpg", focus: "center 22%", bio: "R&B and hip-hop shaped by Chinese roots and contemporary Western sound." },
-    { slug: "jjeramii", name: "JJeramii", role: "Artist / Songwriter", image: "../../assets/phil-2026-06-26/artist-development/jeramia-jackson.jpg", focus: "center 16%", bio: "Melodic storytelling around love, growth, ambition, and real-life experience." },
-    { slug: "sir-wolfsbane", name: "Sir WOLFSBANE", role: "Artist / Model", image: "../../assets/phil-2026-06-26/artist-development/sir-wolfsbane.jpg", focus: "center top", bio: "Alternative, rebellious, werewolf-punk identity built across music, fashion, and culture." },
-    { slug: "cashnova", name: "CashNova", role: "Producer", image: "../../assets/phil-2026-06-26/artist-development/cashnova.jpg", focus: "center 24%", bio: "Multi-genre producer with 400+ tracks across R&B, hip-hop, pop, and brand sound." },
-    { slug: "maxhunnid", name: "maxhunnid", role: "Producer", image: "../../assets/phil-2026-06-26/artist-development/maxhunnid.jpg", focus: "center 18%", bio: "Producer with high-energy beat previews shaped for rap, melodic hooks, and artist writing sessions." },
-    { slug: "prodnomii", name: "ProdNomii", role: "Producer", image: "../../assets/phil-2026-06-26/artist-development/prodnomii.jpg", focus: "center 18%", bio: "China and U.S.-based producer working across hip-hop, R&B, and everything in between." }
+    { slug: "acee", name: "ACee", role: "Artist", image: "../../assets/musewav-roster/acee-01.jpg", focus: "center 22%", bio: "R&B and hip-hop shaped by Chinese roots and contemporary Western sound." },
+    { slug: "jjeramii", name: "JJeramii", role: "Artist / Songwriter", image: "../../assets/musewav-roster/jeramia-jackson.jpg", focus: "center 16%", bio: "Melodic storytelling around love, growth, ambition, and real-life experience." },
+    { slug: "sir-wolfsbane", name: "Sir WOLFSBANE", role: "Artist / Model", image: "../../assets/musewav-roster/sir-wolfsbane.jpg", focus: "center top", bio: "Alternative, rebellious, werewolf-punk identity built across music, fashion, and culture." },
+    { slug: "cashnova", name: "CashNova", role: "Producer", image: "../../assets/musewav-roster/cashnova.jpg", focus: "center 24%", bio: "Multi-genre producer with 400+ tracks across R&B, hip-hop, pop, and brand sound." },
+    { slug: "maxhunnid", name: "maxhunnid", role: "Producer", image: "../../assets/musewav-roster/maxhunnid.jpg", focus: "center 18%", bio: "Producer with high-energy beat previews shaped for rap, melodic hooks, and artist writing sessions." },
+    { slug: "prodnomii", name: "ProdNomii", role: "Producer", image: "../../assets/musewav-roster/prodnomii.jpg", focus: "center 18%", bio: "China and U.S.-based producer working across hip-hop, R&B, and everything in between." }
   ],
 
   profileUrl: function (slug) {
@@ -136,7 +128,7 @@ window.MUSEWAV = {
       name: "ACee",
       type: "Artist",
       role: "Artist",
-      image: "../../assets/phil-2026-06-26/artist-development/acee-01.jpg",
+      image: "../../assets/musewav-roster/acee-01.jpg",
       focus: "center 22%",
       headline: "R&B and hip-hop shaped by Chinese roots and contemporary Western sound.",
       bio: "ACee moves between melodic R&B, hip-hop, and bilingual identity, shaping a sound that connects Chinese roots with contemporary Western production.",
@@ -151,7 +143,7 @@ window.MUSEWAV = {
       name: "JJeramii",
       type: "Artist",
       role: "Artist / Songwriter",
-      image: "../../assets/phil-2026-06-26/artist-development/jeramia-jackson.jpg",
+      image: "../../assets/musewav-roster/jeramia-jackson.jpg",
       focus: "center 16%",
       headline: "Melodic storytelling around love, growth, ambition, and real-life experience.",
       bio: "JJeramii brings a songwriter's voice to melodic records, emotional hooks, and story-led visuals rooted in love, growth, ambition, and lived experience.",
@@ -166,7 +158,7 @@ window.MUSEWAV = {
       name: "Sir WOLFSBANE",
       type: "Artist",
       role: "Artist / Model",
-      image: "../../assets/phil-2026-06-26/artist-development/sir-wolfsbane.jpg",
+      image: "../../assets/musewav-roster/sir-wolfsbane.jpg",
       focus: "center top",
       headline: "Alternative, rebellious, werewolf-punk identity built across music, fashion, and culture.",
       bio: "Sir WOLFSBANE builds an alternative visual world across music, fashion, performance, and culture.",
@@ -181,7 +173,7 @@ window.MUSEWAV = {
       name: "CashNova",
       type: "Producer",
       role: "Producer",
-      image: "../../assets/phil-2026-06-26/artist-development/cashnova.jpg",
+      image: "../../assets/musewav-roster/cashnova.jpg",
       focus: "center 24%",
       headline: "Multi-genre producer with 400+ tracks across R&B, hip-hop, pop, and brand sound.",
       bio: "Multi-genre producer with 400+ tracks across R&B, hip-hop, pop, and brand sound.",
@@ -195,7 +187,7 @@ window.MUSEWAV = {
       name: "maxhunnid",
       type: "Producer",
       role: "Producer",
-      image: "../../assets/phil-2026-06-26/artist-development/maxhunnid.jpg",
+      image: "../../assets/musewav-roster/maxhunnid.jpg",
       focus: "center 18%",
       headline: "High-energy beat previews shaped for rap, melodic hooks, and artist writing sessions.",
       bio: "Producer with high-energy beat previews shaped for rap, melodic hooks, and artist writing sessions.",
@@ -206,7 +198,7 @@ window.MUSEWAV = {
       name: "ProdNomii",
       type: "Producer",
       role: "Producer",
-      image: "../../assets/phil-2026-06-26/artist-development/prodnomii.jpg",
+      image: "../../assets/musewav-roster/prodnomii.jpg",
       focus: "center 18%",
       headline: "China and U.S.-based producer working across hip-hop, R&B, and everything in between.",
       bio: "China and U.S.-based producer working across hip-hop, R&B, and everything in between.",
@@ -252,7 +244,7 @@ window.MUSEWAV = {
       visualHeading: "Studio rooms and gear",
       visualIntro: "A closer look at the lounge, control room, vocal chain, interface rack, production desk, and recording gear artists use during a session.",
       factsHeading: "Services and rates",
-      factsIntro: "Clear starting prices. Custom projects can still be quoted after intake.",
+      factsIntro: "Clear starting prices. Custom projects can be planned through a free consultation.",
       media: [
         { src: "../../assets/musewav-site/08-IMG_4840.jpeg", label: "Artist lounge and listening room", focus: "center 55%" },
         { src: "../../assets/musewav-site/05-IMG_4836.jpeg", label: "Vocal booth with studio microphone", focus: "center 28%" },
@@ -262,8 +254,8 @@ window.MUSEWAV = {
         { src: "../../assets/musewav-site/17-IMG_1752.JPG", label: "Engineer at the studio console", focus: "center 42%" }
       ],
       sections: [
-        { title: "Built for focused sessions", body: "MUSE WAV gives artists a focused room, production support, and professional recording tools for vocal sessions, demos, beat work, and project production." },
-        { title: "Session Types", body: "Vocal recording, demo sessions, production sessions, mixing support, writing sessions, and custom project work." },
+        { title: "Built for focused sessions", body: "MUSE WAV gives artists a focused room, production support, and professional recording tools for vocals, song drafts, beat work, and project production." },
+        { title: "Session Types", body: "Vocal recording, song drafts, production sessions, mixing support, writing sessions, and custom project work." },
         { title: "Room and equipment", body: "The studio setup includes professional interfaces, vocal microphones, preamp/compression, mastering gear, and monitor control for recording and project work." }
       ],
       equipment: true,
@@ -277,9 +269,9 @@ window.MUSEWAV = {
       cta: "Book Free Consultation",
       visualType: "video-grid",
       visualHeading: "Music video reel",
-      visualIntro: "Selected videos from the MUSE WAV catalog. Captions link to the full videos.",
+      visualIntro: "Selected MUSE WAV visuals, performance clips, and release-ready video work.",
       factsHeading: "Production scope",
-      factsIntro: "What a video project can include before the final package is selected.",
+      factsIntro: "Core production options for a complete music-video campaign.",
       sections: [
         { title: "Selected Music Videos", body: "A showcase of music videos, RED Series work, and visual projects created with MUSE WAV artists and collaborators." },
         { title: "What We Handle", body: "Creative direction, filming, editing, performance footage, short-form cutdowns, and release-ready visuals for music campaigns." },
@@ -294,15 +286,15 @@ window.MUSEWAV = {
       cta: "Choose Beat Session",
       visualType: "audio",
       visualHeading: "Listen to beat previews",
-      visualIntro: "Short beat previews visitors can play before requesting custom production around their voice, genre, and release direction.",
+      visualIntro: "Listen to short beat previews before booking custom production around your voice, genre, and release direction.",
       factsHeading: "Producer network",
-      factsIntro: "Preview producer styles, then book a custom session around the artist's voice, references, and release direction.",
+      factsIntro: "Hear producer styles, then book a custom session around the artist's voice, genre, and release direction.",
       sections: [
         { title: "Listen to Samples", body: "Preview production styles from the MUSE WAV producer network, then request a beat built around your voice and direction." },
-        { title: "Producer Credits", body: "Work with producers who understand the sound, references, and release goals behind each project." },
-        { title: "Custom Workflow", body: "Choose a reference, describe the artist direction, then MUSE WAV can route the brief to a producer and prepare the next step." }
+        { title: "Producer Match", body: "Work with producers who understand the sound, audience, and release goals behind each project." },
+        { title: "Build Your Beat", body: "Share the artist direction, choose the right production lane, and shape a beat around the record." }
       ],
-      facts: ["CashNova sample previews", "maxhunnid sample previews", "ProdNomii sample previews", "Custom beat request path", "Genre and BPM matching", "Licensing conversation"]
+      facts: ["CashNova production style", "maxhunnid production style", "ProdNomii production style", "Custom beat session", "Genre and BPM matching", "Beat licensing options"]
     },
     "artist-development": {
       title: "Artist Development",
@@ -311,13 +303,13 @@ window.MUSEWAV = {
       cta: "Book Free Consultation",
       visualType: "roster",
       visualHeading: "Artist and producer roster",
-      visualIntro: "A working roster view for artists, producers, and collaborators connected to the MUSE WAV development path.",
+      visualIntro: "Meet artists, producers, and collaborators connected to the MUSE WAV development path.",
       factsHeading: "Development pipeline",
-      factsIntro: "The offer is clearer when it is shown as a path from sound to release to audience.",
+      factsIntro: "A complete path from sound direction to release strategy and audience growth.",
       sections: [
         { title: "For Artists Ready to Build", body: "MUSE WAV works with artists who need structure around recording, visuals, releases, marketing, shows, and long-term growth." },
         { title: "Development Areas", body: "Sound direction, studio work, visual identity, content, release planning, audience growth, and performance opportunities." },
-        { title: "Artist Roster", body: "The refreshed Drive folder now includes artist photos, producer photos, bios, and audio samples that can anchor this page." }
+        { title: "Artist Roster", body: "Meet the artists, producers, and collaborators shaping the MUSE WAV development path." }
       ],
       facts: ["Sound direction", "Studio work", "Visual identity", "Release planning", "Audience growth", "Roster development"]
     },
@@ -330,25 +322,25 @@ window.MUSEWAV = {
       visualHeading: "Shows and live moments",
       visualIntro: "Live shows, performance moments, event posters, and recap assets for showcases, bookings, and artist appearances.",
       factsHeading: "Tour and event support",
-      factsIntro: "Use this page to show what MUSE WAV can coordinate around a live music moment.",
+      factsIntro: "Live support for showcases, performances, bookings, and artist appearances.",
       media: [
         { src: "../../assets/musewav-site/13-Image_20240408232649.jpg", label: "Live performance moment", focus: "center 36%" },
         { src: "../../assets/musewav-site/12-Image_20240408232731.jpg", label: "Artist at the stage edge", focus: "center 30%" },
         { src: "../../assets/musewav-site/14-Image_20240408232727.jpg", label: "Crowd and performance room", focus: "center 42%" },
         { src: "../../assets/musewav-site/39-IMG_1638.JPG", label: "Artist on stage", focus: "center 30%" },
         { src: "../../assets/musewav-site/37-wangsulong2.jpg", label: "Event team and venue partners", focus: "center 45%" },
-        { src: "../../assets/phil-2026-06-26/music-tour-service/tour-05.jpg", label: "Live event poster" },
-        { src: "../../assets/phil-2026-06-26/music-tour-service/tour-01.png", label: "Performance moment" },
-        { src: "../../assets/phil-2026-06-26/music-tour-service/tour-02.png", label: "Showcase proof" },
-        { src: "../../assets/phil-2026-06-26/music-tour-service/tour-03.png", label: "Audience and stage" },
-        { src: "../../assets/phil-2026-06-26/music-tour-service/tour-04.png", label: "Artist performance" },
-        { src: "../../assets/phil-2026-06-26/music-tour-service/tour-06.png", label: "Event recap" },
-        { src: "../../assets/phil-2026-06-26/music-tour-service/tour-07.png", label: "Live campaign asset" }
+        { src: "../../assets/musewav-live/tour-05.jpg", label: "Live event poster" },
+        { src: "../../assets/musewav-live/tour-01.png", label: "Performance moment" },
+        { src: "../../assets/musewav-live/tour-02.png", label: "Showcase moment" },
+        { src: "../../assets/musewav-live/tour-03.png", label: "Audience and stage" },
+        { src: "../../assets/musewav-live/tour-04.png", label: "Artist performance" },
+        { src: "../../assets/musewav-live/tour-06.png", label: "Event recap" },
+        { src: "../../assets/musewav-live/tour-07.png", label: "Live campaign visual" }
       ],
       sections: [
         { title: "Live Performance Support", body: "MUSE WAV supports the moving parts around a live music moment, from artist coordination to production support and show planning." },
         { title: "Past Events", body: "A look at performances, showcases, and live projects connected to the MUSE WAV team." },
-        { title: "Book Talent", body: "For performances, collaborations, and appearances, send the event details and the MUSE WAV team will route the request." }
+        { title: "Book Talent", body: "For performances, collaborations, and appearances, share the event details and the MUSE WAV team will help plan the next step." }
       ],
       facts: ["Artist booking", "Event planning", "Show promotion", "Recap content", "Venue coordination", "Tour campaign assets"]
     },
@@ -359,7 +351,7 @@ window.MUSEWAV = {
       cta: "Book Free Consultation",
       visualType: "strategy",
       visualHeading: "Cross-market campaign map",
-      visualIntro: "The page should show how promotion actually moves through platforms, languages, content, and reporting.",
+      visualIntro: "Promotion built across platforms, languages, content formats, and performance reporting.",
       factsHeading: "Campaign services",
       factsIntro: "A cross-market promotion system for music releases, events, creators, and artist growth.",
       sections: [
@@ -422,13 +414,10 @@ window.MUSEWAV = {
     favicon: "../assets/brand/favicon-256.png"
   },
 
-  // Build a privacy-friendly lazy YouTube thumbnail URL
   ytThumb: function (id) { return "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg"; },
   ytEmbed: function (id) { return "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1"; },
   ytWatch: function (id) { return "https://www.youtube.com/watch?v=" + id; },
 
-  // Self-hosted silent preview loops (built from the real videos by
-  // assets/make-video-previews.sh). Poster shares the clip's first frame.
   assetVersion: "20",
   clipBase: "../assets/video/",
   clip:       function (id) { return this.clipBase + id + ".mp4?v=" + this.assetVersion; },
